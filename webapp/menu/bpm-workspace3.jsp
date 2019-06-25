@@ -38,7 +38,7 @@ $(function() {
     <div class="panel-heading">
 	  <h4 class="panel-title">
 	    <i class="glyphicon glyphicon-list"></i>
-        我的任务
+        我的实验
       </h4>
 	</div>
 
@@ -83,20 +83,20 @@ $(function() {
 	  <li>
 	    <a href="${tenantPrefix}/bpm/workspace-listRunningProcessInstances.do">
 	      <i class="glyphicon glyphicon-list"></i>
-		  未结流程
+		  进行中实验
 	      <span class="badge" id="active-count" style="float:right;display:none;">0</span>
 	    </a>
 	  </li>
 	  <li>
 	    <a href="${tenantPrefix}/bpm/workspace-listCompletedProcessInstances.do">
 	      <i class="glyphicon glyphicon-list"></i>
-		  办结流程
+		  结束实验
 	    </a>
 	  </li>
 	  <li>
 	    <a href="${tenantPrefix}/bpm/workspace-listInvolvedProcessInstances.do">
 	      <i class="glyphicon glyphicon-list"></i>
-		  参与的流程
+		  参与的实验
 	    </a>
 	  </li>
 	  <li>

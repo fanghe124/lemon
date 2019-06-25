@@ -117,7 +117,7 @@ $(function() {
 		  <c:if test="${item.type == 1}">图片</c:if>
 		  <c:if test="${item.type == 2}">音乐</c:if>
 		  <c:if test="${item.type == 3}">视频</c:if>
-		  <c:if test="${item.type == 4}">文档</c:if>
+		  <c:if test="${item.type == 4}">文件</c:if>
 		  <c:if test="${item.type == 5}">文字</c:if>
 		</td>
         <td>${item.priority}</td>

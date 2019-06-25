@@ -365,7 +365,7 @@ public class DiskService {
     }
 
     /**
-     * 根据用户id返回或创建这个用户的个人文档.
+     * 根据用户id返回或创建这个用户的个人文件.
      */
     public DiskSpace findUserSpace(String userId) {
         DiskSpace diskSpace = diskSpaceManager.findUniqueBy("creator", userId);

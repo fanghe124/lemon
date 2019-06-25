@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
-    <title>网盘</title>
+    <title>文件管理</title>
     <%@include file="/common/s3.jsp"%>
 	  <link rel="stylesheet" href="${cdnPrefix}/public/mossle-disk/0.0.3/sprite_list_icon.css">
 	  <style type="text/css">
@@ -41,7 +41,7 @@ body {
 
             <div style="margin-top:10px;margin-bottom:10px;" class="clearfix">
               <div class="pull-left">
-              群组文档
+              群组文件
               </div>
               <div class="pull-right">
                 共 ${fn:length(diskSpaces)} 个
@@ -52,7 +52,7 @@ body {
       <thead>
         <tr>
           <th class="m-table-check"><input type="checkbox" name="checkAll" onchange="toggleSelectedItems(this.checked)"></th>
-          <th class="col-md-12 text-left">文档名称</th>
+          <th class="col-md-12 text-left">文件名称</th>
         </tr>
       </thead>
       <tbody id="tbodyFileInfo">

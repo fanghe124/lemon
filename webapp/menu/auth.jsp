@@ -38,9 +38,9 @@
     <div id="collapse-body-auth" class="panel-collapse collapse ${currentMenu == 'auth' ? 'in' : ''}" role="tabpanel" aria-labelledby="collapse-header-auth">
       <div class="panel-body">
         <ul class="nav nav-list">
-          <li><a href="${tenantPrefix}/auth/perm-type-list.do"><i class="glyphicon glyphicon-list"></i> 授权分类</a></li>
+      	  <!--  <li><a href="${tenantPrefix}/auth/perm-type-list.do"><i class="glyphicon glyphicon-list"></i> 授权分类</a></li>
           <li><a href="${tenantPrefix}/auth/perm-list.do"><i class="glyphicon glyphicon-list"></i> <spring:message code="layout.leftmenu.permmanage" text="授权管理"/></a></li>
-          <li><a href="${tenantPrefix}/auth/access-list.do"><i class="glyphicon glyphicon-list"></i> <spring:message code="layout.leftmenu.accessmanage" text="访问权限"/></a></li>
+		  <li><a href="${tenantPrefix}/auth/access-list.do"><i class="glyphicon glyphicon-list"></i> <spring:message code="layout.leftmenu.accessmanage" text="访问权限"/></a></li>-->
           <li><a href="${tenantPrefix}/auth/menu-list.do"><i class="glyphicon glyphicon-list"></i> 菜单管理</a></li>
 
           <li><a href="${tenantPrefix}/auth/auth-perm-list.do"><i class="glyphicon glyphicon-list"></i> 权限管理</a></li>

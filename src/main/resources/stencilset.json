@@ -58,7 +58,7 @@
     "properties" : [ {
       "id" : "process_version",
       "type" : "String",
-      "title" : "流程版本字符串 (仅文档)",
+      "title" : "流程版本字符串 (仅文件)",
       "value" : "",
       "description" : "Version identifier for documentation purpose.",
       "popular" : true

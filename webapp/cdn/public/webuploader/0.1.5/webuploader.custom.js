@@ -354,7 +354,7 @@
         api = {
             /**
              * 创建一个[Deferred](http://api.jquery.com/category/deferred-object/)对象。
-             * 详细的Deferred用法说明，请参照jQuery的API文档。
+             * 详细的Deferred用法说明，请参照jQuery的API文件。
              *
              * Deferred对象在钩子回掉函数中经常要用到，用来处理需要等待的异步操作。
              *
@@ -491,9 +491,9 @@
      * * module `runtime/html5/dnd`: WebUploader.Runtime.Html5.Dnd
      *
      *
-     * 以下文档中对类的使用可能省略掉了`WebUploader`前缀。
+     * 以下文件中对类的使用可能省略掉了`WebUploader`前缀。
      * @module WebUploader
-     * @title WebUploader API文档
+     * @title WebUploader API文件
      */
     define('base',[
         'dollar',
@@ -1188,7 +1188,7 @@
                 this.off();
             },
     
-            // widgets/widget.js将补充此方法的详细文档。
+            // widgets/widget.js将补充此方法的详细文件。
             request: Base.noop
         });
     

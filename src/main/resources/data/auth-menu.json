@@ -46,7 +46,7 @@
             },
             {
                 "code": "disk",
-                "name": "网盘",
+                "name": "文件",
                 "url": "/disk/disk-info-list.do",
                 "type": "module",
                 "display": "true",

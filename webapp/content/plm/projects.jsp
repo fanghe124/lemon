@@ -88,7 +88,7 @@ $(function() {
         <th width="16%">名称</th>
         <th width="16%">代号</th>
         <th width="16%">负责人</th>
-        <th width="16%">文档</th>
+        <th width="16%">文件</th>
         <th width="16%">源码</th>
 		<th width="16%">网址</th>
       </tr>

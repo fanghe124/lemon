@@ -203,7 +203,7 @@ $(function () {
       </div>
       <div class="modal-body">
         <div>
-          路径: 个人文档/xxx
+          路径: 个人文件/xxx
         </div>
         <div>
           <div style="float:left;">用户:</div>

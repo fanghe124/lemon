@@ -188,9 +188,9 @@
      * * module `runtime/html5/dnd`: WebUploader.Runtime.Html5.Dnd
      *
      *
-     * 以下文档中对类的使用可能省略掉了`WebUploader`前缀。
+     * 以下文件中对类的使用可能省略掉了`WebUploader`前缀。
      * @module WebUploader
-     * @title WebUploader API文档
+     * @title WebUploader API文件
      */
     define('base',[
         'dollar',
@@ -885,7 +885,7 @@
                 this.off();
             },
     
-            // widgets/widget.js将补充此方法的详细文档。
+            // widgets/widget.js将补充此方法的详细文件。
             request: Base.noop
         });
     

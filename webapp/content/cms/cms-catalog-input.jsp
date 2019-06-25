@@ -71,7 +71,7 @@ $(function() {
 	    <option value="1" ${model.type == 1 ? 'selected' : ''}>图片</option>
 	    <option value="2" ${model.type == 2 ? 'selected' : ''}>音乐</option>
 	    <option value="3" ${model.type == 3 ? 'selected' : ''}>视频</option>
-	    <option value="4" ${model.type == 4 ? 'selected' : ''}>文档</option>
+	    <option value="4" ${model.type == 4 ? 'selected' : ''}>文件</option>
 	    <option value="5" ${model.type == 5 ? 'selected' : ''}>附件</option>
 	  </select>
     </div>

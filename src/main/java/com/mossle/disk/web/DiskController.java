@@ -64,7 +64,7 @@ public class DiskController {
     private DiskService diskService;
 
     /**
-     * 个人文档.
+     * 个人文件.
      */
     @RequestMapping("index")
     public String index(
@@ -82,7 +82,7 @@ public class DiskController {
     }
 
     /**
-     * 共享文档.
+     * 共享文件.
      */
     @RequestMapping("share")
     public String share(
@@ -122,7 +122,7 @@ public class DiskController {
     }
 
     /**
-     * 群组文档.
+     * 群组文件.
      */
     @RequestMapping("group")
     public String group(
@@ -152,15 +152,15 @@ public class DiskController {
     }
 
     /**
-     * 文档库.
+     * 文件库.
      */
     @RequestMapping("repo")
     public String repo(
             @RequestParam(value = "spaceId", required = false) Long spaceId,
             @RequestParam(value = "path", required = false, defaultValue = "") String path,
             Model model) {
-        // 如果spaceId存在，就显示对应空间下的文档库
-        // 如果spaceId不存在，就显示可以查看的文档库
+        // 如果spaceId存在，就显示对应空间下的文件库
+        // 如果spaceId不存在，就显示可以查看的文件库
         if (spaceId == null) {
             String userId = currentUserHolder.getUserId();
             String hql = "from DiskSpace where catalog='group' and type='repo'";
@@ -261,7 +261,7 @@ public class DiskController {
     }
 
     /**
-     * 创建群组文档.
+     * 创建群组文件.
      */
     @RequestMapping("create-group")
     public String createGroup(@RequestParam("name") String name) {
@@ -278,7 +278,7 @@ public class DiskController {
     }
 
     /**
-     * 创建文档库.
+     * 创建文件库.
      */
     @RequestMapping("create-repo")
     public String createRepo(@RequestParam("name") String name) {

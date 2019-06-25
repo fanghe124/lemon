@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
-    <title>网盘</title>
+    <title>文件管理</title>
     <%@include file="/common/s3.jsp"%>
 	<link rel="stylesheet" href="${cdnPrefix}/public/mossle-disk/0.0.3/sprite_list_icon.css">
 	<style type="text/css">
@@ -57,6 +57,9 @@ body {
 			<a href="disk-info-list.do?path=${path}/${item.name}">
 		      <span class="file-16-name">${item.name}</span>
 			</a>
+			<span class="disk-tool" class="">
+			<a href="javascript:void(0);removeFile(${item.id});" title="删除"><i class="glyphicon glyphicon-remove"></i></a>
+			</span>
 			</c:if>
 			<c:if test="${item.type != 'dir'}">
 		    <a href="disk-info-view.do?id=${item.id}">

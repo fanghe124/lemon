@@ -7,7 +7,7 @@
 
   <head>
     <%@include file="/common/meta.jsp"%>
-    <title>流程列表</title>
+    <title>实验</title>
     <%@include file="/common/s3.jsp"%>
     <script type="text/javascript">
 var config = {
@@ -78,6 +78,7 @@ $(function() {
         <th>业务流程</th>
         <th>创建时间</th>
         <th>状态</th>
+        <th>问题</th>
         <th width="140">&nbsp;</th>
       </tr>
     </thead>
@@ -90,6 +91,7 @@ $(function() {
 	    <td><tags:processName processDefinitionId="${item.processDefinitionId}"/></td>
 	    <td><fmt:formatDate value="${item.startTime}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 	    <td>运行中</td>
+	    <td>${item.articleNum}</td>
         <td>
           <a href="workspace-endProcessInstance.do?processInstanceId=${item.id}">终止</a>
           <a href="workspace-remind.do?processInstanceId=${item.id}&userId=&comment=">催办</a>

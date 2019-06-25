@@ -50,7 +50,7 @@ $(function() {
   <input id="cms-article_id" type="hidden" name="id" value="${model.id}">
   </c:if>
   <div class="form-group">
-    <label class="control-label col-md-1" for="cms-article_cmsArticlename">栏目</label>
+    <label class="control-label col-md-1" for="cms-article_cmsArticlename">主题</label>
 	<div class="col-md-11">
 	  <c:if test="${empty model}">
 	    <c:if test="${not empty param.catalogId}">
@@ -110,9 +110,9 @@ $(function() {
     <label class="control-label col-md-1" for="cms-article_cmsArticlename">图标</label>
 	<div class="col-md-11">
 	  <input id="cmsArticle_logo" type="file" name="logoFile" value="" class="form-control-static">
-	  <c:if test="${not empty model.logo}">
-	    <img src="r/attachments/${model.logo}" width="80">
-	  </c:if>
+<%-- 	  <c:if test="${not empty model.logo}"> --%>
+<%-- 	    <img src="r/attachments/${model.logo}" width="80"> --%>
+<%-- 	  </c:if> --%>
     </div>
   </div>
   <!--
@@ -142,13 +142,14 @@ $(function() {
 	  <input id="cms-article_cmsArticlename" type="checkbox" name="allowComment" value="1" class="text" ${model.allowComment == 1 ? 'checked' : ''}>
     </div>
   </div>
+  -->
   <div class="form-group">
-    <label class="control-label col-md-1" for="cms-article_cmsArticlename">状态</label>
+    <label class="control-label col-md-1" for="cms-article_cmsArticlename">开启</label>
 	<div class="col-sm-5">
 	  <input id="cms-article_cmsArticlename" type="checkbox" name="status" value="1" class="text" ${model.status == 1 ? 'checked' : ''}>
     </div>
   </div>
--->
+
   <div class="form-group">
     <label class="control-label col-md-1" for="cms-article_cmsArticlename">发布时间</label>
 	  <div class="input-group date datetimepicker col-md-5" style="padding-left:15px;padding-right:15px;">

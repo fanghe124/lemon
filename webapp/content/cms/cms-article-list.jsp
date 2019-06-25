@@ -69,11 +69,11 @@ $(function() {
     <div class="row-fluid">
 	  <%@include file="/menu/cms.jsp"%>
 
-	  <div class="col-md-2" style="padding-top:65px;">
+	  <div class="col-md-3" style="padding-top:65px;">
 	    <div class="panel panel-default">
 		  <div class="panel-heading">
 		    <i class="glyphicon glyphicon-list"></i>
-		    栏目
+		    主题
 		  </div>
 		  <div class="panel-body" style="padding:15px 0px;">
 			<ul id="treeMenu" class="ztree"></ul>
@@ -82,7 +82,7 @@ $(function() {
 	  </div>
 
 	  <!-- start of main -->
-      <section id="m-main" class="col-md-8" style="padding-top:65px;">
+      <section id="m-main" class="col-md-7" style="padding-top:65px;">
 
 		  <form name="cms-articleForm" method="post" action="cms-article-list.do" class="form-inline" style="padding-bottom:15px;">
 		    <input type="hidden" name="filter_EQL_cmsCatalog.id" value="${param['filter_EQL_cmsCatalog.id']}">
@@ -103,7 +103,7 @@ $(function() {
 			<li><a href='cms-article-image.do'>新建图库</a></li>
 			<li><a href='cms-article-audio.do'>新建音频</a></li>
 			<li><a href='cms-article-video.do'>新建视频</a></li>
-			<li><a href='cms-article-pdf.do'>新建文档</a></li>
+			<li><a href='cms-article-pdf.do'>新建文件</a></li>
 			<li><a href='cms-article-etc.do'>新建附件</a></li>
 		  </ul>
 		</div>
@@ -152,7 +152,7 @@ $(function() {
 		  </c:if>
 		</td>
         <td>
-          <a href="cms-article-view.do?id=${item.id}">预览</a>
+<%--           <a href="cms-article-view.do?id=${item.id}">预览</a> --%>
 		  <c:if test="${item.status == 1}">
           <a href="cms-article-withdraw.do?id=${item.id}">下线</a>
 		  </c:if>

@@ -116,7 +116,7 @@ $(function() {
 			<%--
 			<tags:hasPerm value="role:auth">
 			--%>
-            <a href="role-perm-input.do?id=${item.id}" class="a-config"><spring:message code="auth.roleDef.list.perm" text="设置权限"/></a>&nbsp;
+            <!--<a href="role-perm-input.do?id=${item.id}" class="a-config"><spring:message code="auth.roleDef.list.perm" text="设置权限"/></a>-->
 			<%--
 			</tags:hasPerm>
 			--%>

@@ -13,10 +13,10 @@
   <div class="panel panel-default" style="margin-bottom:20px;">
     <div class="panel-body">
       <ul class="nav nav-list">
-        <li><a href="${tenantPrefix}/disk/index.do"><i class="glyphicon glyphicon-list"></i> 个人文档</a></li>
-        <li><a href="${tenantPrefix}/disk/share.do"><i class="glyphicon glyphicon-list"></i> 共享文档</a></li>
-        <li><a href="${tenantPrefix}/disk/group.do"><i class="glyphicon glyphicon-list"></i> 群组文档</a></li>
-        <li><a href="${tenantPrefix}/disk/repo.do"><i class="glyphicon glyphicon-list"></i> 文档库</a></li>
+        <li><a href="${tenantPrefix}/disk/index.do"><i class="glyphicon glyphicon-list"></i> 个人文件</a></li>
+        <li><a href="${tenantPrefix}/disk/share.do"><i class="glyphicon glyphicon-list"></i> 共享文件</a></li>
+        <li><a href="${tenantPrefix}/disk/group.do"><i class="glyphicon glyphicon-list"></i> 群组文件</a></li>
+        <li><a href="${tenantPrefix}/disk/repo.do"><i class="glyphicon glyphicon-list"></i> 文件库</a></li>
         <li><a href="${tenantPrefix}/disk/trash.do"><i class="glyphicon glyphicon-list"></i> 回收站</a></li>
       </ul>
     </div>

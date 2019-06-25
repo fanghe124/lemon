@@ -15,7 +15,7 @@
     <div class="panel-heading" role="tab" id="collapse-header-bpm-category" data-toggle="collapse" data-parent="#accordion" href="#collapse-body-bpm-category" aria-expanded="true" aria-controls="collapse-body-bpm-category">
       <h4 class="panel-title">
 	    <i class="glyphicon glyphicon-list"></i>
-        分类管理
+        实验分类管理
       </h4>
     </div>
     <div id="collapse-body-bpm-category" class="panel-collapse collapse ${currentMenu == 'bpm-category' ? 'in' : ''}" role="tabpanel" aria-labelledby="collapse-header-bpm-category">
@@ -32,7 +32,7 @@
     <div class="panel-heading" role="tab" id="collapse-header-bpm-process" data-toggle="collapse" data-parent="#accordion" href="#collapse-body-bpm-process" aria-expanded="true" aria-controls="collapse-body-bpm-process">
       <h4 class="panel-title">
 	    <i class="glyphicon glyphicon-list"></i>
-        流程管理
+        实验流程管理
       </h4>
     </div>
     <div id="collapse-body-bpm-process" class="panel-collapse collapse ${currentMenu == 'bpm-process' ? 'in' : ''}" role="tabpanel" aria-labelledby="collapse-header-bpm-process">
@@ -52,7 +52,7 @@
     <div class="panel-heading" role="tab" id="collapse-header-bpm-history" data-toggle="collapse" data-parent="#accordion" href="#collapse-body-bpm-history" aria-expanded="true" aria-controls="collapse-body-bpm-history">
       <h4 class="panel-title">
 	    <i class="glyphicon glyphicon-list"></i>
-        流程历史
+        实验流程历史
       </h4>
     </div>
     <div id="collapse-body-bpm-history" class="panel-collapse collapse ${currentMenu == 'history' ? 'in' : ''}" role="tabpanel" aria-labelledby="collapse-header-bpm-history">
