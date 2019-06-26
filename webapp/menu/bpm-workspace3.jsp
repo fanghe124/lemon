@@ -38,7 +38,7 @@ $(function() {
     <div class="panel-heading">
 	  <h4 class="panel-title">
 	    <i class="glyphicon glyphicon-list"></i>
-        我的实验
+        我的任务
       </h4>
 	</div>
 
@@ -76,10 +76,16 @@ $(function() {
     <div class="panel-heading">
 	  <h4 class="panel-title">
 	    <i class="glyphicon glyphicon-list"></i>
-        我的流程
+        我的实验
       </h4>
 	</div>
 	<ul class="nav nav-list">
+	  <li>
+		<a href="${tenantPrefix}/bpm/workspace-home.do">
+		  <i class="glyphicon glyphicon-list"></i> 
+		  发起实验
+		</a>
+	  </li>
 	  <li>
 	    <a href="${tenantPrefix}/bpm/workspace-listRunningProcessInstances.do">
 	      <i class="glyphicon glyphicon-list"></i>

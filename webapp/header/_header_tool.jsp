@@ -7,15 +7,16 @@
             </div>
           </form>
       </li>
+      <!--
       <li>
         <a href="${tenantPrefix}/content/oa/index.jsp">
           <i class="glyphicon glyphicon-cloud"></i>
           应用
         </a>
       </li>
-	  
+	    -->
 		  <tags:menuSystem3/>
-
+      <!--
       <li class="dropdown">
 		    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
 		      <i class="glyphicon glyphicon-download-alt"></i>
@@ -25,7 +26,8 @@
         <ul class="dropdown-menu">
 		      <li class="text-center"><img src="${ctx}/common/android-app.png" style="margin:0px;"></li>
         </ul>
-		  </li>
+      </li>
+      -->
 		  <li class="dropdown">
         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
           <i class="glyphicon glyphicon-bell"></i>

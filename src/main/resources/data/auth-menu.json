@@ -19,7 +19,7 @@
         "children": [
             {
                 "code": "bpm-user",
-                "name": "流程中心",
+                "name": "实验中心",
                 "url": "/bpm/workspace-home.do",
                 "type": "module",
                 "display": "true",
@@ -36,40 +36,31 @@
                 "priority": 20002
             },
             {
+                "code": "disk",
+                "name": "文件管理",
+                "url": "/disk/disk-info-list.do",
+                "type": "module",
+                "display": "true",
+                "perm": "disk",
+                "priority": 20003
+            },
+            {
+                "code": "report",
+                "name": "实验统计",
+                "url": "/report/index.do",
+                "type": "module",
+                "display": "true",
+                "perm": "report",
+                "priority": 20004
+            },
+            {
                 "code": "mail",
                 "name": "邮箱",
                 "url": "/javamail/index.do",
                 "type": "module",
                 "display": "true",
                 "perm": "mail",
-                "priority": 20003
-            },
-            {
-                "code": "disk",
-                "name": "文件",
-                "url": "/disk/disk-info-list.do",
-                "type": "module",
-                "display": "true",
-                "perm": "disk",
-                "priority": 20004
-            },
-            {
-                "code": "report",
-                "name": "统计报表",
-                "url": "/report/index.do",
-                "type": "module",
-                "display": "true",
-                "perm": "report",
                 "priority": 20005
-            },
-            {
-                "code": "website",
-                "name": "网站首页",
-                "url": "/cms/view/",
-                "type": "module",
-                "display": "true",
-                "perm": "website",
-                "priority": 20006
             }
         ]
     },
