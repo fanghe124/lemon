@@ -10,7 +10,7 @@ import com.mossle.api.auth.CustomPasswordEncoder;
 import com.mossle.api.tenant.TenantHolder;
 import com.mossle.api.user.UserCache;
 import com.mossle.api.user.UserDTO;
-
+import com.mossle.auth.service.AuthService;
 import com.mossle.core.export.Exportor;
 import com.mossle.core.mapper.BeanMapper;
 import com.mossle.core.page.Page;
@@ -28,7 +28,7 @@ import com.mossle.user.persistence.manager.PersonInfoManager;
 import com.mossle.user.publish.UserPublisher;
 
 import org.apache.commons.lang3.StringUtils;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
@@ -53,6 +53,8 @@ public class AccountInfoController {
     private CustomPasswordEncoder customPasswordEncoder;
     private UserPublisher userPublisher;
     private TenantHolder tenantHolder;
+    @Autowired
+    private AuthService authService;
 
     @RequestMapping("account-info-list")
     public String list(
@@ -175,7 +177,7 @@ public class AccountInfoController {
 
             accountCredentialManager.save(accountCredential);
         }
-
+        authService.createOrGetUserStatus(accountInfo.getUsername(),accountInfo.getCode(),null,"1");
         messageHelper.addFlashMessage(redirectAttributes, "core.success.save",
                 "保存成功");
 

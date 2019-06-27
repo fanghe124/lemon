@@ -37,13 +37,19 @@ import com.mossle.core.page.Page;
 import com.mossle.core.query.PropertyFilter;
 import com.mossle.core.spring.MessageHelper;
 import com.mossle.core.store.MultipartFileDataSource;
+import com.mossle.device.DeviceController;
+import com.mossle.device.persistence.domain.DeviceInfo;
 
+import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -67,6 +73,9 @@ public class CmsArticleController {
     private JsonMapper jsonMapper = new JsonMapper();
     private CurrentUserHolder currentUserHolder;
     private TenantHolder tenantHolder;
+    
+    private static Logger logger = LoggerFactory
+            .getLogger(CmsArticleController.class);
 
     /**
      * 文章列表.
@@ -126,6 +135,9 @@ public class CmsArticleController {
         Long id = cmsArticle.getId();
         CmsArticle dest = null;
 
+        if(cmsArticle.getStatus() == null){
+        	cmsArticle.setStatus(0);
+        }
         if (id != null) {
             dest = cmsArticleManager.get(id);
             beanMapper.copy(cmsArticle, dest);
@@ -136,6 +148,7 @@ public class CmsArticleController {
         if (id == null) {
             dest.setUserId(currentUserHolder.getUserId());
             dest.setCreateTime(new Date());
+            dest.setPublishTime(new Date());
             dest.setTenantId(tenantId);
         }
 
@@ -178,9 +191,14 @@ public class CmsArticleController {
         List<CmsArticle> cmsArticles = cmsArticleManager
                 .findByIds(selectedItem);
 
-        for (CmsArticle cmsArticle : cmsArticles) {
-            cmsCommentManager.removeAll(cmsArticle.getCmsComments());
-            cmsArticleManager.remove(cmsArticle);
+        try{
+        	  for (CmsArticle cmsArticle : cmsArticles) {
+                  cmsCommentManager.removeAll(cmsArticle.getCmsComments());
+                  cmsAttachmentManager.removeAll(cmsArticle.getCmsAttachments());
+                  cmsArticleManager.remove(cmsArticle);
+              }
+        }catch(Exception e){
+        	logger.error("删除文章出错", e);
         }
 
         messageHelper.addFlashMessage(redirectAttributes,
@@ -298,6 +316,34 @@ public class CmsArticleController {
         model.addAttribute("html", html);
 
         return "cms/cms-article-view";
+    }
+    
+    /**
+     * 设置文章状态.
+     */
+    
+    @RequestMapping(value = "cms-article-status-set", method = RequestMethod.POST)
+    public void setStatus(HttpServletRequest request, HttpServletResponse response){
+  	  try{
+  		    String articleStatus = request.getParameter("articleStatus");
+  	      	String articleId = request.getParameter("articleId").replace(",", "");
+//	  	      String tenantId = tenantHolder.getTenantId();
+	          CmsArticle dest = null;
+	
+	          if (articleId != null) {
+	              dest = cmsArticleManager.get(Long.valueOf(articleId));
+	              if(articleStatus != null && articleStatus.equals("1")){
+	            	  dest.setStatus(1);
+	              }else{
+	            	  dest.setStatus(0);
+	              }
+//	              dest.setCmsCatalog(cmsCatalogManager.get(cmsCatalogId));
+		          cmsArticleManager.save(dest);
+	          } 
+  	  } catch (Exception ex) {
+  		  logger.error("设置文章状态出错", ex);
+        }
+    	
     }
 
     /**

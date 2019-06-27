@@ -19,7 +19,7 @@ import com.mossle.core.page.Page;
 
 import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.history.HistoricProcessInstance;
-
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -60,9 +60,20 @@ public class BpmPortalController {
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
+        //处理子流程BusinessKey为空的情况
         for (HistoricProcessInstance historicProcessInstance : historicProcessInstances) {
             buff.append("    <tr>");
-            buff.append("      <td>" + historicProcessInstance.getBusinessKey()
+            String businessKey = null;
+            if(StringUtils.isEmpty(historicProcessInstance.getBusinessKey()))
+        	{
+            	List<HistoricProcessInstance> subHistoricProcessInstances = processEngine
+                .getHistoryService().createHistoricProcessInstanceQuery().processInstanceId(historicProcessInstance.getSuperProcessInstanceId()).list();	
+            	businessKey  = subHistoricProcessInstances.get(0).getBusinessKey()+"-子流程";
+	        }
+            else{
+            	businessKey = historicProcessInstance.getBusinessKey();
+            }
+            buff.append("      <td>" + businessKey
                     + "</td>");
             buff.append("      <td>" + historicProcessInstance.getName()
                     + "</td>");

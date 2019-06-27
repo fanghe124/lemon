@@ -10,6 +10,20 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import com.mossle.api.auth.CurrentUserHolder;
 import com.mossle.api.employee.EmployeeDTO;
 import com.mossle.api.form.FormDTO;
@@ -40,7 +54,10 @@ import com.mossle.core.mapper.BeanMapper;
 import com.mossle.core.mapper.JsonMapper;
 import com.mossle.core.spring.MessageHelper;
 import com.mossle.core.util.BaseDTO;
-
+import com.mossle.device.persistence.domain.DeviceInfo;
+import com.mossle.device.persistence.manager.DeviceInfoManager;
+import com.mossle.humantask.persistence.domain.TaskInfo;
+import com.mossle.humantask.persistence.manager.TaskInfoManager;
 import com.mossle.operation.service.OperationService;
 import com.mossle.operation.service.ProcessModelService;
 import com.mossle.operation.service.ViewService;
@@ -49,19 +66,6 @@ import com.mossle.operation.support.FormDataBuilder;
 
 import com.mossle.xform.Xform;
 import com.mossle.xform.XformBuilder;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import org.springframework.stereotype.Controller;
-
-import org.springframework.ui.Model;
-
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartResolver;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * 任务工具条.
@@ -77,6 +81,10 @@ public class TaskOperationController {
     public static final int STATUS_DRAFT_TASK = 1;
     public static final int STATUS_RUNNING = 2;
     private OperationService operationService;
+    @Autowired
+	private DeviceInfoManager deviceInfoManager;
+    @Autowired
+    private TaskInfoManager taskInfoManager;
     private MessageHelper messageHelper;
     private CurrentUserHolder currentUserHolder;
     private ProcessConnector processConnector;

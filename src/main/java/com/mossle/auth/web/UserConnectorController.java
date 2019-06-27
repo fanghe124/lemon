@@ -3,6 +3,7 @@ package com.mossle.auth.web;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -11,6 +12,7 @@ import com.mossle.api.user.UserConnector;
 import com.mossle.api.user.UserDTO;
 
 import com.mossle.auth.component.UserStatusConverter;
+import com.mossle.auth.persistence.domain.Role;
 import com.mossle.auth.persistence.domain.UserStatus;
 import com.mossle.auth.persistence.manager.UserStatusManager;
 import com.mossle.auth.service.AuthService;
@@ -117,6 +119,25 @@ public class UserConnectorController {
         }
 
         return "redirect:/auth/user-role-input.do?id=" + id;
+    }
+    
+    public String getRoleIdsByUserCode(String userCode){
+    	  String hql = "from UserStatus where ref=?";
+    	  Page  page = new Page();
+    	  page.setPageSize(Integer.MAX_VALUE);
+    	  page.setPageNo(1);
+    	  page = userStatusManager.pagedQuery(hql, page.getPageNo(),
+                  page.getPageSize(),userCode);
+
+          List<UserStatus> userStatuses = (List<UserStatus>) page.getResult();
+          UserStatus userStatus = userStatuses.get(0);
+          Set<Role> roles = userStatus.getRoles();
+          StringBuilder roleIdsBuilder  = new StringBuilder();
+          for(Role role : roles)
+          {
+        	  roleIdsBuilder.append(String.valueOf(role.getId())).append(",");
+          }
+          return roleIdsBuilder.toString();
     }
 
     // ~ ======================================================================

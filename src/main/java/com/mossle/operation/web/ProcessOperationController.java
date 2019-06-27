@@ -44,7 +44,7 @@ import com.mossle.core.MultipartHandler;
 import com.mossle.core.mapper.JsonMapper;
 import com.mossle.core.page.Page;
 import com.mossle.core.spring.MessageHelper;
-
+import com.mossle.device.persistence.manager.DeviceInfoManager;
 import com.mossle.operation.service.OperationService;
 import com.mossle.operation.service.ProcessModelService;
 import com.mossle.operation.service.ViewService;
@@ -66,7 +66,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
@@ -75,6 +75,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartResolver;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 /**
  * 流程操作.
@@ -108,6 +111,8 @@ public class ProcessOperationController {
     private ProcessEngine processEngine;
     private TraceService traceService;
     private ViewService viewService;
+    @Autowired
+	private DeviceInfoManager deviceInfoManager;
 
     /**
      * 保存草稿.
@@ -430,6 +435,37 @@ public class ProcessOperationController {
         ModelInfoDTO modelInfoDto = modelConnector.findByCode(businessKey);
         FormDTO formDto = formConnector.findForm(formParameter.getFormDto()
                 .getCode(), tenantId);
+		       	//设备的逻辑
+    	if(formDto.getCode().equals("equip-apply-test"))
+    	{
+    		List<String> deviceClassList  = deviceInfoManager.getDeviceClass();
+    		String deviceTypeItemString = "无,";
+    		for(int i=0; i< deviceClassList.size() ;i++)
+    		{
+    			if(i!=deviceClassList.size()-1)
+    			{
+    				deviceTypeItemString=deviceTypeItemString+deviceClassList.get(i)+",";
+    			}
+    			else
+    			{
+    				deviceTypeItemString=deviceTypeItemString+deviceClassList.get(i);
+    			}
+    		}
+    		JSONObject content =  JSONObject.fromObject(formDto.getContent());
+    		JSONArray sections = content.getJSONArray("sections");
+    		JSONObject gridSection = sections.getJSONObject(1);
+    		JSONArray fileds = gridSection.getJSONArray("fields");
+    		for(int i= 0 ;i < fileds.size();i++)
+    		{
+    			JSONObject filed = fileds.getJSONObject(i);
+    			if(filed.containsKey("name") && filed.getString("name").contains("equip-type-"))
+    			{
+    				filed.put("items", deviceTypeItemString);
+    			}
+    		}
+    		formDto.setContent(content.toString());
+    	}
+				
         Xform xform = this.processModelService.processFormData(businessKey,
                 formDto);
         model.addAttribute("xform", xform);

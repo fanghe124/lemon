@@ -2,6 +2,7 @@ package com.mossle.cms.web;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -13,7 +14,9 @@ import com.mossle.api.tenant.TenantHolder;
 import com.mossle.cms.persistence.domain.CmsArticle;
 import com.mossle.cms.persistence.domain.CmsCatalog;
 import com.mossle.cms.persistence.manager.CmsArticleManager;
+import com.mossle.cms.persistence.manager.CmsAttachmentManager;
 import com.mossle.cms.persistence.manager.CmsCatalogManager;
+import com.mossle.cms.persistence.manager.CmsCommentManager;
 import com.mossle.cms.service.RenderService;
 
 import com.mossle.core.export.Exportor;
@@ -23,6 +26,8 @@ import com.mossle.core.page.Page;
 import com.mossle.core.query.PropertyFilter;
 import com.mossle.core.spring.MessageHelper;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
@@ -38,11 +43,16 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class CmsCatalogController {
     private CmsCatalogManager cmsCatalogManager;
     private CmsArticleManager cmsArticleManager;
+    private CmsAttachmentManager cmsAttachmentManager;
+    private CmsCommentManager cmsCommentManager;
     private Exportor exportor;
     private BeanMapper beanMapper = new BeanMapper();
     private MessageHelper messageHelper;
     private TenantHolder tenantHolder;
     private RenderService renderService;
+    
+    private static Logger logger = LoggerFactory
+            .getLogger(CmsCatalogController.class);
 
     @RequestMapping("cms-catalog-list")
     public String list(@ModelAttribute Page page,
@@ -95,7 +105,24 @@ public class CmsCatalogController {
             RedirectAttributes redirectAttributes) {
         List<CmsCatalog> cmsCatalogs = cmsCatalogManager
                 .findByIds(selectedItem);
-        cmsCatalogManager.removeAll(cmsCatalogs);
+//        cmsCatalogManager.removeAll(cmsCatalogs);
+        
+        //新修改
+        try{
+      	  for (CmsCatalog cmsCatalog : cmsCatalogs) {
+      		  
+      		Set<CmsArticle> cmsArticles =  cmsCatalog.getCmsArticles();
+      		 for (CmsArticle cmsArticle : cmsArticles) {
+                 cmsCommentManager.removeAll(cmsArticle.getCmsComments());
+                 cmsAttachmentManager.removeAll(cmsArticle.getCmsAttachments());
+                 cmsArticleManager.remove(cmsArticle);
+             }
+                cmsCatalogManager.remove(cmsCatalog);
+            }
+      }catch(Exception e){
+      	logger.error("删除主题出错", e);
+      }
+        
         messageHelper.addFlashMessage(redirectAttributes,
                 "core.success.delete", "删除成功");
 
@@ -188,5 +215,16 @@ public class CmsCatalogController {
     @Resource
     public void setRenderService(RenderService renderService) {
         this.renderService = renderService;
+    }
+    
+    @Resource
+    public void setCmsAttachmentManager(
+            CmsAttachmentManager cmsAttachmentManager) {
+        this.cmsAttachmentManager = cmsAttachmentManager;
+    }
+    
+    @Resource
+    public void setCmsCommentManager(CmsCommentManager cmsCommentManager) {
+        this.cmsCommentManager = cmsCommentManager;
     }
 }

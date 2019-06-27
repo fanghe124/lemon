@@ -4,6 +4,8 @@ import java.io.InputStream;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -36,11 +38,18 @@ import com.mossle.bpm.persistence.domain.BpmProcess;
 import com.mossle.bpm.persistence.manager.BpmCategoryManager;
 import com.mossle.bpm.persistence.manager.BpmProcessManager;
 import com.mossle.bpm.service.TraceService;
-
+import com.mossle.cms.persistence.domain.CmsArticle;
+import com.mossle.cms.persistence.domain.CmsCatalog;
+import com.mossle.cms.persistence.manager.CmsArticleManager;
+import com.mossle.cms.persistence.manager.CmsCatalogManager;
 import com.mossle.core.mapper.JsonMapper;
 import com.mossle.core.page.Page;
-
+import com.mossle.core.query.PropertyFilter;
 import com.mossle.spi.process.InternalProcessConnector;
+import com.mossle.user.persistence.domain.AccountInfo;
+import com.mossle.user.persistence.domain.AccountOperation;
+import com.mossle.user.persistence.manager.AccountInfoManager;
+import com.mossle.user.persistence.manager.AccountOperationManager;
 
 import org.activiti.engine.FormService;
 import org.activiti.engine.HistoryService;
@@ -55,9 +64,9 @@ import org.activiti.engine.impl.identity.Authentication;
 import org.activiti.engine.impl.interceptor.Command;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
-
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.io.IOUtils;
-
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -93,6 +102,10 @@ public class WorkspaceController {
     private InternalProcessConnector internalProcessConnector;
     private ModelConnector modelConnector;
     private String baseUrl;
+    private CmsArticleManager cmsArticleManager;
+    private CmsCatalogManager cmsCatalogManager;
+    private AccountInfoManager accountInfoManager;
+	private AccountOperationManager accountOperationManager;
 
     @RequestMapping("workspace-home")
     public String home(Model model) {
@@ -127,11 +140,49 @@ public class WorkspaceController {
     @RequestMapping("workspace-endProcessInstance")
     public String endProcessInstance(
             @RequestParam("processInstanceId") String processInstanceId) {
+    	addLog(processInstanceId);
         Authentication.setAuthenticatedUserId(currentUserHolder.getUserId());
         processEngine.getRuntimeService().deleteProcessInstance(
                 processInstanceId, "人工终止");
 
         return "redirect:/bpm/workspace-listRunningProcessInstances.do";
+    }
+    
+    private void addLog(String processInstanceId){
+  	  try{
+  		//记录日志
+  		 String userId = currentUserHolder.getUserId();
+         String tenantId = tenantHolder.getTenantId();
+         Page page = new Page();
+         page = processConnector.findRunningProcessInstances(userId, tenantId,
+                 page);
+         String processName = "";
+         List<HistoricProcessInstance> hpiList = (List<HistoricProcessInstance>) page.getResult();
+  		if(!CollectionUtils.isEmpty(hpiList)){
+         	for(HistoricProcessInstance hpi: hpiList){
+         		if(processInstanceId.equalsIgnoreCase(hpi.getId())){
+         			processName = hpi.getName();
+         		}
+         	}
+  		}
+	      	AccountOperation accountOperation = new AccountOperation();
+//	      	 String userId = currentUserHolder.getUserId();
+	         AccountInfo accountInfo = accountInfoManager.findUniqueBy("code",
+	                 userId); 
+	        String accountName = "";
+//	        String tenantId = "";
+	        if(accountInfo != null){
+	        	accountName = accountInfo.getDisplayName();
+	        	tenantId = accountInfo.getTenantId();
+	        }
+	        accountOperation.setName(accountName);
+	        accountOperation.setOperation("结束实验-"+processName);
+	        accountOperation.setTime(new Date());
+	        accountOperation.setTenantId(tenantId);
+	        accountOperationManager.save(accountOperation);
+  	  }catch(Exception e){
+  		  logger.error("添加日志出错", e);
+  	  }
     }
 
     @RequestMapping("workspace-copyProcessInstance")
@@ -231,7 +282,100 @@ public class WorkspaceController {
 
         page = processConnector.findRunningProcessInstances(userId, tenantId,
                 page);
-        model.addAttribute("page", page);
+        
+        
+      //查找所有主题与对应文章状态
+        Map openNumMap =new HashMap<String, Integer>(); 
+    	Map totalNumMap =new HashMap<String, Integer>(); 
+        
+        try{
+        	List<PropertyFilter> propertyFilters = new ArrayList<PropertyFilter>();
+            propertyFilters.add(new PropertyFilter("EQS_tenantId", tenantId));
+            Page pageCmsCatalog = new Page();
+            pageCmsCatalog = cmsCatalogManager.pagedQuery(pageCmsCatalog, propertyFilters);
+            List<CmsCatalog> cmsCatalogList = (List<CmsCatalog>) pageCmsCatalog.getResult();
+            if(!CollectionUtils.isEmpty(cmsCatalogList)){
+            	for(CmsCatalog cmsCatalog: cmsCatalogList){
+            		Map<String, Object> parameterMap = new HashMap<String, Object>();
+            		parameterMap.put("filter_EQL_cmsCatalog.id", cmsCatalog.getId().toString());
+            		 List<PropertyFilter> articleFilters = PropertyFilter
+            	                .buildFromMap(parameterMap);
+//            		List<PropertyFilter> articleFilters = new ArrayList<PropertyFilter>();
+            		articleFilters.add(new PropertyFilter("EQS_tenantId", tenantId));
+            		Page pageCmsArticle = new Page();
+            		pageCmsArticle = cmsArticleManager.pagedQuery(pageCmsArticle, articleFilters);
+            		int openNum = 0,totalNum=0;
+            		List<CmsArticle> cmsArticleList = (List<CmsArticle>) pageCmsArticle.getResult();
+            		if(!CollectionUtils.isEmpty(cmsArticleList)){
+            			totalNum = cmsArticleList.size();
+                    	for(CmsArticle cmsArticle: cmsArticleList){
+                    		if(cmsArticle.getStatus() != null && cmsArticle.getStatus() == 1){
+                    			openNum ++;
+                    		}
+                    	}
+            		}
+            		openNumMap.put(cmsCatalog.getName(), totalNum - openNum);
+            		totalNumMap.put(cmsCatalog.getName(), totalNum);
+            	}
+            }
+        }catch(Exception e){
+        	logger.error("查询问题个数出错",e);
+        }
+        
+        Page pageResult = new Page();
+        try{
+        	 
+        	 List<HistoricProcessInstanceNew> resultList = new ArrayList<HistoricProcessInstanceNew>();
+        	 List<HistoricProcessInstance> hpiList = (List<HistoricProcessInstance>) page.getResult();
+     		if(!CollectionUtils.isEmpty(hpiList)){
+            	for(HistoricProcessInstance hpi: hpiList){
+            		String hpiName = hpi.getName();
+            		String articleNum = "";
+            		if(!StringUtils.isEmpty(hpiName)){
+            			if(openNumMap.get(hpiName) !=null && totalNumMap.get(hpiName) !=null){
+            				articleNum= openNumMap.get(hpiName)+"/"+totalNumMap.get(hpiName);
+            			}else{
+            				articleNum = "0/0";
+            			}
+            			
+            		}
+            		String businessKey = null;
+                    if(StringUtils.isEmpty(hpi.getBusinessKey()))
+                  	{
+                      	List<HistoricProcessInstance> subHistoricProcessInstances = processEngine
+                          .getHistoryService().createHistoricProcessInstanceQuery().processInstanceId(hpi.getSuperProcessInstanceId()).list();	
+                      	businessKey  = subHistoricProcessInstances.get(0).getBusinessKey()+"-子流程";
+          	        } else{
+                    	businessKey = hpi.getBusinessKey();
+                    }
+            		HistoricProcessInstanceNew hpiNew = new HistoricProcessInstanceNew();
+            		hpiNew.setArticleNum(articleNum);
+            		hpiNew.setBusinessKey(businessKey);
+            		hpiNew.setDeleteReason(hpi.getDeleteReason());
+            		hpiNew.setDurationInMillis(hpi.getDurationInMillis());
+            		hpiNew.setEndActivityId(hpi.getEndActivityId());
+            		hpiNew.setEndTime(hpi.getEndTime());
+            		hpiNew.setId(hpi.getId());
+            		hpiNew.setName(hpi.getName());
+            		hpiNew.setProcessDefinitionId(hpi.getProcessDefinitionId());
+            		hpiNew.setProcessVariables(hpi.getProcessVariables());
+            		hpiNew.setStartActivityId(hpi.getStartActivityId());
+            		hpiNew.setStartTime(hpi.getStartTime());
+            		hpiNew.setStartUserId(hpi.getStartUserId());
+            		hpiNew.setSuperProcessInstanceId(hpi.getSuperProcessInstanceId());
+            		hpiNew.setTenantId(hpi.getTenantId());
+            		hpiNew.setEndTime(hpi.getEndTime());
+            		resultList.add(hpiNew);
+            	}
+    		}
+//     		pageResult.setResult(resultList);
+//     		pageResult.setOrder(page.getOrder());
+//     		pageResult.setOrderBy(page.getOrderBy());
+     		pageResult = page;
+     		pageResult.setResult(resultList);
+        }catch(Exception e){
+        	logger.error("赋值问题个数出错",e);
+        }
 
         return "bpm/workspace-listRunningProcessInstances";
     }
@@ -272,6 +416,24 @@ public class WorkspaceController {
         return "bpm/workspace-listInvolvedProcessInstances";
     }
 
+    
+    /**
+     * 用户参与的流程（包含已经完成和未完成）
+     * 
+     * @return
+     */
+    @RequestMapping("workspace-listInvolvedProcessInstances2")
+    public String listInvolvedProcessInstances2(@ModelAttribute Page page,
+            Model model) {
+        // TODO: finished(), unfinished()
+        String userId = currentUserHolder.getUserId();
+        String tenantId = tenantHolder.getTenantId();
+        page = processConnector.findInvolvedProcessInstances(userId, tenantId,
+                page);
+        model.addAttribute("page", page);
+
+        return "bpm/workspace-listInvolvedProcessInstances2";
+    }
     /**
      * 流程跟踪
      * 
@@ -523,6 +685,71 @@ public class WorkspaceController {
         model.addAttribute("historicProcessInstance", historicProcessInstance);
 
         return "bpm/workspace-viewHistory";
+    }
+    
+    
+    /**
+     * 查看历史【包含流程跟踪、任务列表（完成和未完成）、流程变量】.
+     */
+    @RequestMapping("workspace-viewHistory2")
+    public String viewHistory2(
+            @RequestParam("processInstanceId") String processInstanceId,
+            Model model) {
+        String userId = currentUserHolder.getUserId();
+        HistoryService historyService = processEngine.getHistoryService();
+        HistoricProcessInstance historicProcessInstance = historyService
+                .createHistoricProcessInstanceQuery()
+                .processInstanceId(processInstanceId).singleResult();
+
+        if (userId.equals(historicProcessInstance.getStartUserId())) {
+            // startForm
+        }
+
+        List<HistoricTaskInstance> historicTasks = historyService
+                .createHistoricTaskInstanceQuery()
+                .processInstanceId(processInstanceId).list();
+        // List<HistoricVariableInstance> historicVariableInstances = historyService
+        // .createHistoricVariableInstanceQuery()
+        // .processInstanceId(processInstanceId).list();
+        model.addAttribute("historicTasks", historicTasks);
+
+        // 获取流程对应的所有人工任务（目前还没有区分历史）
+        List<HumanTaskDTO> humanTasks = humanTaskConnector
+                .findHumanTasksByProcessInstanceId(processInstanceId);
+        List<HumanTaskDTO> humanTaskDtos = new ArrayList<HumanTaskDTO>();
+
+        for (HumanTaskDTO humanTaskDto : humanTasks) {
+            if (humanTaskDto.getParentId() != null) {
+                continue;
+            }
+
+            humanTaskDtos.add(humanTaskDto);
+        }
+
+        model.addAttribute("humanTasks", humanTaskDtos);
+        // model.addAttribute("historicVariableInstances",
+        // historicVariableInstances);
+        model.addAttribute("nodeDtos",
+                traceService.traceProcessInstance(processInstanceId));
+        model.addAttribute("historyActivities", processEngine
+                .getHistoryService().createHistoricActivityInstanceQuery()
+                .processInstanceId(processInstanceId).list());
+
+        if (historicProcessInstance.getEndTime() == null) {
+            model.addAttribute("currentActivities", processEngine
+                    .getRuntimeService()
+                    .getActiveActivityIds(processInstanceId));
+        } else {
+            model.addAttribute("currentActivities", Collections
+                    .singletonList(historicProcessInstance.getEndActivityId()));
+        }
+
+        Graph graph = processEngine.getManagementService().executeCommand(
+                new FindHistoryGraphCmd(processInstanceId));
+        model.addAttribute("graph", graph);
+        model.addAttribute("historicProcessInstance", historicProcessInstance);
+
+        return "bpm/workspace-viewHistory2";
     }
 
     // ~ ==================================国内特色流程====================================
@@ -794,5 +1021,25 @@ public class WorkspaceController {
     @Value("${application.baseUrl}")
     public void setBaseUrl(String baseUrl) {
         this.baseUrl = baseUrl;
+    }
+    
+    @Resource
+    public void setCmsArticleManager(CmsArticleManager cmsArticleManager) {
+        this.cmsArticleManager = cmsArticleManager;
+    }
+    
+    @Resource
+    public void setCmsCatalogManager(CmsCatalogManager cmsCatalogManager) {
+        this.cmsCatalogManager = cmsCatalogManager;
+    }
+    
+    @Resource
+    public void setAccountInfoManager(AccountInfoManager accountInfoManager) {
+        this.accountInfoManager = accountInfoManager;
+    }
+    
+    @Resource
+    public void setAccountOperationManager(AccountOperationManager accountOperationManager) {
+        this.accountOperationManager = accountOperationManager;
     }
 }

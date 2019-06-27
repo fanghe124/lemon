@@ -1,16 +1,20 @@
 package com.mossle.bpm.support;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 
+import com.mossle.api.auth.CurrentUserHolder;
 import com.mossle.api.form.FormConnector;
 import com.mossle.api.form.FormDTO;
 import com.mossle.api.process.ProcessConnector;
 import com.mossle.api.process.ProcessDTO;
+import com.mossle.api.tenant.TenantHolder;
 import com.mossle.api.user.UserConnector;
-
 import com.mossle.bpm.cmd.FindFirstTaskFormCmd;
 import com.mossle.bpm.persistence.domain.BpmConfBase;
 import com.mossle.bpm.persistence.domain.BpmConfForm;
@@ -18,12 +22,20 @@ import com.mossle.bpm.persistence.domain.BpmProcess;
 import com.mossle.bpm.persistence.manager.BpmConfBaseManager;
 import com.mossle.bpm.persistence.manager.BpmConfFormManager;
 import com.mossle.bpm.persistence.manager.BpmProcessManager;
-
+import com.mossle.cms.persistence.domain.CmsArticle;
+import com.mossle.cms.persistence.domain.CmsCatalog;
+import com.mossle.cms.persistence.manager.CmsArticleManager;
+import com.mossle.cms.persistence.manager.CmsCatalogManager;
 import com.mossle.core.page.Page;
-
+import com.mossle.core.query.PropertyFilter;
+import com.mossle.disk.service.DiskService;
 import com.mossle.spi.humantask.TaskDefinitionConnector;
 import com.mossle.spi.humantask.TaskUserDTO;
 import com.mossle.spi.process.FirstTaskForm;
+import com.mossle.user.persistence.domain.AccountInfo;
+import com.mossle.user.persistence.domain.AccountOperation;
+import com.mossle.user.persistence.manager.AccountInfoManager;
+import com.mossle.user.persistence.manager.AccountOperationManager;
 
 import org.activiti.engine.HistoryService;
 import org.activiti.engine.IdentityService;
@@ -43,9 +55,10 @@ import org.activiti.engine.runtime.Job;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.DelegationState;
 import org.activiti.engine.task.Task;
-
+import org.apache.commons.collections.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class ProcessConnectorImpl implements ProcessConnector {
     private Logger logger = LoggerFactory.getLogger(ProcessConnectorImpl.class);
@@ -56,6 +69,14 @@ public class ProcessConnectorImpl implements ProcessConnector {
     private UserConnector userConnector;
     private FormConnector formConnector;
     private TaskDefinitionConnector taskDefinitionConnector;
+    private TenantHolder tenantHolder;
+    private CmsCatalogManager cmsCatalogManager;
+    private AccountInfoManager accountInfoManager;
+    private AccountOperationManager accountOperationManager;
+    private CurrentUserHolder currentUserHolder;
+    @Autowired
+    private DiskService diskService;
+    
 
     public String startProcess(String userId, String businessKey,
             String processDefinitionId, Map<String, Object> processParameters) {
@@ -77,8 +98,54 @@ public class ProcessConnectorImpl implements ProcessConnector {
          * SimpleDateFormat("yyyy-MM-dd HH:mm").format(new Date());
          * processEngine.getRuntimeService().setProcessInstanceName( processInstance.getId(), processInstanceName);
          */
+      //将实验保存为主题
+        String processName = processInstance.getName();
+        try{
+            String tenantId = tenantHolder.getTenantId();
+            CmsCatalog dest = new CmsCatalog();
+//            String processDesc = (String) processParameters.get("desc");
+            dest.setName(processName);
+            dest.setTenantId(tenantId);
+            dest.setTemplateDetail("/default/detail.html");
+            dest.setTemplateIndex("/default/index.html");;
+            dest.setTemplateList("/default/list.html");;
+            dest.setType(0);
+//            dest.setDescription(processDesc);
+            dest.setCode(processName);
+            
+            cmsCatalogManager.save(dest);
+            String pathStr = processName.replace(':', '-');
+            pathStr = pathStr.replace(' ', '-');
+            diskService.createDir(userId, pathStr , "");
+        }catch(Exception e){
+        	logger.error("保存主题出错",e);
+        }
+        addLog(processName);
         return processInstance.getId();
     }
+    
+    private void addLog(String processName){
+    	  try{
+    		//记录日志
+  	      	AccountOperation accountOperation = new AccountOperation();
+  	      	 String userId = currentUserHolder.getUserId();
+  	         AccountInfo accountInfo = accountInfoManager.findUniqueBy("code",
+  	                 userId); 
+  	        String accountName = "";
+  	        String tenantId = "";
+  	        if(accountInfo != null){
+  	        	accountName = accountInfo.getDisplayName();
+  	        	tenantId = accountInfo.getTenantId();
+  	        }
+  	        accountOperation.setName(accountName);
+  	        accountOperation.setOperation("发起实验-"+processName);
+  	        accountOperation.setTime(new Date());
+  	        accountOperation.setTenantId(tenantId);
+  	        accountOperationManager.save(accountOperation);
+    	  }catch(Exception e){
+    		  logger.error("添加日志出错", e);
+    	  }
+      }
 
     public ProcessDTO findProcess(String processId) {
         if (processId == null) {
@@ -640,4 +707,30 @@ public class ProcessConnectorImpl implements ProcessConnector {
             TaskDefinitionConnector taskDefinitionConnector) {
         this.taskDefinitionConnector = taskDefinitionConnector;
     }
+    
+    @Resource
+    public void setTenantHolder(TenantHolder tenantHolder) {
+        this.tenantHolder = tenantHolder;
+    }
+    
+    @Resource
+    public void setCmsCatalogManager(CmsCatalogManager cmsCatalogManager) {
+        this.cmsCatalogManager = cmsCatalogManager;
+    }
+    
+    @Resource
+    public void setAccountInfoManager(AccountInfoManager accountInfoManager) {
+        this.accountInfoManager = accountInfoManager;
+    }
+    
+    @Resource
+    public void setAccountOperationManager(AccountOperationManager accountOperationManager) {
+        this.accountOperationManager = accountOperationManager;
+    }
+    
+    @Resource
+    public void setCurrentUserHolder(CurrentUserHolder currentUserHolder) {
+        this.currentUserHolder = currentUserHolder;
+    }
+
 }

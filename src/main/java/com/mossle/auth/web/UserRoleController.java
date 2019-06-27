@@ -52,7 +52,7 @@ public class UserRoleController {
             return input(id, model);
         }
 
-        return "redirect:/auth/user-role-input.do?id=" + id;
+        return "redirect:/auth/user-connector-list.do";
     }
 
     @RequestMapping("user-role-input")

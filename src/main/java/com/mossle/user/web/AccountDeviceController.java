@@ -16,6 +16,7 @@ import com.mossle.core.spring.MessageHelper;
 
 import com.mossle.user.persistence.domain.AccountDevice;
 import com.mossle.user.persistence.manager.AccountDeviceManager;
+import com.mossle.user.persistence.manager.AccountOperationManager;
 
 import org.springframework.stereotype.Controller;
 
@@ -34,6 +35,7 @@ public class AccountDeviceController {
     private Exportor exportor;
     private BeanMapper beanMapper = new BeanMapper();
     private TenantHolder tenantHolder;
+    private AccountOperationManager accountOperationManager;
 
     @RequestMapping("account-device-list")
     public String list(@ModelAttribute Page page,
@@ -42,7 +44,8 @@ public class AccountDeviceController {
         List<PropertyFilter> propertyFilters = PropertyFilter
                 .buildFromMap(parameterMap);
         propertyFilters.add(new PropertyFilter("EQS_tenantId", tenantId));
-        page = accountDeviceManager.pagedQuery(page, propertyFilters);
+//        page = accountDeviceManager.pagedQuery(page, propertyFilters);
+        page = accountOperationManager.pagedQuery(page, propertyFilters);
 
         model.addAttribute("page", page);
 
@@ -156,5 +159,10 @@ public class AccountDeviceController {
     @Resource
     public void setTenantHolder(TenantHolder tenantHolder) {
         this.tenantHolder = tenantHolder;
+    }
+    
+    @Resource
+    public void setAccountOperationManager(AccountOperationManager accountOperationManager) {
+        this.accountOperationManager = accountOperationManager;
     }
 }

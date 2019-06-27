@@ -17,7 +17,9 @@ import com.mossle.api.humantask.HumanTaskConstants;
 import com.mossle.api.humantask.HumanTaskDTO;
 import com.mossle.api.humantask.HumanTaskDefinition;
 import com.mossle.api.humantask.ParticipantDTO;
-
+import com.mossle.auth.persistence.domain.Role;
+import com.mossle.auth.persistence.domain.UserStatus;
+import com.mossle.auth.persistence.manager.UserStatusManager;
 import com.mossle.core.mapper.BeanMapper;
 import com.mossle.core.page.Page;
 
@@ -39,7 +41,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import org.springframework.util.Assert;
@@ -57,6 +59,10 @@ public class HumanTaskConnectorImpl implements HumanTaskConnector {
     private FormConnector formConnector;
     private BeanMapper beanMapper = new BeanMapper();
     private List<HumanTaskListener> humanTaskListeners;
+    
+	
+	@Autowired
+    private UserStatusManager userStatusManager;
 
     // ~
     /**
@@ -401,7 +407,7 @@ public class HumanTaskConnectorImpl implements HumanTaskConnector {
 
             return;
         }
-
+        humanTaskDto.setAssignee(userId);
         this.saveHumanTask(humanTaskDto, false);
 
         // 判断加签
@@ -462,12 +468,44 @@ public class HumanTaskConnectorImpl implements HumanTaskConnector {
     /**
      * 待办任务.
      */
-    public Page findPersonalTasks(String userId, String tenantId, int pageNo,
+    @SuppressWarnings("unchecked")
+	public Page findPersonalTasks(String userId, String tenantId, int pageNo,
             int pageSize) {
         String hql = "from TaskInfo where assignee=? and tenantId=? and status='active' order by id desc";
         Page page = taskInfoManager.pagedQuery(hql, pageNo, pageSize, userId,
                 tenantId);
         List<TaskInfo> taskInfos = (List<TaskInfo>) page.getResult();
+        //角色 的新逻辑
+        String hql2 = "from UserStatus where tenantId=?";
+		Page page2 =new Page();
+        page2 = userStatusManager.pagedQuery(hql2, 1,
+                65535, tenantId);
+
+        List<UserStatus> userStatuses = (List<UserStatus>) page2.getResult();
+        for(UserStatus status :  userStatuses)
+        {
+        	if(status.getRef().equals(userId))
+        	{
+        		for(Role role : status.getRoles()){
+        			if(role.getName().equals("试验总体单位")){
+        				    String hql3 = "from TaskInfo where assignee=? and tenantId=? and status='active' order by id desc";
+        			        Page page3 = taskInfoManager.pagedQuery(hql3, pageNo, pageSize, "常用语:试验总体单位",
+        			                tenantId);
+        			        List<TaskInfo> taskInfos2 = (List<TaskInfo>) page3.getResult();
+        			        taskInfos.addAll(taskInfos2);
+        			}
+     			    if(role.getName().endsWith("参加试验单位")){
+     			    	String hql4 = "from TaskInfo where assignee=? and tenantId=? and status='active' order by id desc";
+    			        Page page4 = taskInfoManager.pagedQuery(hql4, pageNo, pageSize, "常用语:参加试验单位",
+    			                tenantId);
+    			        List<TaskInfo> taskInfos3 = (List<TaskInfo>) page4.getResult();
+    			        taskInfos.addAll(taskInfos3);
+        			}
+        		}
+        	}
+        }
+        
+        
         List<HumanTaskDTO> humanTaskDtos = this.convertHumanTaskDtos(taskInfos);
         page.setResult(humanTaskDtos);
 
