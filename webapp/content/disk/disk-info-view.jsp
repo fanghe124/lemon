@@ -75,6 +75,7 @@ $('#qrcode').qrcode("<tags:baseUrl/>/disk/disk-info-download.do?id=${diskInfo.id
 	  </tbody>
 	</table>
   </div>
+  <img src="<%=request.getContextPath()%>/images/close.gif"/>
 </div>
 
 

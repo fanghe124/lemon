@@ -4,7 +4,7 @@ var createUserPicker = function(conf) {
 		modalId: 'userPicker',
 		multiple: false,
 		searchUrl: '/mossle-web-user/default/rs/user/search',
-		treeUrl: '/mossle-app-lemon/rs/party/tree?partyStructTypeId=1'
+		treeUrl: '/lemon/rs/party/tree?partyStructTypeId=1'
 	};
 	for (var key in defaults) {
 		if (!conf[key]) {

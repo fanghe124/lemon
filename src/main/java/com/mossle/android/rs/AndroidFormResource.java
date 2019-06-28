@@ -116,7 +116,7 @@ public class AndroidFormResource {
         StringBuilder buff = new StringBuilder();
 
         buff.append("<xmlgui>")
-                .append("<form id='1' name='form' submitTo='http://192.168.1.106:8080/mossle-app-lemon/rs/android/bpm/startProcess' >");
+                .append("<form id='1' name='form' submitTo='http://192.168.1.106:8080/lemon/rs/android/bpm/startProcess' >");
 
         // .append("<field name='fname' label='First Name' type='text' required='Y' options=''/>")
         // .append("<field name='lname' label='Last Name' type='text' required='Y' options=''/>")
@@ -228,7 +228,7 @@ public class AndroidFormResource {
         StringBuilder buff = new StringBuilder();
 
         buff.append("<xmlgui>")
-                .append("<form id='1' name='form' submitTo='http://192.168.1.106:8080/mossle-app-lemon/rs/android/task/completeTask'")
+                .append("<form id='1' name='form' submitTo='http://192.168.1.106:8080/lemon/rs/android/task/completeTask'")
                 .append(" readOnly='")
                 .append("complete".equals(humanTaskDto.getStatus()))
                 .append("'").append(" >");
