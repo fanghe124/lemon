@@ -7,7 +7,7 @@
 
   <head>
     <%@include file="/common/meta.jsp"%>
-    <title>最活跃流程</title>
+    <title>实验次数</title>
     <%@include file="/common/s3.jsp"%>
 
     <link rel="stylesheet" href="${cdnPrefix}/jqplot/jquery.jqplot.min.css" type="text/css" media="screen" />
@@ -60,7 +60,7 @@ $(function () {
 
 	  <div class="panel panel-default">
         <div class="panel-heading">
-		  最活跃流程
+		  实验次数
 		</div>
 		<div class="panel-body">
 		  <div id="pie" style="height:300px;"></div>

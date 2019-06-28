@@ -20,7 +20,7 @@
     <div id="collapse-body-report" class="panel-collapse collapse ${currentMenu == 'chart' ? 'in' : ''}" role="tabpanel" aria-labelledby="collapse-header-report">
       <div class="panel-body">
         <ul class="nav nav-list">
-			  <li><a href="${tenantPrefix}/report/chart-mostActiveProcess.do"><i class="glyphicon glyphicon-list"></i> 最活跃流程</a></li>
+			  <li><a href="${tenantPrefix}/report/chart-mostActiveProcess.do"><i class="glyphicon glyphicon-list"></i> 实验次数</a></li>
         </ul>
       </div>
     </div>

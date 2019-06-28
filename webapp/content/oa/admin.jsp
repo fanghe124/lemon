@@ -115,7 +115,7 @@ $(function() {
 
       </div>
 
-      <h4>流程管理</h4>
+      <h4>实验管理</h4>
 
       <div class="row">
 
@@ -128,8 +128,8 @@ $(function() {
                   <img class="media-object" src="${cdnPrefix}/public/mossle/0.0.11/logo32.png" alt="">
                 </div>
                 <div class="media-body">
-                  <h4 class="media-heading">流程管理</h4>
-                  流程管理
+                  <h4 class="media-heading">实验管理</h4>
+                  实验管理
                 </div>
               </div>
               </a>
@@ -139,7 +139,7 @@ $(function() {
 
       </div>
 
-      <h4>内容管理</h4>
+      <h4>实验问答</h4>
 
       <div class="row">
 
@@ -152,8 +152,8 @@ $(function() {
                   <img class="media-object" src="${cdnPrefix}/public/mossle/0.0.11/logo32.png" alt="">
                 </div>
                 <div class="media-body">
-                  <h4 class="media-heading">内容管理</h4>
-                  内容管理
+                  <h4 class="media-heading">实验问答</h4>
+                  实验问答
                 </div>
               </div>
               </a>

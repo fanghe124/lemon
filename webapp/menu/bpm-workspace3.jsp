@@ -38,44 +38,6 @@ $(function() {
     <div class="panel-heading">
 	  <h4 class="panel-title">
 	    <i class="glyphicon glyphicon-list"></i>
-        我的任务
-      </h4>
-	</div>
-
-	<ul class="nav nav-list">
-	  <li>
-	    <a href="${tenantPrefix}/humantask/workspace-personalTasks.do">
-	      <i class="glyphicon glyphicon-list"></i>
-		  待办任务
-	      <span class="badge" id="personal-count" style="float:right;display:none;">0</span>
-	    </a>
-	  </li>
-	  <li>
-	    <a href="${tenantPrefix}/humantask/workspace-groupTasks.do">
-	      <i class="glyphicon glyphicon-list"></i>
-		  待领任务
-	      <span class="badge" id="group-count" style="float:right;display:none;">0</span>
-	    </a>
-	  </li>
-	  <li>
-	    <a href="${tenantPrefix}/humantask/workspace-historyTasks.do">
-	      <i class="glyphicon glyphicon-list"></i>
-		  已办任务
-	    </a>
-	  </li>
-	  <li>
-	    <a href="${tenantPrefix}/humantask/workspace-delegatedTasks.do">
-	      <i class="glyphicon glyphicon-list"></i>
-		  经手任务
-	    </a>
-	  </li>
-	</ul>
-  </div>
-
-  <div class="panel panel-default">
-    <div class="panel-heading">
-	  <h4 class="panel-title">
-	    <i class="glyphicon glyphicon-list"></i>
         我的实验
       </h4>
 	</div>
@@ -110,6 +72,44 @@ $(function() {
 	      <i class="glyphicon glyphicon-list"></i>
 		  草稿箱
 	      <span class="badge" id="draft-count" style="float:right;display:none;">0</span>
+	    </a>
+	  </li>
+	</ul>
+  </div>
+  
+  <div class="panel panel-default">
+    <div class="panel-heading">
+	  <h4 class="panel-title">
+	    <i class="glyphicon glyphicon-list"></i>
+        我的任务
+      </h4>
+	</div>
+
+	<ul class="nav nav-list">
+	  <li>
+	    <a href="${tenantPrefix}/humantask/workspace-personalTasks.do">
+	      <i class="glyphicon glyphicon-list"></i>
+		  待办任务
+	      <span class="badge" id="personal-count" style="float:right;display:none;">0</span>
+	    </a>
+	  </li>
+	  <li>
+	    <a href="${tenantPrefix}/humantask/workspace-groupTasks.do">
+	      <i class="glyphicon glyphicon-list"></i>
+		  待领任务
+	      <span class="badge" id="group-count" style="float:right;display:none;">0</span>
+	    </a>
+	  </li>
+	  <li>
+	    <a href="${tenantPrefix}/humantask/workspace-historyTasks.do">
+	      <i class="glyphicon glyphicon-list"></i>
+		  已办任务
+	    </a>
+	  </li>
+	  <li>
+	    <a href="${tenantPrefix}/humantask/workspace-delegatedTasks.do">
+	      <i class="glyphicon glyphicon-list"></i>
+		  经手任务
 	    </a>
 	  </li>
 	</ul>

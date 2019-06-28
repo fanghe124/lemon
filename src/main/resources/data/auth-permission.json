@@ -122,7 +122,7 @@
             },
             {
                 "code": "bpm",
-                "name": "流程管理",
+                "name": "实验管理",
                 "url": "/bpm/bpm-process-list.do",
                 "type": "system",
                 "display": "true",
@@ -131,7 +131,7 @@
                 "children": [
                     {
                         "code": "bpm",
-                        "name": "流程管理",
+                        "name": "实验管理",
                         "url": "/bpm/bpm-process-list.do",
                         "type": "module",
                         "display": "true",
@@ -169,7 +169,7 @@
             },
             {
                 "code": "cms",
-                "name": "内容管理",
+                "name": "实验问答",
                 "url": "/cms/cms-catalog-list.do",
                 "type": "system",
                 "display": "true",
@@ -193,273 +193,6 @@
                         "display": "true",
                         "perm": "feedback",
                         "priority": 60002
-                    }
-                ]
-            },
-            {
-                "code": "logistic",
-                "name": "行政办公",
-                "url": "/car/car-info-list.do",
-                "type": "system",
-                "display": "true",
-                "perm": "sys_logistic",
-                "priority": 70000,
-                "children": [
-                    {
-                        "code": "car",
-                        "name": "车辆管理",
-                        "url": "/car/car-info-list.do",
-                        "type": "module",
-                        "display": "true",
-                        "perm": "car",
-                        "priority": 70001
-                    },
-                    {
-                        "code": "meeting",
-                        "name": "会议室管理",
-                        "url": "/meeting/meeting-info-list.do",
-                        "type": "module",
-                        "display": "true",
-                        "perm": "meeting",
-                        "priority": 70002
-                    },
-                    {
-                        "code": "book",
-                        "name": "图书管理",
-                        "url": "/book/book-info-list.do",
-                        "type": "module",
-                        "display": "true",
-                        "perm": "book",
-                        "priority": 70003
-                    },
-                    {
-                        "code": "officesupply",
-                        "name": "办公用品管理",
-                        "url": "/officesupply/officesupply-info-list.do",
-                        "type": "module",
-                        "display": "true",
-                        "perm": "officesupply",
-                        "priority": 70004
-                    },
-                    {
-                        "code": "visitor",
-                        "name": "访客管理",
-                        "url": "/visitor/visitor-info-list.do",
-                        "type": "module",
-                        "display": "true",
-                        "perm": "visitor",
-                        "priority": 70005
-                    },
-                    {
-                        "code": "card",
-                        "name": "工卡管理",
-                        "url": "/card/card-info-list.do",
-                        "type": "module",
-                        "display": "true",
-                        "perm": "card",
-                        "priority": 70006
-                    },
-                    {
-                        "code": "seat",
-                        "name": "工位管理",
-                        "url": "/seat/seat-info-list.do",
-                        "type": "module",
-                        "display": "true",
-                        "perm": "seat",
-                        "priority": 70007
-                    },
-                    {
-                        "code": "stamp",
-                        "name": "印章管理",
-                        "url": "/stamp/stamp-info-list.do",
-                        "type": "module",
-                        "display": "true",
-                        "perm": "stamp",
-                        "priority": 70008
-                    },
-                    {
-                        "code": "asset",
-                        "name": "资产管理",
-                        "url": "/asset/asset-info-list.do",
-                        "type": "module",
-                        "display": "true",
-                        "perm": "asset",
-                        "priority": 70009
-                    },
-                    {
-                        "code": "activity",
-                        "name": "活动管理",
-                        "url": "/activity/activity-info-list.do",
-                        "type": "module",
-                        "display": "true",
-                        "perm": "activity",
-                        "priority": 70010
-                    },
-                    {
-                        "code": "sign",
-                        "name": "签到管理",
-                        "url": "/sign/sign-info-list.do",
-                        "type": "module",
-                        "display": "true",
-                        "perm": "sign",
-                        "priority": 70011
-                    },
-                    {
-                        "code": "vote",
-                        "name": "投票管理",
-                        "url": "/vote/vote-info-list.do",
-                        "type": "module",
-                        "display": "true",
-                        "perm": "vote",
-                        "priority": 70012
-                    }
-                ]
-            },
-            {
-                "code": "hr",
-                "name": "人力资源",
-                "url": "/party/org-list.do",
-                "type": "system",
-                "display": "true",
-                "perm": "sys_hr",
-                "priority": 80000,
-                "children": [
-                    {
-                        "code": "org",
-                        "name": "组织机构",
-                        "url": "/party/org-list.do",
-                        "type": "module",
-                        "display": "true",
-                        "perm": "org",
-                        "priority": 80001
-                    },
-                    {
-                        "code": "position",
-                        "name": "职位管理",
-                        "url": "/org/job-list.do",
-                        "type": "module",
-                        "display": "true",
-                        "perm": "position",
-                        "priority": 80002
-                    },
-                    {
-                        "code": "workcal",
-                        "name": "工作日历",
-                        "url": "/workcal/workcal-view.do",
-                        "type": "module",
-                        "display": "true",
-                        "perm": "workcal",
-                        "priority": 80003
-                    },
-                    {
-                        "code": "employee",
-                        "name": "人员管理",
-                        "url": "/employee/employee-info-list.do",
-                        "type": "module",
-                        "display": "true",
-                        "perm": "employee",
-                        "priority": 80004
-                    },
-                    {
-                        "code": "contract",
-                        "name": "合同管理",
-                        "url": "/contract/contract-info-list.do",
-                        "type": "module",
-                        "display": "true",
-                        "perm": "contract",
-                        "priority": 80005
-                    },
-                    {
-                        "code": "salary",
-                        "name": "薪酬管理",
-                        "url": "/salary/salary-info-list.do",
-                        "type": "module",
-                        "display": "true",
-                        "perm": "salary",
-                        "priority": 80006
-                    },
-                    {
-                        "code": "socialsecurity",
-                        "name": "社保管理",
-                        "url": "/socialsecurity/socialsecurity-info-list.do",
-                        "type": "module",
-                        "display": "true",
-                        "perm": "socialsecurity",
-                        "priority": 80007
-                    },
-                    {
-                        "code": "recruit",
-                        "name": "招聘管理",
-                        "url": "/recruit/recruit-info-list.do",
-                        "type": "module",
-                        "display": "true",
-                        "perm": "recruit",
-                        "priority": 80008
-                    },
-                    {
-                        "code": "train",
-                        "name": "培训管理",
-                        "url": "/train/train-info-list.do",
-                        "type": "module",
-                        "display": "true",
-                        "perm": "train",
-                        "priority": 80009
-                    },
-                    {
-                        "code": "performance",
-                        "name": "绩效管理",
-                        "url": "/performance/performance-info-list.do",
-                        "type": "module",
-                        "display": "true",
-                        "perm": "performance",
-                        "priority": 80010
-                    },
-                    {
-                        "code": "attendance",
-                        "name": "考勤管理",
-                        "url": "/attendance/attendance-info-list.do",
-                        "type": "module",
-                        "display": "true",
-                        "perm": "attendance",
-                        "priority": 80011
-                    },
-                    {
-                        "code": "leave",
-                        "name": "休假管理",
-                        "url": "/leave/leave-info-list.do",
-                        "type": "module",
-                        "display": "true",
-                        "perm": "leave",
-                        "priority": 80012
-                    }
-                ]
-            },
-            {
-                "code": "finance",
-                "name": "财务管理",
-                "url": "/expense/expense-info-list.do",
-                "type": "system",
-                "display": "true",
-                "perm": "finance",
-                "priority": 90000,
-                "children": [
-                    {
-                        "code": "expense",
-                        "name": "报销管理",
-                        "url": "/expense/expense-info-list.do",
-                        "type": "module",
-                        "display": "true",
-                        "perm": "expense",
-                        "priority": 90001
-                    },
-                    {
-                        "code": "budget",
-                        "name": "预算管理",
-                        "url": "/budget/budget-info-list.do",
-                        "type": "module",
-                        "display": "true",
-                        "perm": "budget",
-                        "priority": 90002
                     }
                 ]
             },
@@ -542,7 +275,7 @@
 	    {
 		"code": "service",
 		"name": "系统服务",
-                "url": "/whitelist/user/apps.do",
+        "url": "/whitelist/user/apps.do",
 		"type": "system",
 		"display": "true",
 		"perm": "sys_sys",
@@ -556,33 +289,33 @@
                 "display": "true",
                 "perm": "sys_sys",
                 "priority": 990000,
-		"children": [{
-                        "code": "system_menu",
-                        "name": "系统配置",
-                        "url": "/party/tree-list.do",
-                        "type": "module",
-                        "display": "true",
-                        "perm": "sys_sys",
-                        "priority": 990001
-		},
-		{
-                        "code": "system_notice",
-                        "name": "提醒配置",
-                        "url": "/sendmail/sendmail-history-list.do",
-                        "type": "module",
-                        "display": "true",
-                        "perm": "sys_sys",
-                        "priority": 990002
-		},
-		{
-                        "code": "system_incubator",
-                        "name": "实验室",
-                        "url": "/ticket/ticket-catalog-list.do",
-                        "type": "module",
-                        "display": "true",
-                        "perm": "sys_sys",
-                        "priority": 990003
-		}]
+                "children": [{
+                    "code": "system_menu",
+                    "name": "系统配置",
+                    "url": "/party/tree-list.do",
+                    "type": "module",
+                    "display": "true",
+                    "perm": "sys_sys",
+                    "priority": 990001
+                },
+                {
+                    "code": "system_notice",
+                    "name": "提醒配置",
+                    "url": "/sendmail/sendmail-history-list.do",
+                    "type": "module",
+                    "display": "true",
+                    "perm": "sys_sys",
+                    "priority": 990002
+                },
+                {
+                    "code": "system_incubator",
+                    "name": "实验室",
+                    "url": "/ticket/ticket-catalog-list.do",
+                    "type": "module",
+                    "display": "true",
+                    "perm": "sys_sys",
+                    "priority": 990003
+                }]
             }
         ]
     }

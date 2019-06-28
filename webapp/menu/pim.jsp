@@ -6,7 +6,7 @@
           <div class="accordion-heading">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#m-sidebar" href="#collapse-bpm-process">
               <i class="icon-list"></i>
-              <span class="title">我的流程</span>
+              <span class="title">我的实验</span>
             </a>
           </div>
           <div id="collapse-bpm-process" class="accordion-body collapse ${currentMenu == 'bpm-process' ? 'in' : ''}">
