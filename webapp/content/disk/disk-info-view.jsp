@@ -28,7 +28,7 @@ body {
 
 <div class="row">
   <div class="col-md-12">
-    <a href="disk-info-list.do?path=${item.parentPath}"><i class=" glyphicon glyphicon-arrow-left"></i>返回</a>
+    <a href="index.do"><i class=" glyphicon glyphicon-arrow-left"></i>返回</a>
   </div>
   <div class="col-md-12 text-center">
     <i class="icon-62 icon-62-${diskInfo.type}"></i>
@@ -75,9 +75,40 @@ $('#qrcode').qrcode("<tags:baseUrl/>/disk/disk-info-download.do?id=${diskInfo.id
 	  </tbody>
 	</table>
   </div>
-  <img src="<%=request.getContextPath()%>/images/close.gif"/>
+ <!-- 
+  <object src="${ctx}/disk/api/<tags:currentUsername/>?id=${diskInfo.id}">
+  	<embed src="${ctx}/disk/api/<tags:currentUsername/>?id=${diskInfo.id}"></embed>
+  </object>
+   -->
+  <c:if test="${diskInfo.type == 'doc' || diskInfo.type == 'docx'}">
+  	<iframe class="doc" src="https://docs.google.com/gview?url=${ctx}/disk/api/<tags:currentUsername/>?id=${diskInfo.id}&embedded=true"></iframe>
+  	<object src="${ctx}/disk/api/<tags:currentUsername/>?id=${diskInfo.id}">
+  	  <embed src="${ctx}/disk/api/<tags:currentUsername/>?id=${diskInfo.id}"></embed>
+    </object>  	
+  </c:if>
+  <c:if test="${diskInfo.type == 'txt' || diskInfo.type == 'html' || diskInfo.type == 'pdf'}">
+  	<object src="${ctx}/disk/api/<tags:currentUsername/>?id=${diskInfo.id}">
+  	  <embed src="${ctx}/disk/api/<tags:currentUsername/>?id=${diskInfo.id}"></embed>
+    </object>  	
+  </c:if>
+  <c:if test="${diskInfo.type == 'jpg' || diskInfo.type == 'png'}">
+  	<img src="${ctx}/disk/api/<tags:currentUsername/>?id=${diskInfo.id}">
+  </c:if>
+  <c:if test="${diskInfo.type == 'mp4'}">
+  	<video controls>
+	  <source src="${ctx}/disk/api/<tags:currentUsername/>?id=${diskInfo.id}" type="video/webm">
+	  <source src="${ctx}/disk/api/<tags:currentUsername/>?id=${diskInfo.id}" type="video/ogg"> 
+	  <source src="${ctx}/disk/api/<tags:currentUsername/>?id=${diskInfo.id}" type="video/quicktime">
+	</video>
+  </c:if>
+  <c:if test="${diskInfo.type == 'mp3'}">
+  	<audio controls>
+	  <source src="${ctx}/disk/api/<tags:currentUsername/>?id=${diskInfo.id}" type="audio/mpeg">
+	  <source src="${ctx}/disk/api/<tags:currentUsername/>?id=${diskInfo.id}" type="audio/ogg"> 
+	  <source src="${ctx}/disk/api/<tags:currentUsername/>?id=${diskInfo.id}" type="audio/mp3">
+	</audio>
+  </c:if>
 </div>
-
 
 
           </div>
