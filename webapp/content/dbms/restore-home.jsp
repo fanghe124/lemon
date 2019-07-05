@@ -76,43 +76,35 @@ $(function() {
       <div class="panel panel-default">
         <div class="panel-heading">
 				<i class="glyphicon glyphicon-list"></i>
-				&nbsp;
+				恢复
 			</div>
 
-		<div class="panel-body">
-		  <form name="orgForm" method="post" action="tree-list.do" class="form-inline">
-				<select name="partyStructTypeId" class="form-control">
-					<c:forEach items="${partyStructTypes}" var="item">
-					<option value="${item.id}" ${param.partyStructTypeId == item.id ? 'selected' : ''}>${item.name}</option>
-					</c:forEach>
-				</select>
-				<button class="btn btn-default"><spring:message code='org.tree.list.view' text='查看'/></button>
-		  </form>
-		</div>
+			<div class="panel-body">
+				<form name="orgForm" method="post" action="restore-db.do" class="form-inline">
+					<button class="btn btn-default"><spring:message code='org.tree.list.view' text='恢复'/></button>
+				</form>
 		  </div>
 
-      <div class="panel panel-default">
+			<c:if test="${RestoreState == true}">
+				<div class="alert alert-info" role="alert">
+					<button type="button" class="close" data-dismiss="alert" style="margin-right:30px;">×</button>
+					<strong>恢复成功</strong>
+				</div>
+			</c:if>
+
+			<c:if test="${RestoreState == false}">
+				<div class="alert alert-info" role="alert">
+					<button type="button" class="close" data-dismiss="alert" style="margin-right:30px;">×</button>
+					<strong>恢复失败</strong>
+				</div>
+			</c:if>
+
+      <!-- <div class="panel panel-default">
         <div class="panel-heading">
-		  <i class="glyphicon glyphicon-list"></i>
-		  &nbsp;
-		</div>
-
-		<div class="panel-body">
-
-
-<c:set var="partyEntities" value="${partyEntities}"/>
-<%
-long partyStructTypeId = 0L;
-String id = request.getParameter("partyStructTypeId");
-try {
-	partyStructTypeId = Long.parseLong(id);
-} catch(Exception ex) {
-}
-List<PartyEntity> partyEntities = (List<PartyEntity>) pageContext.getAttribute("partyEntities");
-out.print(generatePartyEntities(partyEntities, partyStructTypeId));
-%>
-
-		</div>
+					<i class="glyphicon glyphicon-list"></i>
+					&nbsp;
+				</div>
+			</div> -->
 
     </section>
 	<!-- end of main -->

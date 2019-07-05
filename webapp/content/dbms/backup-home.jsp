@@ -71,48 +71,40 @@ $(function() {
 	  <%@include file="/menu/party.jsp"%>
 
 	<!-- start of main -->
-      <section id="m-main" class="col-md-10" style="padding-top:65px;">
+    <section id="m-main" class="col-md-10" style="padding-top:65px;">
 
       <div class="panel panel-default">
         <div class="panel-heading">
-				<i class="glyphicon glyphicon-list"></i>
-				&nbsp;
-			</div>
+				  <i class="glyphicon glyphicon-list"></i>
+					备份
+				</div>
 
-		<div class="panel-body">
-		  <form name="orgForm" method="post" action="tree-list.do" class="form-inline">
-				<select name="partyStructTypeId" class="form-control">
-					<c:forEach items="${partyStructTypes}" var="item">
-					<option value="${item.id}" ${param.partyStructTypeId == item.id ? 'selected' : ''}>${item.name}</option>
-					</c:forEach>
-				</select>
-				<button class="btn btn-default"><spring:message code='org.tree.list.view' text='查看'/></button>
-		  </form>
-		</div>
+				<div class="panel-body">
+					<form name="orgForm" method="post" action="backup-db.do" class="form-inline">
+						<button class="btn btn-default"><spring:message code='org.tree.list.view' text='备份'/></button>
+					</form>
+				</div>
 		  </div>
 
-      <div class="panel panel-default">
+			<c:if test="${BackupState == true}">
+				<div class="alert alert-info" role="alert">
+					<button type="button" class="close" data-dismiss="alert" style="margin-right:30px;">×</button>
+					<strong>备份成功</strong>
+				</div>
+			</c:if>
+
+			<c:if test="${BackupState == false}">
+				<div class="alert alert-info" role="alert">
+					<button type="button" class="close" data-dismiss="alert" style="margin-right:30px;">×</button>
+					<strong>备份失败</strong>
+				</div>
+			</c:if>
+
+      <!-- <div class="panel panel-default">
         <div class="panel-heading">
-		  <i class="glyphicon glyphicon-list"></i>
-		  &nbsp;
-		</div>
-
-		<div class="panel-body">
-
-
-<c:set var="partyEntities" value="${partyEntities}"/>
-<%
-long partyStructTypeId = 0L;
-String id = request.getParameter("partyStructTypeId");
-try {
-	partyStructTypeId = Long.parseLong(id);
-} catch(Exception ex) {
-}
-List<PartyEntity> partyEntities = (List<PartyEntity>) pageContext.getAttribute("partyEntities");
-out.print(generatePartyEntities(partyEntities, partyStructTypeId));
-%>
-
-		</div>
+		  	<i class="glyphicon glyphicon-list"></i>
+		  	&nbsp;
+			</div> -->
 
     </section>
 	<!-- end of main -->

@@ -66,7 +66,6 @@ $(function() {
 </form>
 
 		</div>
-      </article>
 
     </section>
 	<!-- end of main -->

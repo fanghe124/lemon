@@ -199,6 +199,23 @@
   </div>
 
   <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="collapse-header-db" data-toggle="collapse" data-parent="#accordion" href="#collapse-body-db" aria-expanded="true" aria-controls="collapse-body-db">
+      <h4 class="panel-title">
+	    <i class="glyphicon glyphicon-list"></i>
+        数据库管理
+      </h4>
+    </div>
+    <div id="collapse-body-db" class="panel-collapse collapse ${currentMenu == 'db' ? 'in' : ''}" role="tabpanel" aria-labelledby="collapse-header-ticket">
+      <div class="panel-body">
+        <ul class="nav nav-list">
+		  <li><a href="${tenantPrefix}/dbms/backup-home.do"><i class="glyphicon glyphicon-list"></i> 备份</a></li>
+		  <li><a href="${tenantPrefix}/dbms/restore-home.do"><i class="glyphicon glyphicon-list"></i> 恢复</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
     <div class="panel-heading" role="tab" id="collapse-header-report" data-toggle="collapse" data-parent="#accordion" href="#collapse-body-report" aria-expanded="true" aria-controls="collapse-body-report">
       <h4 class="panel-title">
 	    <i class="glyphicon glyphicon-list"></i>
