@@ -28,7 +28,7 @@
 
 				<div class="panel-body">
 					<form name="orgForm" method="post" action="restore-db.do" class="form-inline">
-						<button class="btn btn-default"><spring:message code='org.tree.list.view' text='恢复'/></button>
+						<button class="btn btn-default" title="恢复数据库需要2-3分钟"><spring:message code='org.tree.list.view' text='恢复'/></button>
 					</form>
 				</div>
 			</div>

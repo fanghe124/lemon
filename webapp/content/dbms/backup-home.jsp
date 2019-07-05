@@ -28,7 +28,7 @@
 
 				<div class="panel-body">
 					<form name="orgForm" method="post" action="backup-db.do" class="form-inline">
-						<button class="btn btn-default"><spring:message code='org.tree.list.view' text='备份'/></button>
+						<button class="btn btn-default" title="备份数据库不到1分钟完成"><spring:message code='org.tree.list.view' text='备份'/></button>
 					</form>
 				</div>
 		  </div>
