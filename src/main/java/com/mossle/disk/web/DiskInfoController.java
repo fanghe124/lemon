@@ -26,6 +26,8 @@ import com.mossle.disk.persistence.manager.DiskInfoManager;
 import com.mossle.disk.persistence.manager.DiskShareManager;
 import com.mossle.disk.service.DiskService;
 
+import com.mossle.audio_trimmer.lib.*;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,6 +39,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+
 
 @Controller
 @RequestMapping("disk")
@@ -186,7 +189,27 @@ public class DiskInfoController {
     public String view(@RequestParam("id") Long id, Model model) {
         DiskInfo diskInfo = diskInfoManager.get(id);
         model.addAttribute("diskInfo", diskInfo);
+        
+        /*
+        AudioSoundFile audioSoundFile = AudioSoundFile.create(in_file_path, listner);
 
+        int mSampleRate = audioSoundFile.getSampleRate();
+
+        int mSamplesPerFrame = audioSoundFile.getSamplesPerFrame();
+
+        int startFrame = AudioUtil.secondsToFrames(5.0,mSampleRate, mSamplesPerFrame);
+
+        int endFrame = AudioUtil.secondsToFrames(30.0, mSampleRate,mSamplesPerFrame);
+
+        audioSoundFile.WriteFile(outfile_path, startFrame, endFrame-startFrame);
+
+        final AudioSoundFile.ProgressListener listener = new AudioSoundFile.ProgressListener() {
+        	public boolean reportProgress(double frac) {
+        	
+        	return true; 
+        	}
+        };
+        */
         return "disk/disk-info-view";
     }
 
