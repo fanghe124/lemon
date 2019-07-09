@@ -69,11 +69,13 @@ public class DiskController {
     @RequestMapping("index")
     public String index(
             @RequestParam(value = "path", required = false, defaultValue = "") String path,
+            @RequestParam(value = "filter_LIKES_name", required = false, defaultValue = "") String searchName,
             Model model) {
-        String userId = currentUserHolder.getUserId();
+    	
+    	String userId = currentUserHolder.getUserId();
         DiskSpace diskSpace = this.diskService.findUserSpace(userId);
 
-        List<DiskInfo> diskInfos = diskService.listFiles(diskSpace, path);
+        List<DiskInfo> diskInfos = diskService.listFiles(diskSpace, path, searchName);
         model.addAttribute("diskInfos", diskInfos);
         model.addAttribute("diskSpace", diskSpace);
         model.addAttribute("path", path);

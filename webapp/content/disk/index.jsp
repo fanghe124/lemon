@@ -34,7 +34,7 @@ body {
 
           <div class="col-md-10">
             <div class="alert-fixed-top" data-alerts="alerts" data-titles="{}" data-ids="myid" data-fade="1000"></div>
-
+            
             <%pageContext.setAttribute("listType", "list");%> 
             <%@include file="_upload.jsp"%>
 

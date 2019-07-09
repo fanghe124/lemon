@@ -48,8 +48,6 @@ body {
   </c:forEach>
 </div>
 
-
-
           </div>
         </div><!--/col-->
       </div><!--/row-->

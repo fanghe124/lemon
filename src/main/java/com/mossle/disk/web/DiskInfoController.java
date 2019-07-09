@@ -21,6 +21,7 @@ import com.mossle.core.util.ServletUtils;
 
 import com.mossle.disk.persistence.domain.DiskInfo;
 import com.mossle.disk.persistence.domain.DiskShare;
+import com.mossle.disk.persistence.domain.DiskSpace;
 import com.mossle.disk.persistence.manager.DiskInfoManager;
 import com.mossle.disk.persistence.manager.DiskShareManager;
 import com.mossle.disk.service.DiskService;
@@ -61,8 +62,12 @@ public class DiskInfoController {
         }
 
         String userId = currentUserHolder.getUserId();
+        DiskSpace diskSpace = this.diskService.findUserSpace(userId);
+
         List<DiskInfo> diskInfos = diskService.listFiles(userId, path);
         model.addAttribute("diskInfos", diskInfos);
+        model.addAttribute("diskSpace", diskSpace);
+        
         model.addAttribute("path", path);
 
         return "disk/disk-info-list";
@@ -80,8 +85,11 @@ public class DiskInfoController {
         }
 
         String userId = currentUserHolder.getUserId();
+        DiskSpace diskSpace = this.diskService.findUserSpace(userId);
+        
         List<DiskInfo> diskInfos = diskService.listFiles(userId, path);
         model.addAttribute("diskInfos", diskInfos);
+        model.addAttribute("diskSpace", diskSpace);
         model.addAttribute("path", path);
 
         return "disk/disk-info-grid";

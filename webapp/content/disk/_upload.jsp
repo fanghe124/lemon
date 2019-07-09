@@ -1,5 +1,22 @@
 <%@page contentType="text/html;charset=UTF-8"%>
 <div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <i class="glyphicon glyphicon-list"></i>
+        查询
+      <div class="pull-right ctrl">
+        <a class="btn btn-default btn-xs"><i id="bpm-processSearchIcon" class="glyphicon glyphicon-chevron-up"></i></a>
+      </div>
+    </div>
+    <div class="panel-body">
+      <form name="disk-searchForm" method="post" action="index.do" class="form-inline">
+        <label for="disk-search_name"><spring:message code='disk-info.disk-info.list.search.name' text='名称'/>:</label>
+        <input type="text" id="disk-search_name" name="filter_LIKES_name" value="${param.filter_LIKES_name}" class="form-control">
+        <button class="btn btn-default a-search" onclick="document.disk-searchForm.submit()">查询</button>&nbsp;
+      </form>
+    </div>
+  </div>
+
   <div id="uploadFileButton" class="btn btn-primary fileinput-button">
     <span><i class="glyphicon glyphicon-cloud-upload"></i> 上传文件</span>
     <input type="file" name="file" class="fileupload" data-no-uniform="true" data-url="upload.do" data-form-data='{"path":"${path}","spaceId":"${diskSpace.id}"}'>
@@ -60,9 +77,6 @@
     }
   %>
 </ol>
-</c:if>
-<c:if test="${empty path}">
-  全部文件
 </c:if>
   </div>
   <div class="pull-right">

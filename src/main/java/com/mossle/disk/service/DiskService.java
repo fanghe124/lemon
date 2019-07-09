@@ -251,6 +251,23 @@ public class DiskService {
     }
 
     /**
+     * 根据space显示文件列表.
+     */
+    public List<DiskInfo> listFiles(DiskSpace diskSpace, String parentPath, String diskName) {
+        if (parentPath == null) {
+            parentPath = "";
+        }
+
+        if(diskName == null || diskName.length() == 0) {
+        	String hql = "from DiskInfo where diskSpace=? and parentPath=? and status='active' order by dirType";
+        	return diskInfoManager.find(hql, diskSpace, parentPath);
+        } else {
+        	String hql = "from DiskInfo where diskSpace=? and parentPath=? and name like ? and status='active' order by dirType";
+        	return diskInfoManager.find(hql, diskSpace, parentPath, "%" + diskName + "%");
+        }
+    }
+    
+    /**
      * 根据share显示文件列表.
      */
     public List<DiskInfo> listFiles(DiskShare diskShare, String parentPath) {
