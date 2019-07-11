@@ -16,10 +16,6 @@ $(function() {
 			location.href = 'updateOrder.do?' + ids;
 		}
 	});
-
-	$('ul.sub-menu .li').click(function() {
-		console.log("aa");
-	});
 });
 
 function insertWidget() {

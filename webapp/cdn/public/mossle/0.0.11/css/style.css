@@ -18,8 +18,17 @@ html, body {margin:0;padding:0;height:100%;}
 
 .menu-container > ul > li,
 .menu-container > ul > ul > li {
-	width: 100%
+	width: 100%;
 }
+
+.submenu-title {
+	font-size: 14px;
+	margin-left: 80px;
+    padding: 5px 0px;
+    color: #9677dd;
+    border-bottom: 2px solid #9677dd;
+}
+
 
 .menu-container > ul > li > a {
 	color: black;
@@ -68,10 +77,6 @@ a.active {
 
 .row-fluid {
 	margin-top:65px;
-}
-
-.content-container {
-	padding: 30px;
 }
 
 .footer {

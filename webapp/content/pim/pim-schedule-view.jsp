@@ -189,7 +189,7 @@ $(function () {
   <body>
     <%@include file="/header/pim3.jsp"%>
 
-    <div class="row-fluid" style="margin-top:65px;">
+    <div class="row-fluid">
 	  <div class="col-md-2">
 	    <div id="datepickerInline" class="datepicker-inline" style="border:1px solid #ddd;"></div>
 	  </div>

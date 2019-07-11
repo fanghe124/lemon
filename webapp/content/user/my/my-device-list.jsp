@@ -39,13 +39,13 @@ $(function() {
   </head>
 
   <body>
-    <%@include file="/header/my.jsp"%>
+    <%@include file="/header/portal.jsp"%>
 
     <div class="row-fluid">
 	  <%@include file="/menu/my.jsp"%>
 
 	  <!-- start of main -->
-      <section id="m-main" class="col-md-10" style="margin-top:65px;">
+      <section id="m-main" class="col-md-10">
 
       <article style="margin-bottom: 20px;">
 

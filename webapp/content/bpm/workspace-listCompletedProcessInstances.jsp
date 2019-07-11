@@ -1,7 +1,8 @@
 <%@page contentType="text/html;charset=UTF-8"%>
 <%@include file="/taglibs.jsp"%>
 <%pageContext.setAttribute("currentHeader", "bpm-workspace");%>
-<%pageContext.setAttribute("currentMenu", "bpm-process");%>
+<%pageContext.setAttribute("parentMenu", "workhome");%>
+<%pageContext.setAttribute("currentMenu", "workspace-listCompletedProcessInstances");%>
 <!doctype html>
 <html lang="en">
 
@@ -59,7 +60,7 @@ function doTransfer(processInstanceId) {
     <%@include file="/header/bpm-workspace3.jsp"%>
 
     <div class="row-fluid">
-	<%@include file="/menu/bpm-workspace3.jsp"%>
+	<%@include file="/menu/main-menu.jsp"%>
 
 	  <!-- start of main -->
       <section id="m-main" class="col-md-10" >

@@ -1,7 +1,8 @@
 <%@page contentType="text/html;charset=UTF-8"%>
 <%@include file="/taglibs.jsp"%>
 <%pageContext.setAttribute("currentHeader", "bpm-workspace");%>
-<%pageContext.setAttribute("currentMenu", "bpm-process");%>
+<%pageContext.setAttribute("parentMenu", "workhome");%>
+<%pageContext.setAttribute("currentMenu", "workspace-home");%>
 <!doctype html>
 <html lang="en">
 
@@ -17,10 +18,9 @@
 
     <div class="row-fluid">
       <%@include file="/menu/main-menu.jsp"%>
-      <%@include file="/menu/bpm-workspace3.jsp"%>
 
       <!-- start of main -->
-      <section id="m-main" class="col-md-10" >
+      <section id="m-main" class="col-md-10">
 
         <c:forEach items="${bpmCategories}" var="bpmCategory">
         <div class="row">

@@ -1,6 +1,7 @@
 <%@page contentType="text/html;charset=UTF-8"%>
 <%@include file="/taglibs.jsp"%>
 <%pageContext.setAttribute("currentHeader", "pim");%>
+<%pageContext.setAttribute("parentMenu", "workhome");%>
 <%pageContext.setAttribute("currentMenu", "bpm-delegate");%>
 <!doctype html>
 <html lang="en">
@@ -27,10 +28,10 @@ $(function() {
     <%@include file="/header/pim3.jsp"%>
 
     <div class="row-fluid">
-	  <%@include file="/menu/bpm-workspace3.jsp"%>
+	  <%@include file="/menu/main-menu.jsp"%>
 
 	  <!-- start of main -->
-      <section id="m-main" class="col-md-10" style="margin-top:65px;">
+      <section id="m-main" class="col-md-10">
 
       <div class="panel panel-default">
         <div class="panel-heading">

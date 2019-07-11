@@ -1,0 +1,13 @@
+#class-list-id table > thead{
+	display:none
+}
+
+.title-position{
+	height:30px;
+	border-bottom:2px solid #eee;
+	text-align:left;
+	line-height:30px;
+	padding-left:20px;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+}
