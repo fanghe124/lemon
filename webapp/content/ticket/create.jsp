@@ -32,7 +32,7 @@ $(function() {
   <body>
     <%@include file="/header/ticket-admin.jsp"%>
 
-    <div class="row-fluid" style="padding-top:65px;">
+    <div class="row-fluid" >
 	  <form method="post" action="save.do" id="f">
 
 <div class="row-fluid">

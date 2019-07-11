@@ -17,7 +17,7 @@
     <div class="container">
 
 	<!-- start of main -->
-      <section id="m-main" class="col-md-12" style="padding-top:65px;">
+      <section id="m-main" class="col-md-12" >
 
 	    <div class="alert alert-info" role="alert">
 		  <button type="button" class="close" data-dismiss="alert" style="margin-right:30px;">×</button>

@@ -60,7 +60,7 @@ $(function() {
 	  <%@include file="/menu/bpm-console.jsp"%>
 
 	  <!-- start of main -->
-      <section id="m-main" class="col-md-10" style="padding-top:65px;">
+      <section id="m-main" class="col-md-10" >
 
 	  <ul class="breadcrumb">
 	    <li><a href="bpm-process-list.do">流程配置</a></li>

@@ -30,7 +30,7 @@ $(function() {
     <div class="container">
 
 	<!-- start of main -->
-      <section id="m-main" class="col-md-12" style="padding-top:65px;">
+      <section id="m-main" class="col-md-12" >
 
       <div class="panel panel-default">
         <div class="panel-heading">

@@ -69,7 +69,7 @@ function doBatch() {
 	  <%@include file="/menu/user.jsp"%>
 
 	<!-- start of main -->
-      <section id="m-main" class="col-md-10" style="padding-top:65px;">
+      <section id="m-main" class="col-md-10" >
 
 		<form name="userForm" method="post" action="account-info-list.do" class="form-inline" style="margin-bottom:15px;">
 		  <label for="user_username"><spring:message code='user.user.list.search.username' text='账号'/>:</label>

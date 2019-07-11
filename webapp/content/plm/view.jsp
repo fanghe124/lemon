@@ -65,7 +65,7 @@
   <body>
     <%@include file="/header/plm.jsp"%>
 
-	<div class="row-fluid" style="padding-top:65px;">
+	<div class="row-fluid" >
       <div class="media col-md-12" style="padding:10px;padding-left:25px;">
         <div class="media-left">
           <a href="#">

@@ -62,7 +62,7 @@ function doTransfer(processInstanceId) {
 	<%@include file="/menu/bpm-workspace3.jsp"%>
 
 	  <!-- start of main -->
-      <section id="m-main" class="col-md-10" style="padding-top:65px;">
+      <section id="m-main" class="col-md-10" >
 
       <div style="margin-bottom: 20px;">
 

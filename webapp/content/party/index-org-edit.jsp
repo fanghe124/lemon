@@ -45,7 +45,7 @@ $(function() {
   <body>
     <%@include file="/header/org.jsp"%>
 
-    <div class="row-fluid" style="padding-top:65px;">
+    <div class="row-fluid" >
 	  <%@include file="/menu/org-index.jsp"%>
 
 	  <!-- start of main -->

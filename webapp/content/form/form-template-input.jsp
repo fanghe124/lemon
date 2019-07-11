@@ -51,7 +51,7 @@
     <div class="row-fluid">
 
 	<!-- start of main -->
-      <section id="m-main" class="col-md-12" style="padding-top:65px;">
+      <section id="m-main" class="col-md-12" >
 
 	  <div id="__gef_container__" style="padding-left:5px;">
 	    <div id="__gef_palette__" style="float:left;width:260px;">

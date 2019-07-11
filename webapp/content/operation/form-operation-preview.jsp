@@ -66,7 +66,7 @@ $(function() {
     <div class="row-fluid">
 
 	<!-- start of main -->
-      <section id="m-main" class="col-md-12" style="padding-top:65px;">
+      <section id="m-main" class="col-md-12" >
 
       <form id="xf-form" method="post" action="${tenantPrefix}/operation/form-operation-test.do" class="xf-form" enctype="multipart/form-data">
         <input id="ref" type="hidden" name="ref" value="${record.ref}">

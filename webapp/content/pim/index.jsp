@@ -44,7 +44,7 @@ $(function() {
     <div class="row-fluid">
 
 	  <!-- left start -->
-	  <div class="col-md-2" style="padding-top:65px;">
+	  <div class="col-md-2" >
 	    <div class="panel panel-default">
 		  <ul class="list-group">
 		    <a class="list-group-item" href="index.do">今天</a>
@@ -61,7 +61,7 @@ $(function() {
 	  <!-- left end -->
 
 	  <!-- right start -->
-	  <div class="col-md-10" style="padding-top:65px;">
+	  <div class="col-md-10" >
 
 	    <div class="row">
 		  <div class="col-md-12" style="padding-bottom:10px;">

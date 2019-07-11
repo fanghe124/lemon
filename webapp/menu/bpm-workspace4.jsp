@@ -9,7 +9,7 @@
 }
 </style>
 
-<div class="panel-group col-md-2" id="accordion" role="tablist" aria-multiselectable="true" style="padding-top:65px;">
+<div class="panel-group col-md-2" id="accordion" role="tablist" aria-multiselectable="true" >
 
   <div class="panel panel-default">
     <div class="panel-heading" role="tab" id="collapse-header-bpm-process" data-toggle="collapse" data-parent="#accordion" href="#collapse-body-bpm-process" aria-expanded="true" aria-controls="collapse-body-bpm-process">

@@ -24,8 +24,8 @@
 
 	<div class="row-fluid">
 
-    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" style="padding-top:65px;">
-      <%@include file="/menu/portal.jsp"%>
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+      <%@include file="/menu/main-menu.jsp"%>
       <!--
       <c:forEach items="${list}" var="item">
       <div class="panel panel-default">

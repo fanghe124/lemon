@@ -41,7 +41,7 @@ $(function() {
   <body>
     <%@include file="/header/plm.jsp"%>
 
-    <div class="row-fluid" style="padding-top:65px;">
+    <div class="row-fluid" >
 
       <!-- start of sidebar -->
 <div class="panel-group col-md-2">

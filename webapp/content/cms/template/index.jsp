@@ -42,7 +42,7 @@ $(function(){
     <div class="row-fluid">
 	  <%@include file="/menu/cms.jsp"%>
 
-	  <div class="col-md-2" style="padding-top:65px;">
+	  <div class="col-md-2" >
 	    <div class="panel panel-default">
 		  <div class="panel-heading">
 		    <i class="glyphicon glyphicon-list"></i>
@@ -55,7 +55,7 @@ $(function(){
 	  </div>
 
 	  <!-- start of main -->
-      <section id="m-main" class="col-md-8" style="padding-top:65px;">
+      <section id="m-main" class="col-md-8" >
 
       <div style="margin-bottom: 15px;">
 

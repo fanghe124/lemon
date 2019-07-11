@@ -18,7 +18,7 @@
 	  <%@include file="/menu/user.jsp"%>
 
 	<!-- start of main -->
-      <section id="m-main" class="col-md-10" style="padding-top:65px;">
+      <section id="m-main" class="col-md-10" >
 
 		<h4>账号详情 - ${accountInfo.username}</h4>
 

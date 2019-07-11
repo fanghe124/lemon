@@ -89,7 +89,7 @@ var taskOperation = new TaskOperation();
     <div class="container">
 
 	<!-- start of main -->
-      <section id="m-main" class="col-md-12" style="padding-top:65px;">
+      <section id="m-main" class="col-md-12" >
 
         <c:if test="${not empty children}">
 		<div class="alert alert-info" role="alert">

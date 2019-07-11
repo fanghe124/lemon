@@ -52,7 +52,7 @@ $(function() {
 
 
 
-<div class="col-md-3 full-height" id="accordion2" style="padding-top:65px;">
+<div class="col-md-3 full-height" id="accordion2" >
 
   <div class="panel panel-default" style="height:100%">
     <div class="panel-heading">
@@ -84,7 +84,7 @@ $(function() {
 
 
 
-<div class="col-md-7 full-height" id="accordion3" style="padding-top:65px;">
+<div class="col-md-7 full-height" id="accordion3" >
 
   <div class="panel panel-default" style="height:100%">
     <div class="panel-heading">

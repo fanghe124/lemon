@@ -99,7 +99,7 @@ $(function() {
     <div class="row-fluid">
 
       <!-- start of sidebar -->
-<div class="col-md-3" style="padding-top:65px;">
+<div class="col-md-3" >
 
   <div class="panel panel-default">
     <div class="panel-heading">
@@ -130,7 +130,7 @@ out.print(generatePlmRequirement(plmRequirement, request.getParameter("id")));
 </div>
 
 	  <!-- start of main -->
-      <section id="m-main" class="col-md-9" style="padding-top:65px;">
+      <section id="m-main" class="col-md-9" >
 <c:if test="${not empty plmIssue}">
         <div class="panel panel-default">
 		  <div class="panel-heading">

@@ -24,7 +24,7 @@ $(function() {
   <body>
     <%@include file="/header/ticket-admin.jsp"%>
 
-    <div class="row-fluid" style="padding-top:65px;">
+    <div class="row-fluid" >
 	  <form method="post" action="update.do">
 	    <input type="hidden" name="id" value="${ticketInfo.id}">
 

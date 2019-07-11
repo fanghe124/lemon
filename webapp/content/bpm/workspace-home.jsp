@@ -16,11 +16,11 @@
     <%@include file="/header/portal.jsp"%>
 
     <div class="row-fluid">
-      <%@include file="/menu/portal.jsp"%>
+      <%@include file="/menu/main-menu.jsp"%>
       <%@include file="/menu/bpm-workspace3.jsp"%>
 
       <!-- start of main -->
-      <section id="m-main" class="col-md-10" style="padding-top:65px;">
+      <section id="m-main" class="col-md-10" >
 
         <c:forEach items="${bpmCategories}" var="bpmCategory">
         <div class="row">

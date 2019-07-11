@@ -50,7 +50,7 @@ $(function() {
   <body>
     <%@include file="/header/ticket-admin.jsp"%>
 
-    <div class="row-fluid" style="padding-top:65px;">
+    <div class="row-fluid" >
 
 	  <div class="col-md-2">
 	    <div class="panel panel-default">

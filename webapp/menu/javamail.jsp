@@ -10,7 +10,7 @@
 </style>
 
 
-<div class="col-md-2 full-height" style="padding-top:65px;">
+<div class="col-md-2 full-height" >
 
   <div class="panel panel-default" style="height:100%">
     <div class="panel-heading" style="padding:2px 15px;">

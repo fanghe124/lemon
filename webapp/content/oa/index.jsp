@@ -57,7 +57,7 @@ $(function() {
   <body>
     <%@include file="/header/_pim3.jsp"%>
 
-    <div class="container" style="padding-top:65px;">
+    <div class="container" >
       <div class="row">
       </div>
     </div>

@@ -84,7 +84,7 @@ var taskOperation = new TaskOperation();
     <div class="container">
 
 	<!-- start of main -->
-      <section id="m-main" class="col-md-12" style="padding-top:65px;">
+      <section id="m-main" class="col-md-12" >
 
       <form id="xform" method="post" action="${tenantPrefix}/operation/process-operation-startProcessInstance.do" class="xf-form" enctype="multipart/form-data">
 <input id="processDefinitionId" type="hidden" name="processDefinitionId" value="${formDto.processDefinitionId}">

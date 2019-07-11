@@ -46,7 +46,7 @@ $(function() {
 	  <%@include file="/menu/user.jsp"%>
 
 	<!-- start of main -->
-      <section id="m-main" class="col-md-10" style="padding-top:65px;">
+      <section id="m-main" class="col-md-10" >
 	  
 <form id="userGridForm" name="userGridForm" method='post' action="remove.do" class="m-form-blank">
       <div class="panel panel-default">

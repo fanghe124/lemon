@@ -44,7 +44,7 @@ $(function() {
     <div class="row-fluid">
       <!-- start of sidebar -->
 
-<div class="panel-group col-md-2" id="accordion" role="tablist" aria-multiselectable="true" style="padding-top:65px;">
+<div class="panel-group col-md-2" id="accordion" role="tablist" aria-multiselectable="true" >
 
   <div class="panel panel-default">
     <div class="panel-heading" role="tab" id="collapse-header-model" data-toggle="collapse" data-parent="#accordion" href="#collapse-body-model" aria-expanded="true" aria-controls="collapse-body-model">
@@ -73,7 +73,7 @@ $(function() {
       <!-- end of sidebar -->
 
 	  <!-- start of main -->
-      <section id="m-main" class="col-md-10" style="padding-top:65px;">
+      <section id="m-main" class="col-md-10" >
 
       </section>
 	  <!-- end of main -->

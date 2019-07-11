@@ -9,7 +9,7 @@
 </style>
 
       <!-- start of sidebar -->
-<div class="panel-group col-md-2" id="accordion" role="tablist" aria-multiselectable="true" style="padding-top:65px;">
+<div class="panel-group col-md-2" id="accordion" role="tablist" aria-multiselectable="true" >
 
   <div class="panel panel-default">
     <div class="panel-heading" role="tab" id="collapse-header-vehicle" data-toggle="collapse" data-parent="#accordion" href="#collapse-body-vehicle" aria-expanded="true" aria-controls="collapse-body-vehicle">

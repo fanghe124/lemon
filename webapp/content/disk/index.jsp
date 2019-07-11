@@ -28,7 +28,7 @@ body {
     <div id="wrap">&nbsp;
       <div class="container-fluid" style="padding: 0px 15px 0;" id="top">
         <div class="row">
-		      <%@include file="/menu/portal.jsp"%>
+		      <%@include file="/menu/main-menu.jsp"%>
 
           <div class="col-md-10">
             <div class="alert-fixed-top" data-alerts="alerts" data-titles="{}" data-ids="myid" data-fade="1000"></div>

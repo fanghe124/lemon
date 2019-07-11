@@ -52,7 +52,7 @@ function refreshSubCategories(categoryId, defaultValue) {
 	  <%@include file="/menu/asset-info.jsp"%>
 
 	<!-- start of main -->
-      <section id="m-main" class="col-md-10" style="padding-top:65px;">
+      <section id="m-main" class="col-md-10" >
 
       <div class="panel panel-default">
         <div class="panel-heading">

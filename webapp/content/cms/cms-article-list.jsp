@@ -69,7 +69,7 @@ $(function() {
     <div class="row-fluid">
 	  <%@include file="/menu/cms.jsp"%>
 
-	  <div class="col-md-3" style="padding-top:65px;">
+	  <div class="col-md-3" >
 	    <div class="panel panel-default">
 		  <div class="panel-heading">
 		    <i class="glyphicon glyphicon-list"></i>
@@ -82,7 +82,7 @@ $(function() {
 	  </div>
 
 	  <!-- start of main -->
-      <section id="m-main" class="col-md-7" style="padding-top:65px;">
+      <section id="m-main" class="col-md-7" >
 
 		  <form name="cms-articleForm" method="post" action="cms-article-list.do" class="form-inline" style="padding-bottom:15px;">
 		    <input type="hidden" name="filter_EQL_cmsCatalog.id" value="${param['filter_EQL_cmsCatalog.id']}">

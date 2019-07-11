@@ -25,7 +25,7 @@ $(function() {
 
 
 
-<div class="col-md-3 full-height" id="accordion2" style="padding-top:65px;">
+<div class="col-md-3 full-height" id="accordion2" >
 
   <div class="panel panel-default" style="height:100%">
     <div class="panel-heading" role="tab" id="collapse-header-javamail" data-toggle="collapse" data-parent="#accordion" href="#collapse-body-javamail" aria-expanded="true" aria-controls="collapse-body-javamail">
@@ -59,7 +59,7 @@ $(function() {
 
 
 
-<div class="col-md-7 full-height" id="accordion3" style="padding-top:65px;">
+<div class="col-md-7 full-height" id="accordion3" >
 
   <div class="panel panel-default" style="height:100%">
     <div class="panel-heading">

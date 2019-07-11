@@ -28,7 +28,7 @@ $(function() {
 	});
 });
 </script>
-<nav class="col-md-2" style="padding-top:65px;">
+<nav class="col-md-2" >
   <a class="btn btn-default" href="${tenantPrefix}/bpm/workspace-home.do" style="width:100%;padding:10px;margin-bottom:10px;">
     <i class="glyphicon glyphicon-list"></i>
     流程列表

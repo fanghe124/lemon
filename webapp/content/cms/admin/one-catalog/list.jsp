@@ -42,7 +42,7 @@ $(function() {
   <body>
     <%@include file="/header/cms.jsp"%>
 
-    <div class="row-fluid" style="padding-top:65px;">
+    <div class="row-fluid" >
 
 	  <%@include file="_menu.jsp"%>
 

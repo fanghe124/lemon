@@ -40,7 +40,7 @@ $(function() {
   <body>
     <%@include file="/header/ticket-admin.jsp"%>
 
-    <div class="row-fluid" style="padding-top:65px;">
+    <div class="row-fluid" >
 
 	  <!-- start of main -->
       <section id="m-main" class="col-md-8 col-md-offset-2">

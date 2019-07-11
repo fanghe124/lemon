@@ -93,7 +93,7 @@ function prepareToUpdateIssue(issueId) {
 	</script>
   </head>
   <body>
-    <div class="container-fluid" style="padding-top:65px;">
+    <div class="container-fluid" >
 
       <div id="sortableKanbanBoards" class="row">
 <!--
