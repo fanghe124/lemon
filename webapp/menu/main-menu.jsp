@@ -33,24 +33,30 @@
     </ul>
 
 
-    <!-- 实验中心 -->
-    <li><a href="${tenantPrefix}/device/index.do"><i class="fa fa-server"></i>设备管理</a></li>
+    <!-- 设备管理 -->
+    <li><a href="${tenantPrefix}/device/index.do" class="${currentMenu == 'device' ? 'active' : ''}"><i class="fa fa-server"></i>设备管理</a></li>
 
-    <!-- 实验中心 -->
+    <!-- 文件管理 -->
     <li data-toggle="collapse" href="#collapse-disk"><a href="#"><i class="fa fa-file-alt"></i>文件管理</a></li>
     <ul id="collapse-disk" class="nav navbar-nav panel-collapse collapse ${currentMenu == 'pim-schedule' ? 'in' : ''}">
-      <li><a href="${tenantPrefix}/disk/index.do"><i class="fa fa-dot-circle"></i>数据管理</a></li>
-      <li><a href="${tenantPrefix}/disk/index.do"><i class="fa fa-dot-circle"></i>数据处理</a></li>
-      <li><a href="${tenantPrefix}/disk/index.do"><i class="fa fa-dot-circle"></i>数据分析</a></li>
+      <li><a href="${tenantPrefix}/disk/index.do"><i class="fa fa-database"></i>数据管理</a></li>
+      <li><a href="${tenantPrefix}/disk/index.do"><i class="fa fa-video"></i>数据处理</a></li>
+      <li><a href="${tenantPrefix}/disk/index.do"><i class="fa fa-chart-pie"></i>数据分析</a></li>
     </ul>
 
-    <!-- 实验中心 -->
-    <li><a href="${tenantPrefix}/report/view.do?code=mostActiveProcess" class="${currentMenu == 'chart' ? 'active' : ''}"><i class="fa fa-dot-circle"></i>实验统计</a></li>
+    <!-- 实验统计 -->
+    <li><a href="${tenantPrefix}/report/view.do?code=mostActiveProcess" class="${currentMenu == 'chart' ? 'active' : ''}"><i class="fa fa-chart-line"></i>实验统计</a></li>
     
-    <!-- 实验中心 -->
-    <li><a href="${tenantPrefix}/cms/cms-site-view.do"><i class="fa fa-comments"></i>实验交流</a></li>
+    <!-- 实验交流 -->
+    <li><a href="${tenantPrefix}/cms/view"><i class="fa fa-comments"></i>实验交流</a></li>
     
-    <!-- 实验中心 -->
-    <li><a href="${tenantPrefix}/pim/pim-schedule-list.do" class="${currentMenu == 'chart1' ? 'active' : ''}"><i class="fa fa-cogs"></i>系统配置</a></li>
+    <!-- 系统配置 -->
+    <li data-toggle="collapse" href="#collapse-system"><a href="#" class="${currentMenu == 'chart1' ? 'active' : ''}"><i class="fa fa-cogs"></i>系统配置</a></li>
+    <ul id="collapse-system" class="nav navbar-nav panel-collapse collapse ${currentMenu == 'pim-schedule' ? 'in' : ''}">
+      <li><a href="${tenantPrefix}/user/account-info-list.do"><i class="fa fa-dot-circle"></i>用户管理</a></li>
+      <li><a href="${tenantPrefix}/bpm/bpm-process-list.do"><i class="fa fa-dot-circle"></i>实验管理</a></li>
+      <li><a href="${tenantPrefix}/cms/cms-catalog-list.do"><i class="fa fa-dot-circle"></i>实验问答</a></li>
+      <li><a href="${tenantPrefix}/template/template-info-list.do"><i class="fa fa-dot-circle"></i>系统服务</a></li>
+    </ul>
   </ul>
 </div>

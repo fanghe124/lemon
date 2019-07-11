@@ -75,6 +75,12 @@ a.active {
 	padding: 30px;
 }
 
+.content-container {
+	padding: 30px;
+	background-color: #f7f9fa;
+	height: 100%;
+}
+
 .row-fluid {
 	margin-top:65px;
 }

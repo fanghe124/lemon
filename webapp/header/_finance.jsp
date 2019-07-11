@@ -2,7 +2,7 @@
 
 <%@include file="_header_first.jsp"%>
 
-<div class="navbar navbar-default navbar-fixed-top">
+<div class="navbar navbar-default navbar-fixed-top header-style">
   <div class="container-fluid">
     <%@include file="_header_title.jsp"%>
 

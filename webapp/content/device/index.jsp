@@ -1,7 +1,7 @@
 <%@page contentType="text/html;charset=UTF-8"%>
 <%@include file="/taglibs.jsp"%>
 <%pageContext.setAttribute("currentHeader", "report");%>
-<%pageContext.setAttribute("currentMenu", "chart");%>
+<%pageContext.setAttribute("currentMenu", "device");%>
 <!doctype html>
 <html lang="en">
 
