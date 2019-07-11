@@ -19,13 +19,19 @@
   <body>
     <%@include file="/header/portal.jsp"%>
   
-    <div data-height="300" class="container-fluid dashboard dashboard-draggable" id="dashboard" style="margin-top:70px;">
+    <div data-height="300" class="dashboard dashboard-draggable" id="dashboard" style="margin-top:70px;">
       <header></header>
-      <section class="row">
+  
+      <div class="row-fluid">
+        <%@include file="/menu/portal.jsp"%>
+  
+  
+      <section class="col-md-10">
+        
 <c:forEach items="${map}" var="entry">
-        <div class="portal-col col-md-4 col-sm-6" data-id="${entry.key}" data-order="${entry.key}">
+      <div class="portal-col col-md-4 col-sm-6" data-id="${entry.key}" data-order="${entry.key}">
   <c:forEach items="${entry.value}" var="item">
-		<div data-id="${item.id}" class="portlet" data-order="${item.rowIndex}">
+		    <div data-id="${item.id}" class="portlet" data-order="${item.rowIndex}">
           <div data-url="${tenantPrefix}${item.portalWidget.url}" class="panel panel-default" id="panel${item.id}" data-id="${item.id}">
             <div class="panel-heading">
               <div class="panel-actions">
@@ -67,10 +73,13 @@
           </div>
         </div>
   </c:forEach>
-		</div>
+		  </div>
 </c:forEach>
 
       </section>
+
+    </div>
+
     </div>
 
 <div id="widgetModal" class="modal fade">

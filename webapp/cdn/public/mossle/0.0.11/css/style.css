@@ -1,0 +1,58 @@
+.header-style {
+	border-bottom: 3px solid #d7d9d9; 
+	background-color: white;  
+	margin-top: 0px; 
+	padding-top: 5px;
+}
+
+.menu-title {
+	maring-left:10px;
+}
+
+.menu-container {
+	margin:0px;
+	padding:0px;
+	//float: left;
+	//position: relative;
+  	//min-height: 1px;
+  	//width: 12%;
+}
+
+.menu-container > ul > li,
+.menu-container > ul > li > ul > li {
+	width: 100%
+}
+
+.menu-container > ul > li > a {
+	color: black;
+	padding-left: 40px;
+	font-size: 16px;
+}
+
+.menu-container > ul > li > a > i {
+	margin-right: 30px;
+	color: black;
+}
+
+.menu-container > ul > li > ul > li > a {
+	color: black;
+	padding-left: 80px;
+	font-size: 16px;
+}
+
+.menu-container > ul > li > ul > li > a > i {
+	margin-right: 10px;
+	color: black;
+}
+
+.nav > li > a:focus, 
+.nav > li > a:hover {
+    text-decoration: none;
+    background-color: #7b4ff9;
+    color: white;
+}
+
+.nav > li > a > i:focus, 
+.nav > li > a > i:hover {
+    color: white;
+}

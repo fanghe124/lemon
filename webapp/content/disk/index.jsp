@@ -24,10 +24,8 @@ body {
 	  </style>
   </head>
   <body>
+    <%@include file="/header/_disk.jsp"%>
     <div id="wrap">&nbsp;
-
-      <%@include file="/header/_disk.jsp"%>
-
       <div class="container-fluid" style="padding: 0px 15px 0;" id="top">
         <div class="row">
 		      <%@include file="/menu/disk.jsp"%>

@@ -1,22 +1,28 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
+  <link rel='stylesheet' href='${cdnPrefix}/public/simple-line/css/simple-line-icons.css' type='text/css' media='screen' />
+  <link rel='stylesheet' href='${cdnPrefix}/public/font-awesome/5.9.0/css/all.min.css' type='text/css'/>
+  <link rel="stylesheet" href="${cdnPrefix}/public/mossle/0.0.11/css/style.css">
 
       <li>
-          <form class="navbar-form navbar-search" action="${ctx}/pim/address-list-list.do" role="search">
+          <form id="headerForm" class="navbar-form navbar-search" action="${ctx}/pim/address-list-list.do" role="search">
             <div class="form-group">
               <input type="text" class="form-control search-query" placeholder="搜索" name="username">
+              <button  class="btn" style="background-color: transparent; margin-left: -5px;" onclick="document.headerForm.submit()">
+                <i class="icon-magnifier" style="font-size: 1.2em;"></i>
+              </button>
             </div>
+
           </form>
       </li>
       <!--
       <li>
         <a href="${tenantPrefix}/content/oa/index.jsp">
           <i class="glyphicon glyphicon-cloud"></i>
+          
           应用
         </a>
       </li>
-	    -->
-		  <tags:menuSystem3/>
-      <!--
+	    <tags:menuSystem3/>
       <li class="dropdown">
 		    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
 		      <i class="glyphicon glyphicon-download-alt"></i>
@@ -29,19 +35,25 @@
       </li>
       -->
 		  <li class="dropdown">
-        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-          <i class="glyphicon glyphicon-bell"></i>
+        <a style="color: black" data-toggle="dropdown" class="dropdown-toggle" href="#">
+          <i class="icon-bell" style="font-size: 1.5em;"></i>
 			    <i class="badge" id="msg-unread-count" style="display:none;"></i>
-          <b class="caret" id="msg-unread-caret"></b>
+          <!--<b class="caret" id="msg-unread-caret" style="margin-top: -10px;"></b>-->
 	      </a>
-        <ul class="dropdown-menu" id="msg-unread-content">
+        <!--<ul class="dropdown-menu" id="msg-unread-content">
 		      <li><a href="${ctx}/msg/msg-info-listReceived.do">更多消息</a></li>
-        </ul>
-		  </li>
+        </ul>-->
+      </li>
+      
       <li class="dropdown">
-        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-		      <img src="${ctx}/avatar/api/<tags:currentUsername/>?width=16" style="width:16px;height:16px;" class="img-circle">
-			    <tags:currentUser/>
+        <button class="btn navbar-btn" style="background-color: white;" onclick="insertWidget()">
+          <i class="icon-plus" style="font-size: 1.5em;"></i>
+        </button>
+      </li>
+      <li class="dropdown">
+        <a data-toggle="dropdown" class="dropdown-toggle" href="#" style="color: black">
+          <img src="${ctx}/avatar/api/<tags:currentUsername/>?width=16" style="width:24px;height:24px; margin-right: 5px;" class="img-circle">
+          <tags:currentUser/>
           <b class="caret"></b>
         </a>
         <ul class="dropdown-menu">
