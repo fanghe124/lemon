@@ -1,36 +1,45 @@
 <%@page contentType="text/html;charset=UTF-8"%>
 <div>
   <div class="panel panel-default">
-    <div class="panel-heading">
-      <i class="glyphicon glyphicon-list"></i>
-        查询
-      <div class="pull-right ctrl">
-        <a class="btn btn-default btn-xs"><i id="bpm-processSearchIcon" class="glyphicon glyphicon-chevron-up"></i></a>
-      </div>
-    </div>
     <div class="panel-body">
       <form name="disk-searchForm" method="post" action="index.do" class="form-inline">
-        <label for="disk-search_name"><spring:message code='disk-info.disk-info.list.search.name' text='名称'/>:</label>
-        <input type="text" id="disk-search_name" name="filter_LIKES_name" value="${param.filter_LIKES_name}" class="form-control">
-        <button class="btn btn-default a-search" onclick="document.disk-searchForm.submit()">查询</button>&nbsp;
+        <div class="col-md-3">
+          <label for="disk-search_tyle"><spring:message code='disk-info.disk-info.list.search.name' text='管理类别'/>:</label>
+          <select>
+            <option value="shiyan">实验数据</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <label for="disk-search_name"><spring:message code='disk-info.disk-info.list.search.name' text='最近更新时间'/>:</label>
+          <input type="text" id="disk-search_name" name="filter_LIKES_name" value="${param.filter_LIKES_name}" class="form-control">
+        </div>
+        <div class="col-md-3">
+          <label for="disk-search_name"><spring:message code='disk-info.disk-info.list.search.name' text='文件名'/>:</label>
+          <input type="text" id="disk-search_name" name="filter_LIKES_name" value="${param.filter_LIKES_name}" class="form-control">
+        </div>
+        <div class="col-md-1">
+          <button class="btn btn-default a-search fixed-button" onclick="document.disk-searchForm.submit()">查询</button>&nbsp;
+        </div>
       </form>
     </div>
   </div>
 
-  <div id="uploadFileButton" class="btn btn-primary fileinput-button">
+  <div id="uploadFileButton" class="btn btn-default fixed-button fileinput-button">
     <span><i class="glyphicon glyphicon-cloud-upload"></i> 上传文件</span>
     <input type="file" name="file" class="fileupload" data-no-uniform="true" data-url="upload.do" data-form-data='{"path":"${path}","spaceId":"${diskSpace.id}"}'>
   </div>
 
   &nbsp;
 
-  <button id="createDirButton" class="btn btn-default" data-toggle="modal" data-target="#createDirDialog">新建文件夹</button>
+  <button id="createDirButton" class="btn btn-default fixed-button" data-toggle="modal" data-target="#createDirDialog">新建文件夹</button>
 
   &nbsp;
 
-  <button id="createDirButton" class="btn btn-default" data-toggle="modal" data-target="#createShareDialog" onclick="$('#createShareInfoId').val($('.selectedItem').val())">共享</button>
+  <button id="createDirButton" class="btn btn-default fixed-button" data-toggle="modal" data-target="#createShareDialog" onclick="$('#createShareInfoId').val($('.selectedItem').val())">共享</button>
 
-  <button id="removeDirButton" class="btn btn-default" data-toggle="modal" data-target="#removeDirDialog" onclick="$('#removeDirInfoId').val($('.selectedItem').val())">删除</button>
+  <button id="removeDirButton" class="btn btn-default fixed-button" data-toggle="modal" data-target="#removeDirDialog" onclick="$('#removeDirInfoId').val($('.selectedItem').val())">删除</button>
+
+  <button id="removeDirButton" class="btn btn-default fixed-button" data-toggle="modal" data-target="#removeDirDialog" onclick="$('#removeDirInfoId').val($('.selectedItem').val())">更新</button>
 <!--
   <a href="${tenantPrefix}/disk/disk-info-list.do" class="btn btn-default"><i class="glyphicon glyphicon-list"></i>&nbsp;我的文件</a>
 

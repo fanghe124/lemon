@@ -24,11 +24,11 @@ body {
 	  </style>
   </head>
   <body>
-    <%@include file="/header/_disk.jsp"%>
+    <%@include file="/header/portal.jsp"%>
     <div id="wrap">&nbsp;
       <div class="container-fluid" style="padding: 0px 15px 0;" id="top">
         <div class="row">
-		      <%@include file="/menu/disk.jsp"%>
+		      <%@include file="/menu/portal.jsp"%>
 
           <div class="col-md-10">
             <div class="alert-fixed-top" data-alerts="alerts" data-titles="{}" data-ids="myid" data-fade="1000"></div>
@@ -40,9 +40,13 @@ body {
       <thead>
         <tr>
           <th class="m-table-check"><input type="checkbox" name="checkAll" onchange="toggleSelectedItems(this.checked)"></th>
-          <th class="col-md-7 text-left">文件名</th>
+          <th class="col-md-2 text-left">文件名</th>
           <th class="col-md-2 text-left">大小</th>
-          <th class="col-md-2 text-left">修改时间</th>
+          <th class="col-md-2 text-left">管理类别</th>
+          <th class="col-md-1 text-left">创建人</th>
+          <th class="col-md-2 text-left">创建时间</th>
+          <th class="col-md-2 text-left">最近更新人</th>
+          <th class="col-md-2 text-left">最近更新时间</th>
         </tr>
       </thead>
       <tbody id="tbodyFileInfo">

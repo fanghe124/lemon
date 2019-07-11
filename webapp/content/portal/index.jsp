@@ -19,14 +19,11 @@
   <body>
     <%@include file="/header/portal.jsp"%>
   
-    <div data-height="300" class="dashboard dashboard-draggable" id="dashboard" style="margin-top:70px;">
-      <header></header>
-  
+    <div data-height="300" class="dashboard dashboard-draggable" id="dashboard">
       <div class="row-fluid">
-        <%@include file="/menu/portal.jsp"%>
+        <%@include file="/menu/main-menu.jsp"%>
   
-  
-      <section class="col-md-10">
+      <section class="col-md-10 container-fluid">
         
 <c:forEach items="${map}" var="entry">
       <div class="portal-col col-md-4 col-sm-6" data-id="${entry.key}" data-order="${entry.key}">
@@ -76,10 +73,12 @@
 		  </div>
 </c:forEach>
 
+      <div class="footer">
+          2019 &copy; lemon, by Diana
+      </div>
       </section>
 
-    </div>
-
+      </div>
     </div>
 
 <div id="widgetModal" class="modal fade">
@@ -113,10 +112,6 @@
     </div>
   </div>
 </div>
-
-    <div class="text-center">
-	  &copy;mossle
-    </div>
   </body>
 
 </html>

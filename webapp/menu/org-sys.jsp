@@ -52,7 +52,7 @@
 
 		<footer id="m-footer" class="text-center">
 		  <hr>
-		  &copy;Mossle
+		  2019 &copy; lemon, by Diana
 		</footer>
 
 </div>

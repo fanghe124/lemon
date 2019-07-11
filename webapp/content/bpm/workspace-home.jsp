@@ -13,9 +13,10 @@
   </head>
 
   <body>
-    <%@include file="/header/bpm-workspace3.jsp"%>
+    <%@include file="/header/portal.jsp"%>
 
     <div class="row-fluid">
+      <%@include file="/menu/portal.jsp"%>
       <%@include file="/menu/bpm-workspace3.jsp"%>
 
       <!-- start of main -->
