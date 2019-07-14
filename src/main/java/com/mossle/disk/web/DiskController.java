@@ -1,5 +1,7 @@
 package com.mossle.disk.web;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 
 import java.util.ArrayList;
@@ -47,6 +49,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 @Controller
 @RequestMapping("disk")
@@ -63,6 +66,9 @@ public class DiskController {
     private CurrentUserHolder currentUserHolder;
     private DiskService diskService;
 
+    private JdbcTemplate jdbcTemplate;
+    private String sqlFindAccountName = "SELECT USERNAME FROM ACCOUNT_INFO WHERE CODE=?";
+
     /**
      * 个人文档.
      */
@@ -75,6 +81,19 @@ public class DiskController {
     	String userId = currentUserHolder.getUserId();
         DiskSpace diskSpace = this.diskService.findUserSpace(userId);
 
+        /*
+        // account name
+        String creatorName = jdbcTemplate.queryForObject(
+            sqlFindAccountName, String.class, diskInfo.getCreator());
+
+        // account name
+        String lastModifierName = jdbcTemplate.queryForObject(
+            sqlFindAccountName, String.class, diskInfo.getLastModifier());
+        
+        model.addAttribute("creator", creatorName);
+        model.addAttribute("modifier", lastModifierName);
+		*/
+        
         List<DiskInfo> diskInfos = diskService.listFiles(diskSpace, path, searchName);
         model.addAttribute("diskInfos", diskInfos);
         model.addAttribute("diskSpace", diskSpace);
@@ -122,6 +141,26 @@ public class DiskController {
 
         return "disk/disk-analysis";
     }
+
+    /**
+     * 数据处理
+     */
+    @RequestMapping("run-extapp")
+    public String runExtApp(
+            @RequestParam(value = "appName") String appname,
+            @RequestParam(value = "appPath") String apppath,
+            Model model) {
+    	
+    	try {
+			Runtime.getRuntime().exec(apppath, null);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+        return "disk/disk-analysis";
+    }
+
 
     /**
      * 共享文档.
@@ -514,6 +553,11 @@ public class DiskController {
     }
 
     // ~ ======================================================================
+    @Resource
+    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+    
     @Resource
     public void setDiskShareManager(DiskShareManager diskShareManager) {
         this.diskShareManager = diskShareManager;

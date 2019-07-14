@@ -40,18 +40,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-
 @Controller
 @RequestMapping("disk")
 public class DiskInfoController {
     private static Logger logger = LoggerFactory
             .getLogger(DiskInfoController.class);
+
     private DiskInfoManager diskInfoManager;
     private DiskShareManager diskShareManager;
     private CurrentUserHolder currentUserHolder;
     private StoreClient storeClient;
     private DiskService diskService;
     private TenantHolder tenantHolder;
+
 
     /**
      * 列表显示.
@@ -189,7 +190,7 @@ public class DiskInfoController {
     public String view(@RequestParam("id") Long id, Model model) {
         DiskInfo diskInfo = diskInfoManager.get(id);
         model.addAttribute("diskInfo", diskInfo);
-        
+
         /*
         AudioSoundFile audioSoundFile = AudioSoundFile.create(in_file_path, listner);
 
@@ -370,6 +371,7 @@ public class DiskInfoController {
     }
 
     // ~ ======================================================================
+
     @Resource
     public void setDiskInfoManager(DiskInfoManager diskInfoManager) {
         this.diskInfoManager = diskInfoManager;

@@ -22,8 +22,16 @@
     </div>
   </div>
 
-  <button id="createDirButton" class="btn btn-default fixed-button" data-toggle="modal" data-target="#createShareDialog" onclick="$('#createShareInfoId').val($('.selectedItem').val())">共享</button>
-  <a class="btn btn-default fixed-button" href="disk-info-download.do?id=${item.id}">下载</a>
+  <div class="row">
+    <div class="col-md-6">
+      <button id="createDirButton" class="btn btn-default fixed-button" data-toggle="modal" data-target="#createShareDialog" onclick="$('#createShareInfoId').val($('.selectedItem').val())">共享</button>
+      <a class="btn btn-default fixed-button" href="disk-info-download.do?id=${item.id}">下载</a>
+    </div>
+    <div class="col-md-6" style="text-align: right">
+      <button id="extAppSettingButton" class="btn btn-default fixed-button" data-toggle="modal" data-target="#extAppDialog">外程序运行</button>
+    </div>
+  </div>
+
 <!--
   <a href="${tenantPrefix}/disk/disk-info-list.do" class="btn btn-default"><i class="glyphicon glyphicon-list"></i>&nbsp;我的文件</a>
 
@@ -132,6 +140,31 @@
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+<div id="extAppDialog" class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      <form action="run-extapp.do" method="post">
+        <input type="hidden" name="infoId" value="" id="removeDirInfoId">
+        <input type="hidden" name="spaceId" value="${diskSpace.id}">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">外程序运行</h4>
+        </div>
+        <div class="modal-body" style="margin: 20px;">
+          <input type="text" class="form-control" id="appName" placeholder="程序名: calculator" name="appName">
+          <br>
+          <input type="text" class="form-control" id="appPath" placeholder="程序路径: C:\Windows\System32\calc.exe" name="appPath">
+        </div>
+        <div class="modal-footer">
+          <button id="extAppCancelButton" type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          <button id="extAppConfirmButton" type="submit" class="btn btn-primary">运行</button>
+        </div>
+      </form>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+  
 
 <link rel="stylesheet" href="${cdnPrefix}/public/jquery-file-upload/5.42.0/css/jquery.fileupload.css">
 <script src="${cdnPrefix}/public/jquery-file-upload/5.42.0/js/vendor/jquery.ui.widget.js"></script>

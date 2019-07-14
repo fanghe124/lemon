@@ -67,9 +67,9 @@
           <td class="text-left"><tags:fileSize fileSize="${item.fileSize}"/></td>
           <td class="text-left"></td>
           <td class="text-left"></td>
+          <td class="text-left"><fmt:formatDate value="${item.createTime}" type="both"/></td>
+          <td class="text-left"></td>
           <td class="text-left"><fmt:formatDate value="${item.lastModifiedTime}" type="both"/></td>
-          <td class="text-left"></td>
-          <td class="text-left"></td>
         </tr>
 		    </c:forEach>
       </tbody>
