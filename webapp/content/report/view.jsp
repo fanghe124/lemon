@@ -20,7 +20,7 @@
   </head>
 
   <body>
-    <%@include file="/header/report.jsp"%>
+    <%@include file="/header/portal.jsp"%>
 
 	<div class="row-fluid">
 

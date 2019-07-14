@@ -22,14 +22,8 @@
     </div>
   </div>
 
-  <div id="uploadFileButton" class="btn btn-default fixed-button fileinput-button">
-    上传文件
-    <input type="file" name="file" class="fileupload" data-no-uniform="true" data-url="upload.do" data-form-data='{"path":"${path}","spaceId":"${diskSpace.id}"}'>
-  </div>
-  <button id="createDirButton" class="btn btn-default fixed-button" data-toggle="modal" data-target="#createDirDialog">新建文件夹</button>
-  <button id="createShareButton" class="btn btn-default fixed-button" data-toggle="modal" data-target="#createShareDialog" onclick="$('#createShareInfoId').val($('.selectedItem').val())">共享</button>
-  <button id="removeDirButton" class="btn btn-default fixed-button" data-toggle="modal" data-target="#removeDirDialog" onclick="$('#removeDirInfoId').val($('.selectedItem').val())">删除</button>
-  <a class="btn btn-default fixed-button"  href="${tenantPrefix}/disk/index.do">更新</a>
+  <button id="createDirButton" class="btn btn-default fixed-button" data-toggle="modal" data-target="#createShareDialog" onclick="$('#createShareInfoId').val($('.selectedItem').val())">共享</button>
+  <a class="btn btn-default fixed-button" href="disk-info-download.do?id=${item.id}">下载</a>
 <!--
   <a href="${tenantPrefix}/disk/disk-info-list.do" class="btn btn-default"><i class="glyphicon glyphicon-list"></i>&nbsp;我的文件</a>
 

@@ -7,6 +7,10 @@ html, body {margin:0;padding:0;height:100%;}
 	padding-top: 5px;
 }
 
+.form-inline > div > label {
+	margin-right:10px;
+}
+
 .menu-title {
 	maring-left:10px;
 }
@@ -52,10 +56,11 @@ html, body {margin:0;padding:0;height:100%;}
 
 .nav > li > a:focus, 
 .nav > li > a:hover,
-a.active {
+.nav > li > a.active {
     text-decoration: none;
     background-color: #7b4ff9;
     color: white;
+    
 }
 
 .nav > li > a > i:focus, 
@@ -69,6 +74,13 @@ a.active {
 	color: #7b4ff9;
 }
 
+.fixed-button:hover, 
+.fixed-button:focus {
+	color: white;
+	background-color: #7b4ff9;
+	border-color: #7b4ff9;
+}
+
 .col-md-10 {
 	background-color: #f7f9fa;
 	height: 100%;
@@ -79,6 +91,10 @@ a.active {
 	padding: 30px;
 	background-color: #f7f9fa;
 	height: 100%;
+}
+
+.form-container {
+	padding: 20px;
 }
 
 .row-fluid {
@@ -96,3 +112,53 @@ a.active {
 	color: white;
 	text-align: center;
  }
+ 
+.come-from-modal.left .modal-dialog,
+.come-from-modal.right .modal-dialog {
+    position: fixed;
+    margin-top:95px;
+    width: auto;
+    height: 90%;
+    -webkit-transform: translate3d(0%, 0, 0);
+    -ms-transform: translate3d(0%, 0, 0);
+    -o-transform: translate3d(0%, 0, 0);
+    transform: translate3d(0%, 0, 0);
+}
+
+.come-from-modal.left .modal-content,
+.come-from-modal.right .modal-content {
+    height: 90%;
+    overflow-y: auto;
+    border-radius: 0px;
+}
+
+.come-from-modal.left .modal-body,
+.come-from-modal.right .modal-body {
+    padding: 15px 15px 80px;
+}
+.come-from-modal.right.fade .modal-dialog {
+    right: -320px;
+    -webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
+    -moz-transition: opacity 0.3s linear, right 0.3s ease-out;
+    -o-transition: opacity 0.3s linear, right 0.3s ease-out;
+    transition: opacity 0.3s linear, right 0.3s ease-out;
+}
+
+.come-from-modal.right.fade.in .modal-dialog {
+    right: 0;
+}
+
+.modal.fade:not(.in).right .modal-dialog {
+    -webkit-transform: translate3d(25%, 0, 0);
+    transform: translate3d(25%, 0, 0);
+}
+
+.margin-10 {
+	margin-top: 10px;
+}
+.margin-20 {
+	margin-top: 20px;
+}
+.margin-30 {
+	margin-top: 30px;
+}

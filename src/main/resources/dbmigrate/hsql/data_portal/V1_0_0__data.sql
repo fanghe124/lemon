@@ -1,6 +1,6 @@
 
 
-INSERT INTO PORTAL_WIDGET(ID,NAME,URL) VALUES(1,'待办任务','/rs/humantask/widget/personalTasks');
+INSERT INTO PORTAL_WIDGET(ID,NAME,URL) VALUES(1,'待办任务2','/rs/humantask/widget/personalTasks');
 INSERT INTO PORTAL_WIDGET(ID,NAME,URL) VALUES(2,'我的实验','/rs/bpm/widget/runningProcesses');
 INSERT INTO PORTAL_WIDGET(ID,NAME,URL) VALUES(3,'常用实验','/rs/bpm/widget/processes');
 INSERT INTO PORTAL_WIDGET(ID,NAME,URL) VALUES(4,'通知公告','/rs/cms/widget/articles');

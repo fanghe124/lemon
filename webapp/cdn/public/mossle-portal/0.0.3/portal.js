@@ -7,7 +7,6 @@ $(function() {
 		afterOrdered: function(panelOrders) {
 			var ids = ''
 			for (var key in panelOrders) {
-				console.log(key);
 				var id = key;
 				var priority = panelOrders[key];
 				ids += 'ids=' + id.replace('panel', '') + '&priorities=' + priority + '&';

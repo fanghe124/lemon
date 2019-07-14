@@ -84,6 +84,46 @@ public class DiskController {
     }
 
     /**
+     * 数据处理
+     */
+    @RequestMapping("disk-process")
+    public String processHome(
+            @RequestParam(value = "path", required = false, defaultValue = "") String path,
+            @RequestParam(value = "filter_LIKES_name", required = false, defaultValue = "") String searchName,
+            Model model) {
+    	
+    	String userId = currentUserHolder.getUserId();
+        DiskSpace diskSpace = this.diskService.findUserSpace(userId);
+
+        List<DiskInfo> diskInfos = diskService.listFiles(diskSpace, path, searchName);
+        model.addAttribute("diskInfos", diskInfos);
+        model.addAttribute("diskSpace", diskSpace);
+        model.addAttribute("path", path);
+
+        return "disk/disk-process";
+    }
+
+    /**
+     * 数据处理
+     */
+    @RequestMapping("disk-analysis")
+    public String analysisHome(
+            @RequestParam(value = "path", required = false, defaultValue = "") String path,
+            @RequestParam(value = "filter_LIKES_name", required = false, defaultValue = "") String searchName,
+            Model model) {
+    	
+    	String userId = currentUserHolder.getUserId();
+        DiskSpace diskSpace = this.diskService.findUserSpace(userId);
+
+        List<DiskInfo> diskInfos = diskService.listFiles(diskSpace, path, searchName);
+        model.addAttribute("diskInfos", diskInfos);
+        model.addAttribute("diskSpace", diskSpace);
+        model.addAttribute("path", path);
+
+        return "disk/disk-analysis";
+    }
+
+    /**
      * 共享文档.
      */
     @RequestMapping("share")
