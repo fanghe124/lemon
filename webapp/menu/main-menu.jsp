@@ -42,6 +42,7 @@
       <li><a href="${tenantPrefix}/disk/index.do" class="${currentMenu == 'disk-home' ? 'active' : ''}"><i class="fa fa-database"></i>数据管理</a></li>
       <li><a href="${tenantPrefix}/disk/disk-process.do" class="${currentMenu == 'disk-process' ? 'active' : ''}"><i class="fa fa-video"></i>数据处理</a></li>
       <li><a href="${tenantPrefix}/disk/disk-analysis.do" class="${currentMenu == 'disk-analysis' ? 'active' : ''}"><i class="fa fa-chart-pie"></i>数据分析</a></li>
+      <!--<li><a href="${tenantPrefix}/disk/disk-extapp.do" class="${currentMenu == 'disk-extapp' ? 'active' : ''}"><i class="fa-app-store"></i>外程序管理</a></li>-->
     </ul>
 
     <!-- 实验统计 -->

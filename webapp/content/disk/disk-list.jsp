@@ -35,27 +35,27 @@ body {
       <tbody id="tbodyFileInfo">
 	    <c:forEach items="${diskShares}" var="item">
         <tr>
-		  <td class="text-center">
-			<c:if test="${item.type != 'dir'}">
-            <a href="disk-download.do?id=${item.id}"><i class=" glyphicon glyphicon-download-alt"></i></a>
-			</c:if>
+        <td class="text-center">
+        <c:if test="${item.type != 'dir'}">
+              <a href="disk-download.do?id=${item.id}"><i class=" glyphicon glyphicon-download-alt"></i></a>
+        </c:if>
+            </td>
+            <td class="text-left">
+          <i class="icon-16 icon-16-${item.type}"></i>
+        <c:if test="${item.type == 'dir'}">
+        <a href="disk-list.do?path=${path}/${item.name}">
+          <span class="file-16-name">${item.name}</span>
+        </a>
+        </c:if>
+        <c:if test="${item.type != 'dir'}">
+          <a href="disk-view.do?id=${item.id}">
+        <span class="file-16-name">${item.name}</span>
+        </a>
+        </c:if>
           </td>
-          <td class="text-left">
-		    <i class="icon-16 icon-16-${item.type}"></i>
-			<c:if test="${item.type == 'dir'}">
-			<a href="disk-list.do?path=${path}/${item.name}">
-		    <span class="file-16-name">${item.name}</span>
-			</a>
-			</c:if>
-			<c:if test="${item.type != 'dir'}">
-		    <a href="disk-view.do?id=${item.id}">
-			<span class="file-16-name">${item.name}</span>
-			</a>
-			</c:if>
-	      </td>
-          <td class="text-left"><fmt:formatDate value="${item.shareTime}" type="both"/></td>
-        </tr>
-		</c:forEach>
+            <td class="text-left"><fmt:formatDate value="${item.shareTime}" type="both"/></td>
+          </tr>
+      </c:forEach>
       </tbody>
     </table>
 

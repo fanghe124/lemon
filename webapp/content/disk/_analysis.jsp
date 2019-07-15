@@ -9,15 +9,15 @@
             <option value="shiyan">实验数据</option>
           </select>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
           <label for="disk-search_time"><spring:message code='disk-info.disk-info.list.search.name' text='最近更新时间'/>:</label>
           <input type="text" id="disk-search_time" name="filter_LIKES_time" value="${param.filter_LIKES_time}" class="form-control">
         </div>
-        <div class="col-md-3">
+        <div class="col-md-5">
           <label for="disk-search_name"><spring:message code='disk-info.disk-info.list.search.name' text='文件名'/>:</label>
           <input type="text" id="disk-search_name" name="filter_LIKES_name" value="${param.filter_LIKES_name}" class="form-control">
+          <button class="btn btn-default a-search fixed-button" style="right:10%; position:absolute;" onclick="document.disk-searchForm.submit()">查询</button>
         </div>
-        <button class="btn btn-default a-search fixed-button" style="right:10%; position:absolute;" onclick="document.disk-searchForm.submit()">查询</button>
       </form>
     </div>
   </div>
@@ -28,7 +28,8 @@
       <a class="btn btn-default fixed-button" href="disk-info-download.do?id=${item.id}">下载</a>
     </div>
     <div class="col-md-6" style="text-align: right">
-      <button id="extAppSettingButton" class="btn btn-default fixed-button" data-toggle="modal" data-target="#extAppDialog">外程序运行</button>
+      <!--<button id="extAppSettingButton" class="btn btn-default fixed-button" data-toggle="modal" data-target="#extAppDialog">外程序运行</button>-->
+      <a class="btn btn-default fixed-button" href="lemon://">外程序运行</a>
       <a class="btn btn-default fixed-button" href="matlab-build.do?id=${item.id}">Matlab运行</a>
     </div>
   </div>

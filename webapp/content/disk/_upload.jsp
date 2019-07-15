@@ -9,15 +9,15 @@
             <option value="shiyan">实验数据</option>
           </select>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
           <label for="disk-search_time"><spring:message code='disk-info.disk-info.list.search.name' text='最近更新时间'/>:</label>
           <input type="text" id="disk-search_time" name="filter_LIKES_time" value="${param.filter_LIKES_time}" class="form-control">
         </div>
-        <div class="col-md-3">
+        <div class="col-md-5">
           <label for="disk-search_name"><spring:message code='disk-info.disk-info.list.search.name' text='文件名'/>:</label>
           <input type="text" id="disk-search_name" name="filter_LIKES_name" value="${param.filter_LIKES_name}" class="form-control">
+          <button class="btn btn-default a-search fixed-button" style="right:10%; position:absolute;" onclick="document.disk-searchForm.submit()">查询</button>
         </div>
-        <button class="btn btn-default a-search fixed-button" style="right:10%; position:absolute;" onclick="document.disk-searchForm.submit()">查询</button>
       </form>
     </div>
   </div>
@@ -30,13 +30,6 @@
   <button id="createShareButton" class="btn btn-default fixed-button" data-toggle="modal" data-target="#createShareDialog" onclick="$('#createShareInfoId').val($('.selectedItem').val())">共享</button>
   <button id="removeDirButton" class="btn btn-default fixed-button" data-toggle="modal" data-target="#removeDirDialog" onclick="$('#removeDirInfoId').val($('.selectedItem').val())">删除</button>
   <a class="btn btn-default fixed-button"  href="${tenantPrefix}/disk/index.do">更新</a>
-<!--
-  <a href="${tenantPrefix}/disk/disk-info-list.do" class="btn btn-default"><i class="glyphicon glyphicon-list"></i>&nbsp;我的文件</a>
-
-  <a href="${tenantPrefix}/disk/disk-share-list.do" class="btn btn-default"><i class="glyphicon glyphicon-list"></i>&nbsp;我的分享</a>
-
-  <a href="${tenantPrefix}/disk/disk-home.do" class="btn btn-default"><i class="glyphicon glyphicon-list"></i>&nbsp;分享首页</a>
--->
 </div>
 
 <div style="margin-top:10px;margin-bottom:10px;" class="clearfix">

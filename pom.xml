@@ -31,6 +31,11 @@
   </prerequisites>
   <dependencies>
     <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi</artifactId>
+      <version>3.17</version>
+    </dependency>
+    <dependency>
       <groupId>org.matlabcontrol</groupId>
       <artifactId>matlabcontrol</artifactId>
       <version>4.1.0</version>

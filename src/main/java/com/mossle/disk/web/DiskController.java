@@ -69,7 +69,8 @@ public class DiskController {
 
     private JdbcTemplate jdbcTemplate;
     private String sqlFindAccountName = "SELECT USERNAME FROM ACCOUNT_INFO WHERE CODE=?";
-
+    private String sqlFindExternalApp = "SELECT NAME FROM DISK_EXTAPP WHERE CREATOR=?";
+    private String sqlAddExternalApp = "INSERT INTO DISK_EXTAPP(NAME, CREATOR) values(?,?)";
     /**
      * 个人文档.
      */
@@ -143,15 +144,36 @@ public class DiskController {
         return "disk/disk-analysis";
     }
 
-    /**
-     * 数据处理
-     */
-    @RequestMapping("run-extapp")
-    public String runExtApp(
+    @RequestMapping("add-extapp")
+    public String addExtApp(
             @RequestParam(value = "appName") String appname,
-            @RequestParam(value = "appPath") String apppath,
             Model model) {
     	
+    	String userId = currentUserHolder.getUserId();
+
+        jdbcTemplate.update(
+        		sqlAddExternalApp,
+        		appname, userId);
+    	
+        String applist = jdbcTemplate.queryForObject(
+        		sqlFindExternalApp, String.class, userId);
+        
+        model.addAttribute("applist", applist);
+        
+    	return "run-extapp";
+    }
+    
+    @RequestMapping("disk-extapp")
+    public String runExtApp(Model model) {
+    	
+    	String userId = currentUserHolder.getUserId();
+
+        String applist = jdbcTemplate.queryForObject(
+        		sqlFindExternalApp, String.class, userId);
+        
+        model.addAttribute("applist", applist);
+        
+        /*
     	try {
 			//Runtime.getRuntime().exec(apppath, null);
     		ProcessBuilder p = new ProcessBuilder();
@@ -161,8 +183,9 @@ public class DiskController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-        return "disk/disk-analysis";
+		*/
+        
+        return "disk/run-extapp";
     }
 
 
@@ -285,7 +308,7 @@ public class DiskController {
     /**
      * 上传文件.
      */
-    
+    @RequestMapping("upload")
     @ResponseBody
     public String upload(@RequestParam("file") MultipartFile file,
             @RequestParam("path") String path,
