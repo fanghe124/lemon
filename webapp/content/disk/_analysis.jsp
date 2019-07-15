@@ -10,8 +10,8 @@
           </select>
         </div>
         <div class="col-md-3">
-          <label for="disk-search_name"><spring:message code='disk-info.disk-info.list.search.name' text='最近更新时间'/>:</label>
-          <input type="text" id="disk-search_name" name="filter_LIKES_name" value="${param.filter_LIKES_name}" class="form-control">
+          <label for="disk-search_time"><spring:message code='disk-info.disk-info.list.search.name' text='最近更新时间'/>:</label>
+          <input type="text" id="disk-search_time" name="filter_LIKES_time" value="${param.filter_LIKES_time}" class="form-control">
         </div>
         <div class="col-md-3">
           <label for="disk-search_name"><spring:message code='disk-info.disk-info.list.search.name' text='文件名'/>:</label>
@@ -29,6 +29,7 @@
     </div>
     <div class="col-md-6" style="text-align: right">
       <button id="extAppSettingButton" class="btn btn-default fixed-button" data-toggle="modal" data-target="#extAppDialog">外程序运行</button>
+      <a class="btn btn-default fixed-button" href="matlab-build.do?id=${item.id}">Matlab运行</a>
     </div>
   </div>
 

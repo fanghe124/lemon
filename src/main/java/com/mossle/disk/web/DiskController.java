@@ -1,6 +1,7 @@
 package com.mossle.disk.web;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -152,7 +153,10 @@ public class DiskController {
             Model model) {
     	
     	try {
-			Runtime.getRuntime().exec(apppath, null);
+			//Runtime.getRuntime().exec(apppath, null);
+    		ProcessBuilder p = new ProcessBuilder();
+            p.command(apppath);   
+            p.start();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -281,7 +285,7 @@ public class DiskController {
     /**
      * 上传文件.
      */
-    @RequestMapping("upload")
+    
     @ResponseBody
     public String upload(@RequestParam("file") MultipartFile file,
             @RequestParam("path") String path,
@@ -298,6 +302,27 @@ public class DiskController {
         return "{\"success\":true}";
     }
 
+    private String fileLocation;
+    
+    @RequestMapping("uploadfile")
+    public String uploadFile(Model model, MultipartFile file) throws IOException {
+        InputStream in = file.getInputStream();
+        File currDir = new File(".");
+        String path = currDir.getAbsolutePath();
+        fileLocation = path.substring(0, path.length() - 1) + file.getOriginalFilename();
+        FileOutputStream f = new FileOutputStream(fileLocation);
+        int ch = 0;
+        while ((ch = in.read()) != -1) {
+            f.write(ch);
+        }
+        f.flush();
+        f.close();
+        model.addAttribute("message", "File: " + file.getOriginalFilename() 
+          + " has been uploaded successfully!");
+        return "excel";
+    }
+    
+    
     /**
      * 创建目录.
      */

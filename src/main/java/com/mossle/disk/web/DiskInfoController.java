@@ -40,6 +40,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import matlabcontrol.*;
+
 @Controller
 @RequestMapping("disk")
 public class DiskInfoController {
@@ -181,6 +183,42 @@ public class DiskInfoController {
                 is.close();
             }
         }
+    }
+
+    /**
+     * matlab.
+     */
+    @RequestMapping("matlab-build")
+    public String matlab(@RequestParam("id") Long id, Model model) {
+        //DiskInfo diskInfo = diskInfoManager.get(id);
+        
+         // create proxy
+        try {
+        	MatlabProxyFactoryOptions options =
+                new MatlabProxyFactoryOptions.Builder()
+                    .setUsePreviouslyControlledSession(true)
+                    //.setHidden(true)
+                    .build();
+
+            MatlabProxyFactory factory = new MatlabProxyFactory(options);
+            MatlabProxy proxy;
+
+			proxy = factory.getProxy();
+			
+			// call user-defined function (must be on the path)
+	        proxy.feval("works");
+
+	        // close connection
+	        proxy.disconnect();
+
+		} catch (MatlabConnectionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (MatlabInvocationException e) {
+			e.printStackTrace();
+		}
+
+        return "disk/disk-analysis";
     }
 
     /**

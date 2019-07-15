@@ -10,8 +10,8 @@
           </select>
         </div>
         <div class="col-md-3">
-          <label for="disk-search_name"><spring:message code='disk-info.disk-info.list.search.name' text='最近更新时间'/>:</label>
-          <input type="text" id="disk-search_name" name="filter_LIKES_name" value="${param.filter_LIKES_name}" class="form-control">
+          <label for="disk-search_time"><spring:message code='disk-info.disk-info.list.search.name' text='最近更新时间'/>:</label>
+          <input type="text" id="disk-search_time" name="filter_LIKES_time" value="${param.filter_LIKES_time}" class="form-control">
         </div>
         <div class="col-md-3">
           <label for="disk-search_name"><spring:message code='disk-info.disk-info.list.search.name' text='文件名'/>:</label>
@@ -146,15 +146,16 @@
 
 <script type="text/javascript">
 function generateFileupload(maxLimitedSize) {
-    $('.fileupload').fileupload({
-        dataType: 'json',
-        add: function (e, data) {
-			    var file = data.files[0];
-			    if (file.size > maxLimitedSize) {
-				    alert("图片过大");
-			    } else {
-				    data.submit();
-			    }
+  $('.fileupload').fileupload({
+    dataType: 'json',
+    maxFileSize: 100000000,
+    add: function (e, data) {
+      var file = data.files[0];
+      if (file.size > maxLimitedSize) {
+        alert("图片过大");
+      } else {
+        data.submit();
+      }
     },
 		submit: function (e, data) {
 			var $this = $(this);
@@ -172,7 +173,7 @@ function generateFileupload(maxLimitedSize) {
 			$('#uploadFileProgress').modal('show');
 			return false;
 		},
-        done: function (e, data) {
+    done: function (e, data) {
 			$('#uploadFileConfirmButton').show();
 			// location.reload();
         },
