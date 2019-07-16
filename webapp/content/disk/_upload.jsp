@@ -35,7 +35,7 @@
 <div style="margin-top:10px;margin-bottom:10px;" class="clearfix">
   <div class="pull-left">
 <c:if test="${not empty path}">
-  <a href="disk-info-parentDir.do?path=${path}">返回上一级</a>
+  <a href="disk-index-parentDir.do?path=${path}">返回上一级</a>
   |
   <%
   String path = (String) request.getAttribute("path");
@@ -100,7 +100,7 @@
         <h4 class="modal-title">创建目录</h4>
       </div>
       <div class="modal-body">
-    <input type="text" class="form-control" id="dirName" placeholder="目录名" name="name">
+        <input type="text" class="form-control" id="dirName" placeholder="目录名" name="name">
       </div>
       <div class="modal-footer">
         <button id="uploadFileCancelButton" type="button" class="btn btn-default" data-dismiss="modal">取消</button>

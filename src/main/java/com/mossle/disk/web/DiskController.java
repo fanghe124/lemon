@@ -67,6 +67,9 @@ public class DiskController {
     private CurrentUserHolder currentUserHolder;
     private DiskService diskService;
 
+    private String strCurrentPath;
+    private boolean bCurrentPath = false;
+    
     private JdbcTemplate jdbcTemplate;
     private String sqlFindAccountName = "SELECT USERNAME FROM ACCOUNT_INFO WHERE CODE=?";
     private String sqlFindExternalApp = "SELECT NAME FROM DISK_EXTAPP WHERE CREATOR=?";
@@ -96,6 +99,11 @@ public class DiskController {
         model.addAttribute("modifier", lastModifierName);
 		*/
         
+        if(bCurrentPath) {
+        	path = strCurrentPath;
+        	bCurrentPath = false;
+        }
+        
         List<DiskInfo> diskInfos = diskService.listFiles(diskSpace, path, searchName);
         model.addAttribute("diskInfos", diskInfos);
         model.addAttribute("diskSpace", diskSpace);
@@ -104,6 +112,25 @@ public class DiskController {
         return "disk/index";
     }
 
+    /**
+     * 上一级目录.
+     */
+    @RequestMapping("disk-index-parentDir")
+    public String parentDir(@RequestParam("path") String path) throws Exception {
+        if (path == null) {
+            return "redirect:/disk/index.do";
+        }
+
+        if ("".equals(path)) {
+            return "redirect:/disk/index.do";
+        }
+
+        strCurrentPath = path.substring(0, path.lastIndexOf("/"));
+        bCurrentPath = true;
+        
+        return "redirect:/disk/index.do?path=" + strCurrentPath;
+    }
+    
     /**
      * 数据处理
      */
@@ -125,6 +152,25 @@ public class DiskController {
     }
 
     /**
+     * 上一级目录.
+     */
+    @RequestMapping("disk-process-parentDir")
+    public String processParentDir(@RequestParam("path") String path) throws Exception {
+        if (path == null) {
+            return "redirect:/disk/disk-process.do";
+        }
+
+        if ("".equals(path)) {
+            return "redirect:/disk/disk-process.do";
+        }
+
+        strCurrentPath = path.substring(0, path.lastIndexOf("/"));
+        bCurrentPath = true;
+        
+        return "redirect:/disk/disk-process.do?path=" + strCurrentPath;
+    }
+    
+    /**
      * 数据处理
      */
     @RequestMapping("disk-analysis")
@@ -144,6 +190,25 @@ public class DiskController {
         return "disk/disk-analysis";
     }
 
+    /**
+     * 上一级目录.
+     */
+    @RequestMapping("disk-analysis-parentDir")
+    public String analysisParentDir(@RequestParam("path") String path) throws Exception {
+        if (path == null) {
+            return "redirect:/disk/disk-analysis.do";
+        }
+
+        if ("".equals(path)) {
+            return "redirect:/disk/disk-analysis.do";
+        }
+
+        strCurrentPath = path.substring(0, path.lastIndexOf("/"));
+        bCurrentPath = true;
+        
+        return "redirect:/disk/disk-analysis.do?path=" + strCurrentPath;
+    }
+    
     @RequestMapping("add-extapp")
     public String addExtApp(
             @RequestParam(value = "appName") String appname,
@@ -355,7 +420,10 @@ public class DiskController {
             @RequestParam("spaceId") Long spaceId) {
         String userId = currentUserHolder.getUserId();
         diskService.createDir(userId, name, path, spaceId);
-
+        
+        strCurrentPath = path;
+        bCurrentPath = true;
+        
         return "redirect:/disk/index.do?path=" + path;
     }
 

@@ -29,7 +29,8 @@
     </div>
     <div class="col-md-6" style="text-align: right">
       <!--<button id="extAppSettingButton" class="btn btn-default fixed-button" data-toggle="modal" data-target="#extAppDialog">外程序运行</button>-->
-      <a class="btn btn-default fixed-button" href="lemon://">外程序运行</a>
+      <a class="btn btn-default fixed-button" href="lemon.app1://">外程序1运行</a>
+      <a class="btn btn-default fixed-button" href="lemon.app2://">外程序2运行</a>
       <a class="btn btn-default fixed-button" href="matlab-build.do?id=${item.id}">Matlab运行</a>
     </div>
   </div>
@@ -46,7 +47,7 @@
 <div style="margin-top:10px;margin-bottom:10px;" class="clearfix">
   <div class="pull-left">
 <c:if test="${not empty path}">
-  <a href="disk-info-parentDir.do?path=${path}">返回上一级</a>
+  <a href="disk-analysis-parentDir.do?path=${path}">返回上一级</a>
   |
   <%
   String path = (String) request.getAttribute("path");

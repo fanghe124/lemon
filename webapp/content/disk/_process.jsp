@@ -28,7 +28,7 @@
   </div>
   <button id="removeDirButton" class="btn btn-default fixed-button" data-toggle="modal" data-target="#removeDirDialog" onclick="$('#removeDirInfoId').val($('.selectedItem').val())">删除文件</button>
 
-  <button id="createDirButton" class="btn btn-default fixed-button" data-toggle="modal" data-target="#createDirDialog">新建文件夹</button>
+  <!--<button id="createDirButton" class="btn btn-default fixed-button" data-toggle="modal" data-target="#createDirDialog">新建文件夹</button>-->
   <button id="createDirButton" class="btn btn-default fixed-button" data-toggle="modal" data-target="#createShareDialog" onclick="$('#createShareInfoId').val($('.selectedItem').val())">共享</button>
   <a class="btn btn-default fixed-button" href="disk-info-download.do?id=${item.id}">下载</a>
 <!--
@@ -43,7 +43,7 @@
 <div style="margin-top:10px;margin-bottom:10px;" class="clearfix">
   <div class="pull-left">
 <c:if test="${not empty path}">
-  <a href="disk-info-parentDir.do?path=${path}">返回上一级</a>
+  <a href="disk-process-parentDir.do?path=${path}">返回上一级</a>
   |
   <%
   String path = (String) request.getAttribute("path");
