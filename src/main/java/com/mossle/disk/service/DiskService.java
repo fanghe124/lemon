@@ -253,18 +253,32 @@ public class DiskService {
     /**
      * 根据space显示文件列表.
      */
-    public List<DiskInfo> listFiles(DiskSpace diskSpace, String parentPath, String diskName) {
+    public List<DiskInfo> listFiles(DiskSpace diskSpace, String parentPath, String diskName, String username, String location, String startDate, String endDate) {
         if (parentPath == null) {
             parentPath = "";
         }
 
+        String hql = "from DiskInfo where ";
+        hql += "diskSpace=? ";
+        hql += "and parentPath=? ";
+        if(diskName.length() > 0) hql += "and name like " + "'%" + diskName + "%' ";
+        if(username.length() > 0) hql += "and creator_name like " + "'%" + username + "%' ";
+        if(location.length() > 0) hql += "and location like "+ "'%" + location + "%' ";
+        if(startDate.length() > 0) hql += "and last_modified_time >= '" + startDate + "' ";
+        if(endDate.length() > 0) hql += "and last_modified_time <= '" + endDate + "' ";
+        hql += "and status='active' order by dirType";
+        
+        return diskInfoManager.find(hql, diskSpace, parentPath);
+        /*
         if(diskName == null || diskName.length() == 0) {
-        	String hql = "from DiskInfo where diskSpace=? and parentPath=? and status='active' order by dirType";
-        	return diskInfoManager.find(hql, diskSpace, parentPath);
-        } else {
-        	String hql = "from DiskInfo where diskSpace=? and parentPath=? and name like ? and status='active' order by dirType";
+            hql = "from DiskInfo where diskSpace=? and parentPath=? and name like ? and status='active' order by dirType";
         	return diskInfoManager.find(hql, diskSpace, parentPath, "%" + diskName + "%");
-        }
+        	//String hql = "from DiskInfo where diskSpace=? and parentPath=? and status='active' order by dirType";
+        	//return diskInfoManager.find(hql, diskSpace, parentPath);
+        } else {
+        	hql = "from DiskInfo where diskSpace=? and parentPath=? and name like ? and status='active' order by dirType";
+        	return diskInfoManager.find(hql, diskSpace, parentPath, "%" + diskName + "%");
+        }*/
     }
     
     /**

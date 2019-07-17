@@ -3,18 +3,20 @@
   <div class="panel panel-default">
     <div class="panel-body">
       <form name="disk-searchForm" method="post" action="index.do" class="form-inline">
-        <label for="disk-search_name"><spring:message code='disk-info.disk-info.list.search.name' text='用户名'/>:</label>
-        <input type="text" id="disk-search_name" name="filter_LIKES_name" value="${param.filter_LIKES_name}" class="form-control" style="margin-right: 20px; width: 120px;">
-        <label for="disk-search_name"><spring:message code='disk-info.disk-info.list.search.name' text='地方'/>:</label>
-        <input type="text" id="disk-search_name" name="filter_LIKES_name" value="${param.filter_LIKES_name}" class="form-control" style="margin-right: 20px; width: 120px;">
+        <label for="disk-search_username"><spring:message code='disk-info.disk-info.list.search.name' text='用户名'/>:</label>
+        <input type="text" id="disk-search_username" name="filter_LIKES_username" value="${param.filter_LIKES_username}" class="form-control" style="margin-right: 20px; width: 120px;">
+        <label for="disk-search_location"><spring:message code='disk-info.disk-info.list.search.name' text='地方'/>:</label>
+        <input type="text" id="disk-search_location" name="filter_LIKES_location" value="${param.filter_LIKES_location}" class="form-control" style="margin-right: 20px; width: 120px;">
         <!--<label for="disk-search_tyle"><spring:message code='disk-info.disk-info.list.search.name' text='管理类别'/>:</label>
         <select style="width: 50%; text-align: center; height: 35px;">
           <option value="shiyan">实验数据</option>
         </select>-->
         <label for="disk-search_time"><spring:message code='disk-info.disk-info.list.search.name' text='最近更新时间'/>:</label>
-        <input type="text" id="txtStartDate" style="padding: 6px 3px;" /> &nbsp; ~ &nbsp;<input type="text" id="txtEndDate" style="padding: 6px 3px;"/>
-        <label for="disk-search_name" style="margin-left: 30px"><spring:message code='disk-info.disk-info.list.search.name' text='文件名'/>:</label>
-        <input type="text" id="disk-search_name" name="filter_LIKES_name" value="${param.filter_LIKES_name}" class="form-control">
+        <input type="text" id="txtStartDate" name="filter_LIKES_startdate" value="${param.filter_LIKES_startdate}" style="padding: 6px 3px;" /> 
+        &nbsp; ~ &nbsp;
+        <input type="text" id="txtEndDate" name="filter_LIKES_enddate" value="${param.filter_LIKES_enddate}" style="padding: 6px 3px;"/>
+        <label for="disk-search_filename" style="margin-left: 30px"><spring:message code='disk-info.disk-info.list.search.name' text='文件名'/>:</label>
+        <input type="text" id="disk-search_filename" name="filter_LIKES_name" value="${param.filter_LIKES_name}" class="form-control">
         <button class="btn btn-default a-search fixed-button" style="right:10%; position:absolute;" onclick="document.disk-searchForm.submit()">查询</button>
       </form>
     </div>
@@ -203,7 +205,7 @@ $(function () {
     buttonText: "Choose",
     showAnim: "fade",
     beforeShow: customRange,
-    dateFormat: "dd M yy",
+    dateFormat: "yy-m-dd",
   });
 });
 

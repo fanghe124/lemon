@@ -81,6 +81,10 @@ public class DiskController {
     public String index(
             @RequestParam(value = "path", required = false, defaultValue = "") String path,
             @RequestParam(value = "filter_LIKES_name", required = false, defaultValue = "") String searchName,
+            @RequestParam(value = "filter_LIKES_username", required = false, defaultValue = "") String searchUserName,
+            @RequestParam(value = "filter_LIKES_location", required = false, defaultValue = "") String searchLocation,
+            @RequestParam(value = "filter_LIKES_startdate", required = false, defaultValue = "") String searchStartDate,
+            @RequestParam(value = "filter_LIKES_enddate", required = false, defaultValue = "") String searchEndDate,
             Model model) {
     	
     	String userId = currentUserHolder.getUserId();
@@ -104,7 +108,7 @@ public class DiskController {
         	bCurrentPath = false;
         }
         
-        List<DiskInfo> diskInfos = diskService.listFiles(diskSpace, path, searchName);
+        List<DiskInfo> diskInfos = diskService.listFiles(diskSpace, path, searchName, searchUserName, searchLocation, searchStartDate, searchEndDate);
         model.addAttribute("diskInfos", diskInfos);
         model.addAttribute("diskSpace", diskSpace);
         model.addAttribute("path", path);
@@ -138,12 +142,16 @@ public class DiskController {
     public String processHome(
             @RequestParam(value = "path", required = false, defaultValue = "") String path,
             @RequestParam(value = "filter_LIKES_name", required = false, defaultValue = "") String searchName,
+            @RequestParam(value = "filter_LIKES_username", required = false, defaultValue = "") String searchUserName,
+            @RequestParam(value = "filter_LIKES_location", required = false, defaultValue = "") String searchLocation,
+            @RequestParam(value = "filter_LIKES_startdate", required = false, defaultValue = "") String searchStartDate,
+            @RequestParam(value = "filter_LIKES_enddate", required = false, defaultValue = "") String searchEndDate,
             Model model) {
     	
     	String userId = currentUserHolder.getUserId();
         DiskSpace diskSpace = this.diskService.findUserSpace(userId);
 
-        List<DiskInfo> diskInfos = diskService.listFiles(diskSpace, path, searchName);
+        List<DiskInfo> diskInfos = diskService.listFiles(diskSpace, path, searchName, searchUserName, searchLocation, searchStartDate, searchEndDate);
         model.addAttribute("diskInfos", diskInfos);
         model.addAttribute("diskSpace", diskSpace);
         model.addAttribute("path", path);
@@ -177,12 +185,16 @@ public class DiskController {
     public String analysisHome(
             @RequestParam(value = "path", required = false, defaultValue = "") String path,
             @RequestParam(value = "filter_LIKES_name", required = false, defaultValue = "") String searchName,
+            @RequestParam(value = "filter_LIKES_username", required = false, defaultValue = "") String searchUserName,
+            @RequestParam(value = "filter_LIKES_location", required = false, defaultValue = "") String searchLocation,
+            @RequestParam(value = "filter_LIKES_startdate", required = false, defaultValue = "") String searchStartDate,
+            @RequestParam(value = "filter_LIKES_enddate", required = false, defaultValue = "") String searchEndDate,
             Model model) {
     	
     	String userId = currentUserHolder.getUserId();
         DiskSpace diskSpace = this.diskService.findUserSpace(userId);
 
-        List<DiskInfo> diskInfos = diskService.listFiles(diskSpace, path, searchName);
+        List<DiskInfo> diskInfos = diskService.listFiles(diskSpace, path, searchName, searchUserName, searchLocation, searchStartDate, searchEndDate);
         model.addAttribute("diskInfos", diskInfos);
         model.addAttribute("diskSpace", diskSpace);
         model.addAttribute("path", path);

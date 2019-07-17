@@ -75,10 +75,11 @@
       <thead>
         <tr>
           <th class="m-table-check"><input type="checkbox" name="checkAll" onchange="toggleSelectedItems(this.checked)"></th>
-          <th class="col-md-3 text-left">文件名</th>
+          <th class="col-md-4 text-left">文件名</th>
           <th class="col-md-1 text-left">大小</th>
-          <th class="col-md-2 text-left">管理类别</th>
+          <!--<th class="col-md-2 text-left">管理类别</th>-->
           <th class="col-md-1 text-left">创建人</th>
+          <th class="col-md-1 text-left">地方</th>
           <th class="col-md-2 text-left">创建时间</th>
           <th class="col-md-1 text-left">最近更新人</th>
           <th class="col-md-2 text-left">最近更新时间</th>
@@ -103,10 +104,10 @@
           
           </td>
           <td class="text-left"><tags:fileSize fileSize="${item.fileSize}"/></td>
-          <td class="text-left"></td>
-          <td class="text-left"></td>
+          <td class="text-left">${item.username}</td>
+          <td class="text-left">${item.location}</td>
           <td class="text-left"><fmt:formatDate value="${item.createTime}" type="both"/></td>
-          <td class="text-left"></td>
+          <td class="text-left">${item.username}</td>
           <td class="text-left"><fmt:formatDate value="${item.lastModifiedTime}" type="both"/></td>
         </tr>
 		    </c:forEach>
