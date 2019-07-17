@@ -240,7 +240,7 @@ public class DiskInfoController {
         model.addAttribute("diskInfo", diskInfo);
 
 		try {
-			FileInputStream in = new FileInputStream(new File("1.xls"));
+			FileInputStream in = new FileInputStream(new File("2.xls"));
 			POIFSFileSystem fs = new POIFSFileSystem(in);
 			HSSFWorkbook wk = new HSSFWorkbook(fs);
 			HSSFSheet sheet = wk.getSheetAt(0);

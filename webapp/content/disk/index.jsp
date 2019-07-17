@@ -9,7 +9,9 @@
     <meta charset="utf-8">
     <title>文件管理</title>
     <%@include file="/common/s3.jsp"%>
-	  <link rel="stylesheet" href="${cdnPrefix}/public/mossle-disk/0.0.3/sprite_list_icon.css">
+    <link rel="stylesheet" href="${cdnPrefix}/public/mossle-disk/0.0.3/sprite_list_icon.css">
+    <link rel="stylesheet" href="${cdnPrefix}/public/jquery-ui/1.12.0/themes/themes/smoothness/jquery-ui.css">
+    <script src="${cdnPrefix}/public/jquery-ui/1.12.0/ui/jquery-ui.js"></script>
 	  <style type="text/css">
 .text-left .disk-tool {
 	display: none;
@@ -18,7 +20,43 @@
 .text-left.active .disk-tool {
 	display: inline-block;
 }
-	  </style>
+.ui-datepicker-trigger {
+  margin-left: -23px;
+}
+.ui-datepicker {
+	width: 17em;
+	padding: .2em .2em 0;
+	display: none;
+    background:#846733;  
+}
+.ui-datepicker .ui-datepicker-title {
+	margin: 0 2.3em;
+	line-height: 1.8em;
+	text-align: center;
+    color:#FFFFFF;
+    background:#846733;  
+}
+.ui-datepicker table {
+	width: 100%;
+	font-size: .7em;
+	border-collapse: collapse;
+    font-family:verdana;
+	margin: 0 0 .4em;
+    color:#000000;
+    background:#FDF8E4;    
+}
+.ui-datepicker td {
+	border: 0;
+	padding: 1px;
+}
+.ui-datepicker td span,
+.ui-datepicker td a {
+	display: block;
+	padding: .8em;
+	text-align: right;
+	text-decoration: none;
+}
+</style>
   </head>
   <body>
     <%@include file="/header/portal.jsp"%>

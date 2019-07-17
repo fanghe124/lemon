@@ -129,7 +129,8 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">删除</h4>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="font-size: 16px;">
+        你确定删除吗？
       </div>
       <div class="modal-footer">
         <button id="uploadFileCancelButton" type="button" class="btn btn-default" data-dismiss="modal">取消</button>

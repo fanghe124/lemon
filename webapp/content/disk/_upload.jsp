@@ -3,33 +3,34 @@
   <div class="panel panel-default">
     <div class="panel-body">
       <form name="disk-searchForm" method="post" action="index.do" class="form-inline">
-        <div class="col-md-3">
-          <label for="disk-search_tyle"><spring:message code='disk-info.disk-info.list.search.name' text='管理类别'/>:</label>
-          <select style="width: 50%; text-align: center; height: 35px;">
-            <option value="shiyan">实验数据</option>
-          </select>
-        </div>
-        <div class="col-md-4">
-          <label for="disk-search_time"><spring:message code='disk-info.disk-info.list.search.name' text='最近更新时间'/>:</label>
-          <input type="text" id="disk-search_time" name="filter_LIKES_time" value="${param.filter_LIKES_time}" class="form-control">
-        </div>
-        <div class="col-md-5">
-          <label for="disk-search_name"><spring:message code='disk-info.disk-info.list.search.name' text='文件名'/>:</label>
-          <input type="text" id="disk-search_name" name="filter_LIKES_name" value="${param.filter_LIKES_name}" class="form-control">
-          <button class="btn btn-default a-search fixed-button" style="right:10%; position:absolute;" onclick="document.disk-searchForm.submit()">查询</button>
-        </div>
+        <label for="disk-search_name"><spring:message code='disk-info.disk-info.list.search.name' text='用户名'/>:</label>
+        <input type="text" id="disk-search_name" name="filter_LIKES_name" value="${param.filter_LIKES_name}" class="form-control" style="margin-right: 20px; width: 120px;">
+        <label for="disk-search_name"><spring:message code='disk-info.disk-info.list.search.name' text='地方'/>:</label>
+        <input type="text" id="disk-search_name" name="filter_LIKES_name" value="${param.filter_LIKES_name}" class="form-control" style="margin-right: 20px; width: 120px;">
+        <!--<label for="disk-search_tyle"><spring:message code='disk-info.disk-info.list.search.name' text='管理类别'/>:</label>
+        <select style="width: 50%; text-align: center; height: 35px;">
+          <option value="shiyan">实验数据</option>
+        </select>-->
+        <label for="disk-search_time"><spring:message code='disk-info.disk-info.list.search.name' text='最近更新时间'/>:</label>
+        <input type="text" id="txtStartDate" style="padding: 6px 3px;" /> &nbsp; ~ &nbsp;<input type="text" id="txtEndDate" style="padding: 6px 3px;"/>
+        <label for="disk-search_name" style="margin-left: 30px"><spring:message code='disk-info.disk-info.list.search.name' text='文件名'/>:</label>
+        <input type="text" id="disk-search_name" name="filter_LIKES_name" value="${param.filter_LIKES_name}" class="form-control">
+        <button class="btn btn-default a-search fixed-button" style="right:10%; position:absolute;" onclick="document.disk-searchForm.submit()">查询</button>
       </form>
     </div>
   </div>
 
-  <div id="uploadFileButton" class="btn btn-default fixed-button fileinput-button">
-    上传文件
-    <input type="file" name="file" class="fileupload" data-no-uniform="true" data-url="upload.do" data-form-data='{"path":"${path}","spaceId":"${diskSpace.id}"}'>
+  <div class="form-inline">
+    地方: <input type="text" id="locationInput" name="locationParam" value="${param.locationParam}" class="form-control" style="margin-right: 20px;">
+    <button id="uploadFileButton" class="btn btn-default fixed-button fileinput-button">
+      上传文件
+    </button>
+    <input type="file" name="file" id="selectFileDialog" style="display: none" class="fileupload" data-no-uniform="true" data-url="upload.do" data-form-data='{"path":"${path}","spaceId":"${diskSpace.id}"}'>
+    <button id="createDirButton" class="btn btn-default fixed-button" data-toggle="modal" data-target="#createDirDialog">新建文件夹</button>
+    <button id="createShareButton" class="btn btn-default fixed-button" data-toggle="modal" data-target="#createShareDialog" onclick="$('#createShareInfoId').val($('.selectedItem').val())">共享</button>
+    <button id="removeDirButton" class="btn btn-default fixed-button" data-toggle="modal" data-target="#removeDirDialog" onclick="$('#removeDirInfoId').val($('.selectedItem').val())">删除</button>
+    <a class="btn btn-default fixed-button"  href="${tenantPrefix}/disk/index.do">更新</a>
   </div>
-  <button id="createDirButton" class="btn btn-default fixed-button" data-toggle="modal" data-target="#createDirDialog">新建文件夹</button>
-  <button id="createShareButton" class="btn btn-default fixed-button" data-toggle="modal" data-target="#createShareDialog" onclick="$('#createShareInfoId').val($('.selectedItem').val())">共享</button>
-  <button id="removeDirButton" class="btn btn-default fixed-button" data-toggle="modal" data-target="#removeDirDialog" onclick="$('#removeDirInfoId').val($('.selectedItem').val())">删除</button>
-  <a class="btn btn-default fixed-button"  href="${tenantPrefix}/disk/index.do">更新</a>
 </div>
 
 <div style="margin-top:10px;margin-bottom:10px;" class="clearfix">
@@ -76,10 +77,10 @@
       </div>
       <div class="modal-body">
         <div class="progress">
-		  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
-			<span class="sr-only">0%</span>
-		  </div>
-		</div>
+          <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+          <span class="sr-only">0%</span>
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
         <button id="uploadFileCancelButton" type="button" class="btn btn-default" data-dismiss="modal" onclick="location.reload()">取消</button>
@@ -121,7 +122,8 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">删除</h4>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="font-size: 16px;">
+        你确定删除吗?
       </div>
       <div class="modal-footer">
         <button id="uploadFileCancelButton" type="button" class="btn btn-default" data-dismiss="modal">取消</button>
@@ -138,6 +140,14 @@
 <script src="${cdnPrefix}/public/jquery-file-upload/5.42.0/js/jquery.fileupload.js"></script>
 
 <script type="text/javascript">
+$('#uploadFileButton').click(function(){
+  if($.trim($('#locationInput').val()) == ''){
+    alert('请输入地方');
+    $('#locationInput').focus();
+  } else {
+    $('#selectFileDialog').click();
+  }
+});
 function generateFileupload(maxLimitedSize) {
   $('.fileupload').fileupload({
     dataType: 'json',
@@ -155,7 +165,8 @@ function generateFileupload(maxLimitedSize) {
 			data.formData = {
 				lastModified: data.files[0].lastModified,
 				path: '${path}',
-        spaceId: '${diskSpace.id}'
+        spaceId: '${diskSpace.id}',
+        location: $('#locationInput').val()
 			};
 			data.jqXHR = $this.fileupload('send', data);
 			$('.progress-bar').css(
@@ -185,7 +196,28 @@ function generateFileupload(maxLimitedSize) {
 
 $(function () {
 	generateFileupload(1024 * 1024 * 1024);
+  $('#txtStartDate, #txtEndDate').datepicker({
+    showOn: "button",
+    buttonImage: "${cdnPrefix}/public/mossle/0.0.11/img/calendar.png",
+    buttonImageOnly: true,
+    buttonText: "Choose",
+    showAnim: "fade",
+    beforeShow: customRange,
+    dateFormat: "dd M yy",
+  });
 });
+
+function customRange(input) {
+  if (input.id == 'txtEndDate') {
+    var minDate = new Date($('#txtStartDate').val());
+    minDate.setDate(minDate.getDate() + 1)
+    return {
+        minDate: minDate
+    };
+  }
+  return {}
+}
+
 </script>
 
   <link href="${cdnPrefix}/public/select2/4.0.5/css/select2.min.css" rel="stylesheet" />
@@ -235,7 +267,7 @@ $(function () {
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-  <script>
+<script>
   $('#username_search').select2({
     ajax: {
       url: '${ctx}/localuser/rs/search/select2',

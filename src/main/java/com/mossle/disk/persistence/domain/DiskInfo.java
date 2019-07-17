@@ -92,6 +92,12 @@ public class DiskInfo implements java.io.Serializable {
     /** null. */
     private String securityLevel;
 
+    /** null. */
+    private String username;
+
+    /** null. */
+    private String location;
+
     /** . */
     private Set<DiskInfo> diskInfos = new HashSet<DiskInfo>(0);
 
@@ -196,6 +202,34 @@ public class DiskInfo implements java.io.Serializable {
      */
     public void setName(String name) {
         this.name = name;
+    }
+
+    /** @return null. */
+    @Column(name = "CREATOR_NAME", length = 64)
+    public String getUsername() {
+        return this.username;
+    }
+
+    /**
+     * @param username
+     *            null.
+     */
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    /** @return null. */
+    @Column(name = "LOCATION", length = 64)
+    public String getLocation() {
+        return this.location;
+    }
+
+    /**
+     * @param location
+     *            null.
+     */
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     /** @return null. */

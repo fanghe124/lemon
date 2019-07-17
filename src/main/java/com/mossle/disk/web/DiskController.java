@@ -378,14 +378,16 @@ public class DiskController {
     public String upload(@RequestParam("file") MultipartFile file,
             @RequestParam("path") String path,
             @RequestParam("spaceId") Long spaceId,
+            @RequestParam("location") String location,
             @RequestParam("lastModified") long lastModified) throws Exception {
         logger.info("lastModified : {}", lastModified);
 
         String userId = currentUserHolder.getUserId();
+        String userName = currentUserHolder.getUsername();
         String tenantId = tenantHolder.getTenantId();
         diskService.createFile(userId, new MultipartFileDataSource(file),
                 file.getOriginalFilename(), file.getSize(), path, spaceId,
-                tenantId);
+                tenantId, userName, location);
 
         return "{\"success\":true}";
     }

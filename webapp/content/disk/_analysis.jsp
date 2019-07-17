@@ -29,9 +29,9 @@
     </div>
     <div class="col-md-6" style="text-align: right">
       <!--<button id="extAppSettingButton" class="btn btn-default fixed-button" data-toggle="modal" data-target="#extAppDialog">外程序运行</button>-->
-      <a class="btn btn-default fixed-button" href="lemon.app1://">外程序1运行</a>
-      <a class="btn btn-default fixed-button" href="lemon.app2://">外程序2运行</a>
-      <a class="btn btn-default fixed-button" href="matlab-build.do?id=${item.id}">Matlab运行</a>
+      <a class="btn btn-default fixed-button" style="width: 200px;" href="lemon.app1://">运行 GiliSoft Video Editor</a>
+      <a class="btn btn-default fixed-button" style="width: 200px;" href="lemon.app2://">运行 Origin 2017</a>
+      <a class="btn btn-default fixed-button" style="width: 200px;" href="matlab-build.do?id=${item.id}">运行 Matlab</a>
     </div>
   </div>
 

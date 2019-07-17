@@ -57,7 +57,7 @@ public class DiskService {
         String type = FileUtils.getSuffix(name);
 
         return this.createDiskInfo(userId, name, size, storeDto.getKey(), type,
-                1, parentPath);
+                1, parentPath, "", "");
     }
 
     /**
@@ -66,14 +66,14 @@ public class DiskService {
     public DiskInfo createDir(String userId, String name, String parentPath) {
         // internalStoreConnector.mkdir("1/disk/user/" + userId + "/" + parentPath
         // + "/" + name);
-        return this.createDiskInfo(userId, name, 0, null, "dir", 0, parentPath);
+        return this.createDiskInfo(userId, name, 0, null, "dir", 0, parentPath, "", "");
     }
 
     /**
      * 上传文件，或新建文件夹.
      */
     public DiskInfo createDiskInfo(String userId, String name, long size,
-            String ref, String type, int dirType, String parentPath) {
+            String ref, String type, int dirType, String parentPath, String username, String location) {
         if (name == null) {
             logger.info("name cannot be null");
 
@@ -287,7 +287,7 @@ public class DiskService {
      */
     public DiskInfo createFile(String userId, DataSource dataSource,
             String name, long size, String parentPath, Long spaceId,
-            String tenantId) throws Exception {
+            String tenantId, String username, String location) throws Exception {
         String modelName = "disk/user/" + userId;
         String keyName = parentPath + "/" + name;
         StoreDTO storeDto = storeClient.saveStore(modelName, keyName,
@@ -295,7 +295,7 @@ public class DiskService {
         String type = FileUtils.getSuffix(name);
 
         return this.createDiskInfo(userId, name, size, storeDto.getKey(), type,
-                1, parentPath, spaceId);
+                1, parentPath, spaceId, username, location);
     }
 
     /**
@@ -306,7 +306,7 @@ public class DiskService {
         // internalStoreConnector.mkdir("1/disk/user/" + userId + "/" + parentPath
         // + "/" + name);
         return this.createDiskInfo(userId, name, 0, null, "dir", 0, parentPath,
-                spaceId);
+                spaceId, "", "");
     }
 
     /**
@@ -314,7 +314,7 @@ public class DiskService {
      */
     public DiskInfo createDiskInfo(String userId, String name, long size,
             String ref, String type, int dirType, String parentPath,
-            Long spaceId) {
+            Long spaceId, String username, String location) {
         if (name == null) {
             logger.info("name cannot be null");
 
@@ -376,6 +376,8 @@ public class DiskService {
         diskInfo.setStatus("active");
         diskInfo.setParentPath(parentPath);
         diskInfo.setDiskSpace(diskSpace);
+        diskInfo.setUsername(username);
+        diskInfo.setLocation(location);
         diskInfoManager.save(diskInfo);
 
         return diskInfo;
