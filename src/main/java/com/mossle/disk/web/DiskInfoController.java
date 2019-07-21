@@ -2,9 +2,15 @@ package com.mossle.disk.web;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import java.util.Date;
 import java.util.List;
@@ -32,12 +38,6 @@ import com.mossle.disk.service.DiskService;
 
 import com.mossle.audio_trimmer.lib.*;
 
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.poifs.filesystem.POIFSFileSystem;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Cell;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -49,6 +49,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import org.apache.poi.hwpf.HWPFDocument;
+import org.apache.poi.hwpf.converter.PicturesManager;
+import org.apache.poi.hwpf.converter.WordToHtmlConverter;
+import org.apache.poi.hwpf.usermodel.Picture;
+import org.apache.poi.hwpf.usermodel.PictureType;
+import org.w3c.dom.Document;
+import org.apache.commons.io.FileUtils;
+import java.io.ByteArrayOutputStream;
 
 import matlabcontrol.*;
 
@@ -238,46 +253,6 @@ public class DiskInfoController {
     public String view(@RequestParam("id") Long id, Model model) {
         DiskInfo diskInfo = diskInfoManager.get(id);
         model.addAttribute("diskInfo", diskInfo);
-
-		try {
-			FileInputStream in = new FileInputStream(new File("2.xls"));
-			POIFSFileSystem fs = new POIFSFileSystem(in);
-			HSSFWorkbook wk = new HSSFWorkbook(fs);
-			HSSFSheet sheet = wk.getSheetAt(0);
-			
-			for (Row row : sheet) {
-				//打印行索引
-				//System.out.println(row.getRowNum());
-				//遍历单元格对象
-					//表头不要打印
-				for (Cell cell : row) {
-					//获取每个单元格的类型
-					int cellType = cell.getCellType();
-					if(cellType == cell.CELL_TYPE_BLANK){
-						//System.out.println("空格类型");
-						System.out.print("\t");
-					}
-					if(cellType == cell.CELL_TYPE_NUMERIC){
-						//System.out.println("数字类型");
-						System.out.print(cell.getNumericCellValue()+"\t");
-					}
-					if(cellType == cell.CELL_TYPE_STRING){
-						//System.out.println("字符串类型");
-						System.out.print(cell.getStringCellValue()+"\t");
-					}
-				}
-				//换行
-				System.out.println();
-			}
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
         
         /*
         AudioSoundFile audioSoundFile = AudioSoundFile.create(in_file_path, listner);
@@ -457,7 +432,7 @@ public class DiskInfoController {
 
         return buff.toString();
     }
-
+    
     // ~ ======================================================================
 
     @Resource

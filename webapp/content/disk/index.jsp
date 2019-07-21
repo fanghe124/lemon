@@ -149,6 +149,10 @@
 </div><!-- /.modal -->
 
 <script type="text/javascript">
+$('#contentPreviewDialog').on('hidden.bs.modal', function () {
+  location.reload();
+})
+
 function removeFile(id) {
 	$('#removeId').val(id);
 	$('#removeDialog').modal("show");
