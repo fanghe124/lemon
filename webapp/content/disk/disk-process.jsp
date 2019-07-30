@@ -79,7 +79,7 @@
           <th class="col-md-1 text-left">大小</th>
           <!--<th class="col-md-2 text-left">管理类别</th>-->
           <th class="col-md-1 text-left">创建人</th>
-          <th class="col-md-1 text-left">地方</th>
+          <th class="col-md-1 text-left">地点</th>
           <th class="col-md-2 text-left">创建时间</th>
           <th class="col-md-1 text-left">最近更新人</th>
           <th class="col-md-2 text-left">最近更新时间</th>

@@ -5,7 +5,7 @@
       <form name="disk-searchForm" method="post" action="index.do" class="form-inline">
         <label for="disk-search_name"><spring:message code='disk-info.disk-info.list.search.name' text='用户名'/>:</label>
         <input type="text" id="disk-search_name" name="filter_LIKES_name" value="${param.filter_LIKES_name}" class="form-control" style="margin-right: 20px; width: 120px;">
-        <label for="disk-search_name"><spring:message code='disk-info.disk-info.list.search.name' text='地方'/>:</label>
+        <label for="disk-search_name"><spring:message code='disk-info.disk-info.list.search.name' text='地点'/>:</label>
         <input type="text" id="disk-search_name" name="filter_LIKES_name" value="${param.filter_LIKES_name}" class="form-control" style="margin-right: 20px; width: 120px;">
         <!--<label for="disk-search_tyle"><spring:message code='disk-info.disk-info.list.search.name' text='管理类别'/>:</label>
         <select style="width: 50%; text-align: center; height: 35px;">

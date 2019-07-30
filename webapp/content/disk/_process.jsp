@@ -5,7 +5,7 @@
       <form name="disk-searchForm" method="post" action="index.do" class="form-inline">
         <label for="disk-search_name"><spring:message code='disk-info.disk-info.list.search.name' text='用户名'/>:</label>
         <input type="text" id="disk-search_name" name="filter_LIKES_name" value="${param.filter_LIKES_name}" class="form-control" style="margin-right: 20px; width: 120px;">
-        <label for="disk-search_name"><spring:message code='disk-info.disk-info.list.search.name' text='地方'/>:</label>
+        <label for="disk-search_name"><spring:message code='disk-info.disk-info.list.search.name' text='地点'/>:</label>
         <input type="text" id="disk-search_name" name="filter_LIKES_name" value="${param.filter_LIKES_name}" class="form-control" style="margin-right: 20px; width: 120px;">
         <!--<label for="disk-search_tyle"><spring:message code='disk-info.disk-info.list.search.name' text='管理类别'/>:</label>
         <select style="width: 50%; text-align: center; height: 35px;">
@@ -20,10 +20,12 @@
     </div>
   </div>
 
+  <!--
   <div id="uploadFileButton" class="btn btn-default fixed-button fileinput-button">
     <span>上传文件</span>
     <input type="file" name="file" class="fileupload" data-no-uniform="true" data-url="upload.do" data-form-data='{"path":"${path}","spaceId":"${diskSpace.id}"}'>
   </div>
+  -->
   <button id="removeDirButton" class="btn btn-default fixed-button" data-toggle="modal" data-target="#removeDirDialog" onclick="$('#removeDirInfoId').val($('.selectedItem').val())">删除文件</button>
 
   <!--<button id="createDirButton" class="btn btn-default fixed-button" data-toggle="modal" data-target="#createDirDialog">新建文件夹</button>-->

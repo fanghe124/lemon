@@ -26,14 +26,14 @@
 			
 			<section id="m-main" class="col-md-10">
 				<el-row :gutter="0">
-					<el-col :span="6">
-						<div style="background-color: #fff;height:100%;padding-left:10px;">
-						<div class="title-position" style="background-color: #f5f5f5;height:45px;line-height:45px;">设备种类</div>
+					<el-col :span="6" style="margin-right: 10px">
+						<div style="background-color: #fff;height:100%;">
+						<div class="title-position" style="background-color: #f5f5f5;height:45px;line-height:45px; border: 1px solid #dfdfdf;">设备种类</div>
 						<el-table id="class-list-id" :data="classTableData" style="width: 100%" 
 											ref="singleTable" @current-change="handleCurrentRowChange">
 								<el-table-column prop="className" label="名称" >
-											<template slot-scope="scope" >
-										<span  :title="scope.row.className" style="cursor:pointer"  >{{ scope.row.classCutName}}</span>  
+											<template slot-scope="scope">
+										<span  :title="scope.row.className" style="cursor:pointer; margin-left: 10px;"  >{{ scope.row.classCutName}}</span>  
 										<el-tag title="" type="danger" style="float:right">报废{{ scope.row.dump}}</el-tag>
 										<el-tag title="" type="success" style="float:right">使用{{ scope.row.use}}</el-tag>
 										<el-tag title="" style="float:right">空闲{{ scope.row.free}}</el-tag>
@@ -43,7 +43,7 @@
 						</div>
 					</el-col>
 					<el-col :span="18">
-						<div style="background-color: #fff;height:100%;margin-top:15px;padding:0 10px;">
+						<div style="background-color: #fff;height:100%;margin-top:15px;padding:10px 10px;">
 							<el-button
 											size="mini" 
 											@click="dialogFormVisible = true" >填加</el-button>
@@ -78,7 +78,7 @@
 									layout="total, sizes, prev, pager, next"
 									:total="totalSize" style="margin-top:15px;float:right">
 								</el-pagination>
-					</div>
+							</div>
 						</div>
 					</el-col>
 				</el-row>

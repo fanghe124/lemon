@@ -5,7 +5,7 @@
       <form name="disk-searchForm" method="post" action="index.do" class="form-inline">
         <label for="disk-search_username"><spring:message code='disk-info.disk-info.list.search.name' text='用户名'/>:</label>
         <input type="text" id="disk-search_username" name="filter_LIKES_username" value="${param.filter_LIKES_username}" class="form-control" style="margin-right: 20px; width: 120px;">
-        <label for="disk-search_location"><spring:message code='disk-info.disk-info.list.search.name' text='地方'/>:</label>
+        <label for="disk-search_location"><spring:message code='disk-info.disk-info.list.search.name' text='地点'/>:</label>
         <input type="text" id="disk-search_location" name="filter_LIKES_location" value="${param.filter_LIKES_location}" class="form-control" style="margin-right: 20px; width: 120px;">
         <!--<label for="disk-search_tyle"><spring:message code='disk-info.disk-info.list.search.name' text='管理类别'/>:</label>
         <select style="width: 50%; text-align: center; height: 35px;">
@@ -23,11 +23,10 @@
   </div>
 
   <div class="form-inline">
-    地方: <input type="text" id="locationInput" name="locationParam" value="${param.locationParam}" class="form-control" style="margin-right: 20px;">
+    地点: <input type="text" id="locationInput" name="locationParam" value="${param.locationParam}" class="form-control" style="margin-right: 20px;">
     <button id="uploadFileButton" class="btn btn-default fixed-button fileinput-button">
       上传文件
     </button>
-    <input type="file" name="file" id="selectFileDialog" style="display: none" class="fileupload" data-no-uniform="true" data-url="upload.do" data-form-data='{"path":"${path}","spaceId":"${diskSpace.id}"}'>
     <button id="createDirButton" class="btn btn-default fixed-button" data-toggle="modal" data-target="#createDirDialog">新建文件夹</button>
     <button id="createShareButton" class="btn btn-default fixed-button" data-toggle="modal" data-target="#createShareDialog" onclick="$('#createShareInfoId').val($('.selectedItem').val())">共享</button>
     <button id="removeDirButton" class="btn btn-default fixed-button" data-toggle="modal" data-target="#removeDirDialog" onclick="$('#removeDirInfoId').val($('.selectedItem').val())">删除</button>
@@ -78,15 +77,37 @@
         <h4 class="modal-title">上传文件</h4>
       </div>
       <div class="modal-body">
-        <div class="progress">
-          <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
-          <span class="sr-only">0%</span>
+        <div class="form-inline">
+          <div class="row" style="margin: 5px 0px;">
+            <div class="col-md-1"></div>
+            <div class="col-md-1" style="padding: 6px 0px">名称:</div>
+            <div class="col-md-9"><input type="text" id="nameInput" name="nameParam" value="${param.nameParam}" class="form-control" style="width: 100%;"></div>
+          </div>
+          <div class="row" style="margin: 5px 0px;">
+            <div class="col-md-1"></div>
+            <div class="col-md-1" style="padding: 6px 0px">文件:</div>
+            <div class="col-md-6"><label id="fileInput" name="fileParam" value="${param.fileParam}" class="form-control" style="width: 100%;"></label></div>
+            <div class="col-md-3"><button id="openFileDialog" class="btn btn-default" style="width: 100%;">选择文件</button></div>
+            <input type="file" name="file" id="selectFileDialog" style="display: none" class="fileupload" data-no-uniform="true" data-url="upload.do" data-form-data='{"path":"${path}","spaceId":"${diskSpace.id}"}'>          </div>
+          <div class="row" style="margin: 5px 0px;">
+            <div class="col-md-1"></div>
+            <div class="col-md-1" style="padding: 6px 0px">描述:</div>
+            <div class="col-md-9"><textarea id="descInput" name="descParam" value="${param.descParam}" rows="5" style="width: 100%;"></textarea></div>
+          </div>
+        </div>
+        <div style="height: 50px; padding-top: 20px">
+          <div class="progress" style="display: none">
+            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+            <span class="sr-only">0%</span>
+            </div>
           </div>
         </div>
       </div>
+     
       <div class="modal-footer">
-        <button id="uploadFileCancelButton" type="button" class="btn btn-default" data-dismiss="modal" onclick="location.reload()">取消</button>
+        <button id="uploadFile" class="btn btn-primary"><i class="fa fa-cloud-upload-alt"></i>  上传</button>
         <button id="uploadFileConfirmButton" type="button" class="btn btn-primary" onclick="location.reload()">确认</button>
+        <button id="uploadFileCancelButton" type="button" class="btn btn-default" data-dismiss="modal" onclick="location.reload()">取消</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -142,13 +163,20 @@
 <script src="${cdnPrefix}/public/jquery-file-upload/5.42.0/js/jquery.fileupload.js"></script>
 
 <script type="text/javascript">
+$("#selectFileDialog").change(function(){
+  $("#fileInput").text(this.files[0].name);
+});
 $('#uploadFileButton').click(function(){
   if($.trim($('#locationInput').val()) == ''){
-    alert('请输入地方');
+    alert('请输入地点');
     $('#locationInput').focus();
   } else {
-    $('#selectFileDialog').click();
+    $('#uploadFileProgress').modal('show');
+    //$('#selectFileDialog').click();
   }
+});
+$('#openFileDialog').click(function(){
+  $('#selectFileDialog').click();
 });
 function generateFileupload(maxLimitedSize) {
   $('.fileupload').fileupload({
@@ -159,7 +187,10 @@ function generateFileupload(maxLimitedSize) {
       if (file.size > maxLimitedSize) {
         alert("图片过大");
       } else {
-        data.submit();
+        $("#uploadFile").off('click').on('click', function () {
+          $(".progress").css('display','');
+          data.submit();
+        });
       }
     },
 		submit: function (e, data) {

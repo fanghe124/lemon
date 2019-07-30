@@ -46,7 +46,12 @@
     </ul>
 
     <!-- 实验统计 -->
-    <li><a href="${tenantPrefix}/report/view.do?code=mostActiveProcess" class="${currentMenu == 'chart' ? 'active' : ''}"><i class="fa fa-chart-line"></i>实验统计</a></li>
+    <li data-toggle="collapse" href="#collapse-report"><a href="#"><i class="fa fa-chart-line"></i>实验统计</a></li>
+    <ul id="collapse-report" class="nav navbar-nav panel-collapse collapse ${parentMenu == 'report' ? 'in' : ''}">
+      <li><a href="${tenantPrefix}/report/view.do?code=mostActiveProcess" class="${currentMenu == 'chart' ? 'active' : ''}"><i class="fa fa-chart-bar"></i>实验次数</a></li>
+      <li><a href="${tenantPrefix}/report/view.do?code=mostActiveProcess" class="${currentMenu == 'chart' ? 'active' : ''}"><i class="fa fa-project-diagram"></i>模型管理</a></li>
+    </ul>
+
     
     <!-- 实验交流 -->
     <li><a href="${tenantPrefix}/cms/view"><i class="fa fa-comments"></i>实验交流</a></li>

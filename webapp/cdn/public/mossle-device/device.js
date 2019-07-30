@@ -97,7 +97,7 @@ var app = new Vue({
 		            	
 		            },
 		            error: function() {
-		              alert("error");
+		              console.log("error");
 		            }
 		          });
 		    	
@@ -130,7 +130,7 @@ var app = new Vue({
 		            	
 		            },
 		            error: function() {
-		              alert("error");
+		              console.log("error");
 		            }
 		          });
 		    },
@@ -157,7 +157,7 @@ var app = new Vue({
 		            
 		            },
 		            error: function() {
-		              alert("error");
+		              console.log("error");
 		            }
 		          });
 		    	this.getClassTableData();
@@ -187,7 +187,7 @@ var app = new Vue({
 			              _self.getDeviceTableData();
 			            },
 			            error: function() {
-			              alert("error");
+			              console.log("error");
 			            }
 			          });
 		    	}
@@ -216,7 +216,7 @@ var app = new Vue({
 			            	_self.dialogFormVisible = true;
 			            },
 			            error: function() {
-			              alert("error");
+			              console.log("error");
 			            }
 			          });
 		    	}

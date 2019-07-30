@@ -8,7 +8,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a href="${tenantPrefix}/" class="brand">实验管理系统 <sub><small>1.9.0</small></sub></a>
+          <a href="${tenantPrefix}/" class="brand">仿真/开发/试验管理系统 <sub><small>1.9.0</small></sub></a>
         </div>
       </div><!-- /navbar-inner -->
     </div>

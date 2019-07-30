@@ -1,12 +1,20 @@
 <%@page contentType="text/html;charset=UTF-8"%>
 <%@include file="/common/taglibs.jsp"%>
 <!doctype html>
-<html lang="en">
+<html lang="en" style="height: 100%"
 
   <head>
     <%@include file="/common/meta.jsp"%>
     <title><spring:message code="core.login.title" text="登录"/></title>
-	<%@include file="/common/s3.jsp"%>
+    <link rel="stylesheet" href="${cdnPrefix}/public/mossle/0.0.11/css/login.css">
+  <%@include file="/common/s3.jsp"%>
+  <style type="text/css">
+  body {
+    background-image: url("${cdnPrefix}/public/mossle/0.0.11/img/bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  </style>
 	<script type="text/javascript">
 $(function() {
 	focusTenant();
@@ -30,37 +38,31 @@ function focusUsername() {
 	</script>
   </head>
 
-  <body>
+  <body style="height: 100%;">
 
     <!-- start of header bar -->
-<div class="navbar navbar-default navbar-fixed-top header-style">
   <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="${tenantPrefix}">
-	    <img src="${cdnPrefix}/public/mossle/0.0.11/logo32.png" class="img-responsive pull-left" style="margin-top:-5px;margin-right:5px;">
-	           实验管理系统 <sub><small>1.0.0</small></sub>
-      </a>
+    <div class="navbar-header logo-text">
+      <img src="${cdnPrefix}/public/mossle/0.0.11/logo32.png" class="img-responsive pull-left" style="margin-top:-5px;margin-right:10px;">
+      仿真/开发/试验管理系统 <sub><small>1.0.0</small></sub>
     </div>
 
     <div class="navbar-collapse collapse">
-
       <ul class="nav navbar-nav navbar-right">
         <!-- 
-	    <li>	     
+  	    <li>	     
           <a href="?locale=zh_CN"><img src="${cdnPrefix}/flags/china.gif" height="20"></a>
-		</li>
-	    <li>
+	    	</li>
+	      <li>
           <a href="?locale=en_US"><img src="${cdnPrefix}/flags/us.gif" height="20"></a>
-		</li>
-		- -->
-	  </ul>
-	</div>
+		    </li>
+		    - -->
+	    </ul>
+	  </div>
   </div>
-</div>
     <!-- end of header bar -->
-
-	<div class="row" style="margin-top:70px;">
-	  <div class="container-fluid">
+  <div class="container-fluid" style="height: 70%">
+	<div class="row valign" style="margin-top:70px; height: 100%;">
 
 	  <div class="col-md-4"></div>
 
@@ -83,38 +85,38 @@ function focusUsername() {
 <form id="userForm" name="f" method="post" action="${tenantPrefix}/j_spring_security_check" class="form-horizontal">
   <div class="form-group" style="display:none">
     <label class="col-md-2 control-label" for="tenant">租户</label>
-	<div class="col-md-10">
+	  <div class="col-md-10">
       <input type='text' id="tenant" name='tenant' class="form-control" value="${empty sessionScope['SECURITY_LAST_TENANT'] ? cookie['SECURITY_LAST_TENANT'].value : sessionScope['SECURITY_LAST_TENANT']}">
       <span id="tenantText" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" style="right:15px;cursor:pointer;pointer-events:auto;display:none;"></span>
     </div>
   </div>
   <div class="form-group">
     <label class="col-md-2 control-label" for="username"><spring:message code="core.login.username" text="账号"/></label>
-	<div class="col-md-10">
+	  <div class="col-md-10">
       <input type='text' id="username" name='j_username' class="form-control" value="${empty sessionScope['SECURITY_LAST_USERNAME'] ? cookie['SECURITY_LAST_USERNAME'].value : sessionScope['SECURITY_LAST_USERNAME']}" aria-describedby="inputSuccess3Status">
       <span id="usernameText" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" style="right:15px;cursor:pointer;pointer-events:auto;display:none;"></span>
     </div>
   </div>
   <div class="form-group">
     <label class="col-md-2 control-label" for="password"><spring:message code="core.login.password" text="密码"/></label>
-	<div class="col-md-10">
+	  <div class="col-md-10">
       <input type='password' id="password" name='j_password' class="form-control" value=''>
     </div>
   </div>
   <c:if test="${sessionScope['captchaSessionToken']}">
   <div class="form-group" id="captchaArea">
     <label class="col-md-2 control-label" for="password" style="padding-left:0px;">验证码</label>
-	<div class="col-md-2">
-	  <img id="captchaPicture" src="captcha.jsp?_=<%=System.currentTimeMillis()%>" onclick="this.src='captcha.jsp?_=' + new Date().getTime()">
-	</div>
-	<div class="col-md-8">
+	  <div class="col-md-2">
+	    <img id="captchaPicture" src="captcha.jsp?_=<%=System.currentTimeMillis()%>" onclick="this.src='captcha.jsp?_=' + new Date().getTime()">
+	  </div>
+	  <div class="col-md-8">
       <input type='text' id="captcha" name='captcha' class="form-control" value=''>
     </div>
   </div>
   </c:if>
   <div class="form-group">
     <label class="col-md-2 control-label" for="username">&nbsp;</label>
-	<div class="col-md-10">
+	  <div class="col-md-10">
       <input type='checkbox' name='_spring_security_remember_me' id="_spring_security_remember_me" />
 	  <label for="_spring_security_remember_me">两周内自动登陆</label>
     </div>
