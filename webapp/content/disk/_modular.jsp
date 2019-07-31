@@ -1,42 +1,21 @@
 <%@page contentType="text/html;charset=UTF-8"%>
 <div>
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <form name="disk-searchForm" method="post" action="index.do" class="form-inline">
-        <label for="disk-search_username"><spring:message code='disk-info.disk-info.list.search.name' text='用户名'/>:</label>
-        <input type="text" id="disk-search_username" name="filter_LIKES_username" value="${param.filter_LIKES_username}" class="form-control" style="margin-right: 20px; width: 120px;">
-        <label for="disk-search_location"><spring:message code='disk-info.disk-info.list.search.name' text='地点'/>:</label>
-        <input type="text" id="disk-search_location" name="filter_LIKES_location" value="${param.filter_LIKES_location}" class="form-control" style="margin-right: 20px; width: 120px;">
-        <!--<label for="disk-search_tyle"><spring:message code='disk-info.disk-info.list.search.name' text='管理类别'/>:</label>
-        <select style="width: 50%; text-align: center; height: 35px;">
-          <option value="shiyan">实验数据</option>
-        </select>-->
-        <label for="disk-search_time"><spring:message code='disk-info.disk-info.list.search.name' text='最近更新时间'/>:</label>
-        <input type="text" id="txtStartDate" name="filter_LIKES_startdate" value="${param.filter_LIKES_startdate}" style="padding: 6px 3px;" /> 
-        &nbsp; ~ &nbsp;
-        <input type="text" id="txtEndDate" name="filter_LIKES_enddate" value="${param.filter_LIKES_enddate}" style="padding: 6px 3px;"/>
-        <label for="disk-search_filename" style="margin-left: 30px"><spring:message code='disk-info.disk-info.list.search.name' text='文件名'/>:</label>
-        <input type="text" id="disk-search_filename" name="filter_LIKES_name" value="${param.filter_LIKES_name}" class="form-control">
-        <button class="btn btn-default a-search fixed-button" style="right:10%; position:absolute;" onclick="document.disk-searchForm.submit()">查询</button>
-      </form>
-    </div>
-  </div>
-
   <div class="form-inline">
     地点: <input type="text" id="locationInput" name="locationParam" value="${param.locationParam}" class="form-control" style="margin-right: 20px;">
     <button id="uploadFileButton" class="btn btn-default fixed-button fileinput-button">
       上传文件
     </button>
-    <button id="removeDirButton" class="btn btn-default fixed-button" data-toggle="modal" data-target="#removeDirDialog" onclick="$('#removeDirInfoId').val($('.selectedItem').val())">删除文件</button>
+    <!--<button id="createDirButton" class="btn btn-default fixed-button" data-toggle="modal" data-target="#createDirDialog">新建文件夹</button>-->
     <button id="createShareButton" class="btn btn-default fixed-button" data-toggle="modal" data-target="#createShareDialog" onclick="$('#createShareInfoId').val($('.selectedItem').val())">共享</button>
-    <a class="btn btn-default fixed-button" href="disk-info-download.do?id=${item.id}">下载</a>
+    <button id="removeDirButton" class="btn btn-default fixed-button" data-toggle="modal" data-target="#removeDirDialog" onclick="$('#removeDirInfoId').val($('.selectedItem').val())">删除</button>
+    <a class="btn btn-default fixed-button"  href="${tenantPrefix}/disk/index.do">更新</a>
   </div>
 </div>
 
 <div style="margin-top:10px;margin-bottom:10px;" class="clearfix">
   <div class="pull-left">
 <c:if test="${not empty path}">
-  <a href="disk-process-parentDir.do?path=${path}">返回上一级</a>
+  <a href="disk-modular-parentDir.do?path=${path}">返回上一级</a>
   |
   <%
   String path = (String) request.getAttribute("path");
@@ -87,7 +66,7 @@
             <div class="col-md-1" style="padding: 6px 0px">文件:</div>
             <div class="col-md-6"><label id="fileInput" name="fileParam" value="${param.fileParam}" class="form-control" style="width: 100%;"></label></div>
             <div class="col-md-3"><button id="openFileDialog" class="btn btn-default" style="width: 100%;">选择文件</button></div>
-            <input type="file" name="file" id="selectFileDialog" style="display: none" class="fileupload" data-no-uniform="true" data-url="process-upload.do" data-form-data='{"path":"${path}","spaceId":"${diskSpace.id}"}'>          </div>
+            <input type="file" name="file" id="selectFileDialog" style="display: none" class="fileupload" data-no-uniform="true" data-url="modular-upload.do" data-form-data='{"path":"${path}","spaceId":"${diskSpace.id}"}'>          </div>
           <div class="row" style="margin: 5px 0px;">
             <div class="col-md-1"></div>
             <div class="col-md-1" style="padding: 6px 0px">描述:</div>

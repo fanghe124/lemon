@@ -221,6 +221,50 @@ public class DiskController {
         return "redirect:/disk/disk-analysis.do?path=" + strCurrentPath;
     }
     
+    /**
+     * 数据处理
+     */
+    @RequestMapping("disk-modular")
+    public String modularHome(
+            @RequestParam(value = "path", required = false, defaultValue = "") String path,
+            @RequestParam(value = "filter_LIKES_name", required = false, defaultValue = "") String searchName,
+            @RequestParam(value = "filter_LIKES_username", required = false, defaultValue = "") String searchUserName,
+            @RequestParam(value = "filter_LIKES_location", required = false, defaultValue = "") String searchLocation,
+            @RequestParam(value = "filter_LIKES_startdate", required = false, defaultValue = "") String searchStartDate,
+            @RequestParam(value = "filter_LIKES_enddate", required = false, defaultValue = "") String searchEndDate,
+            Model model) {
+    	
+    	String userId = currentUserHolder.getUserId();
+        DiskSpace diskSpace = this.diskService.findUserSpace(userId);
+
+        List<DiskInfo> diskInfos = diskService.listFiles(diskSpace, path, searchName, searchUserName, searchLocation, searchStartDate, searchEndDate);
+        model.addAttribute("diskInfos", diskInfos);
+        model.addAttribute("diskSpace", diskSpace);
+        model.addAttribute("path", path);
+
+        return "disk/disk-modular";
+    }
+    
+    /**
+     * 上一级目录.
+     */
+    @RequestMapping("disk-modular-parentDir")
+    public String modularParentDir(@RequestParam("path") String path) throws Exception {
+        if (path == null) {
+            return "redirect:/disk/disk-modular.do";
+        }
+
+        if ("".equals(path)) {
+            return "redirect:/disk/disk-modular.do";
+        }
+
+        strCurrentPath = path.substring(0, path.lastIndexOf("/"));
+        bCurrentPath = true;
+        
+        return "redirect:/disk/disk-modular.do?path=" + strCurrentPath;
+    }
+
+    
     @RequestMapping("add-extapp")
     public String addExtApp(
             @RequestParam(value = "appName") String appname,
@@ -404,6 +448,52 @@ public class DiskController {
         return "{\"success\":true}";
     }
 
+    /**
+     * 上传文件.
+     */
+    @RequestMapping("process-upload")
+    @ResponseBody
+    public String processUpload(@RequestParam("file") MultipartFile file,
+            @RequestParam("path") String path,
+            @RequestParam("spaceId") Long spaceId,
+            @RequestParam("location") String location,
+            @RequestParam("lastModified") long lastModified) throws Exception {
+        logger.info("lastModified : {}", lastModified);
+
+        String userId = currentUserHolder.getUserId();
+        String userName = currentUserHolder.getUsername();
+        String tenantId = tenantHolder.getTenantId();
+        diskService.createFile(userId, new MultipartFileDataSource(file),
+                file.getOriginalFilename(), file.getSize(), path, spaceId,
+                tenantId, userName, location);
+
+        return "{\"success\":true}";
+    }
+
+    
+    /**
+     * 上传文件.
+     */
+    @RequestMapping("modular-upload")
+    @ResponseBody
+    public String modularUpload(@RequestParam("file") MultipartFile file,
+            @RequestParam("path") String path,
+            @RequestParam("spaceId") Long spaceId,
+            @RequestParam("location") String location,
+            @RequestParam("lastModified") long lastModified) throws Exception {
+        logger.info("lastModified : {}", lastModified);
+
+        String userId = currentUserHolder.getUserId();
+        String userName = currentUserHolder.getUsername();
+        String tenantId = tenantHolder.getTenantId();
+        diskService.createFile(userId, new MultipartFileDataSource(file),
+                file.getOriginalFilename(), file.getSize(), path, spaceId,
+                tenantId, userName, location);
+
+        return "{\"success\":true}";
+    }
+
+    
     private String fileLocation;
     
     @RequestMapping("uploadfile")
